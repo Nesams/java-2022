@@ -1,4 +1,7 @@
 package ee.taltech.iti0202.hello;
+
+import java.util.Objects;
+
 /**
  * Simple class to test whether you get feedback.
  */
@@ -13,8 +16,8 @@ public class Hello {
      * @return Greeting
      */
     public static String getGreeting(String name) {
-        if (name == null) {
-        return "Hello";
+        if (Objects.equals(name, "")) {
+        return "Hello!";
         }
         else {
             return "Hello, " + name + "!";
@@ -26,6 +29,6 @@ public class Hello {
      * @param args Arguments from command line
      */
     public static void main(String[] args) {
-        System.out.println(getGreeting("Java"));
+        System.out.println(getGreeting(""));
     }
 }
