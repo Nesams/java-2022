@@ -2,6 +2,7 @@ package ee.taltech.iti0202.introduction;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Introduction {
 
@@ -41,8 +42,11 @@ public class Introduction {
      * @return list of even numbers.
      */
     public List<Integer> findEvenNumbersList(List<Integer> numbers) {
-        return null;
-    }
+        List<Integer> even = numbers.stream()
+                .filter(number -> number % 2 == 0)
+                .collect(Collectors.toList());
+        return even;
+        }
     
     /**
      * Method gets an array of numbers.
