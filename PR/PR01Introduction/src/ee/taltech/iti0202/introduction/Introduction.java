@@ -19,7 +19,17 @@ public class Introduction {
      * @return String based on the values of valueOne and valueTwo
      */
     public String howIsOutcome(int valueOne, int valueTwo) {
-        return "";
+        if (valueOne < 5 || valueTwo < 5) {
+            return "bad";
+        }
+        if (valueOne == valueTwo * 2) {
+            return "good";
+        }
+        if (valueTwo == valueOne * 2) {
+            return "good";
+        } else {
+            return "ok";
+        }
     }
     
     /**
@@ -83,6 +93,9 @@ public class Introduction {
     public static void main(String[] args) {
         Introduction introduction = new Introduction();
         System.out.println(introduction.howIsOutcome(3, 6)); // "bad"
+        System.out.println(introduction.howIsOutcome(1, 10));
+        System.out.println(introduction.howIsOutcome(6, 12));
+        System.out.println(introduction.howIsOutcome(8, 9));
         
         List<Integer> nums = new ArrayList<>(Arrays.asList(4, 7, 5, 2, 1, 2, -2, 0));
         System.out.println(introduction.findEvenNumbersList(nums)); // [4, 2, 2, -2, 0]
