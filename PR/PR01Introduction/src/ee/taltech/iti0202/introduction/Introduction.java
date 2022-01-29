@@ -30,7 +30,8 @@ public class Introduction {
         }
         if (valueTwo == valueOne * 2) {
             return "good";
-        } else {
+        }
+        else {
             return "ok";
         }
     }
@@ -92,7 +93,7 @@ public class Introduction {
         int firstLenght = first.length();
         int secondLenght = second.length();
         if (firstLenght == secondLenght) {
-            return first + second;
+             return first + second;
         }
         if (firstLenght > secondLenght) {
             return (first.substring(firstLenght - secondLenght) + second).toLowerCase(Locale.ROOT);
@@ -100,12 +101,13 @@ public class Introduction {
         if (firstLenght < secondLenght) {
             return (first + second.substring(secondLenght - firstLenght)).toUpperCase(Locale.ROOT);
         }
-        if (firstLenght == 0) {
-            if (secondLenght == 0) {
-                return "FALSE";
-            }
+        if (firstLenght + secondLenght == 0) {
+            return "FALSE";
         }
-
+        else {
+            return null;
+        }
+    }
 
     /**
      * Method gets one String as a parameter.
@@ -115,9 +117,9 @@ public class Introduction {
      * @return The number of triples
      */
     public int countTripleChars(String word){
-        return -1;
-    }
-    
+        return 1;
+        }
+
     /**
      * Run tests.
      * @param args Arguments from command line.
