@@ -93,7 +93,9 @@ public class Introduction {
         int firstLenght = first.length();
         int secondLenght = second.length();
         if (firstLenght == secondLenght) {
-             return first + second;
+            if (firstLenght != 0) {
+                return first + second;
+            }
         }
         if (firstLenght > secondLenght) {
             return (first.substring(firstLenght - secondLenght) + second).toLowerCase(Locale.ROOT);
