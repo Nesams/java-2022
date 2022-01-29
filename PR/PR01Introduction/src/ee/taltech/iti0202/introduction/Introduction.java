@@ -104,6 +104,12 @@ public class Introduction {
         if (firstLenght + secondLenght == 0) {
             return "FALSE";
         }
+        if (first.contains(" ")) {
+            return "FALSE";
+        }
+        if (second.contains(" ")) {
+            return "FALSE";
+        }
         else {
             return null;
         }
