@@ -92,33 +92,20 @@ public class Introduction {
     public String findTheString(String first, String second) {
         int firstLenght = first.length();
         int secondLenght = second.length();
-        if (firstLenght == secondLenght) {
-            if (firstLenght != 0) {
-                return first + second;
-            }
+        if (firstLenght == secondLenght && firstLenght != 0) {
+            return first + second;
         }
-        if (firstLenght > secondLenght) {
-            if (secondLenght != 0) {
-                return (first.substring(firstLenght - secondLenght) + second).toLowerCase(Locale.ROOT);
-            }
+        if (firstLenght > secondLenght && !second.contains(" ") && secondLenght != 0)  {
+            return (first.substring(firstLenght - secondLenght) + second).toLowerCase(Locale.ROOT);
         }
-        if (firstLenght < secondLenght) {
-            if (firstLenght != 0) {
-                return (first + second.substring(secondLenght - firstLenght)).toUpperCase(Locale.ROOT);
-            }
+        if (firstLenght < secondLenght && !first.contains(" ") && firstLenght != 0) {
+            return (first + second.substring(secondLenght - firstLenght)).toUpperCase(Locale.ROOT);
         }
-        if (firstLenght == 0) {
+        if (firstLenght == 0 || secondLenght == 0) {
             return "FALSE";
         }
-        if (first.contains(" ")) {
-            if (second.contains(" ")) {
-                return "FALSE";
-            }
-        }
-        if (second.contains(" ")) {
-            if (first.contains(" ")) {
-                return "FALSE";
-            }
+        if (first.contains(" ") && second.contains(" ") || first.contains(" ") && secondLenght == 0 || second.contains(" ") && firstLenght == 0) {
+            return "FALSE";
         }
         return null;
     }
