@@ -98,24 +98,31 @@ public class Introduction {
             }
         }
         if (firstLenght > secondLenght) {
-            return (first.substring(firstLenght - secondLenght) + second).toLowerCase(Locale.ROOT);
+            if (secondLenght != 0) {
+                return (first.substring(firstLenght - secondLenght) + second).toLowerCase(Locale.ROOT);
+            }
         }
         if (firstLenght < secondLenght) {
-            return (first + second.substring(secondLenght - firstLenght)).toUpperCase(Locale.ROOT);
+            if (firstLenght != 0) {
+                return (first + second.substring(secondLenght - firstLenght)).toUpperCase(Locale.ROOT);
+            }
         }
-        if (firstLenght + secondLenght == 0) {
+        if (firstLenght == 0) {
             return "FALSE";
         }
         if (first.contains(" ")) {
-            return "FALSE";
+            if (second.contains(" ")) {
+                return "FALSE";
+            }
         }
         if (second.contains(" ")) {
-            return "FALSE";
+            if (first.contains(" ")) {
+                return "FALSE";
+            }
         }
-        else {
-            return null;
-        }
+        return null;
     }
+
 
     /**
      * Method gets one String as a parameter.
