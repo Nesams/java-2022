@@ -2,6 +2,7 @@ package ee.taltech.iti0202.introduction;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -88,8 +89,23 @@ public class Introduction {
      * @return String based on the values of first and second
      */
     public String findTheString(String first, String second) {
-        return "";
-    }
+        int firstLenght = first.length();
+        int secondLenght = second.length();
+        if (firstLenght == secondLenght) {
+            return first + second;
+        }
+        if (firstLenght > secondLenght) {
+            return (first.substring(firstLenght - secondLenght) + second).toLowerCase(Locale.ROOT);
+        }
+        if (firstLenght < secondLenght) {
+            return (first + second.substring(secondLenght - firstLenght)).toUpperCase(Locale.ROOT);
+        }
+        if (firstLenght == 0) {
+            if (secondLenght == 0) {
+                return "FALSE";
+            }
+        }
+
 
     /**
      * Method gets one String as a parameter.
