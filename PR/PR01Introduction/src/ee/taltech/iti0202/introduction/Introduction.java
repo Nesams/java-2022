@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Introduction {
 
@@ -42,10 +43,10 @@ public class Introduction {
      * @return list of even numbers.
      */
     public List<Integer> findEvenNumbersList(List<Integer> numbers) {
-        List<Integer> even = numbers.stream()
+        List<Integer> Even = numbers.stream()
                 .filter(number -> number % 2 == 0)
                 .collect(Collectors.toList());
-        return even;
+        return Even;
         }
     
     /**
@@ -59,7 +60,18 @@ public class Introduction {
      * @return array of even numbers.
      */
     public int[] findEvenNumbersArray(int[] numbers) {
-        return null;
+        List<Integer> evenNumbers = new ArrayList<Integer>();
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 == 0) {
+                evenNumbers.add(numbers[i]);
+            }
+        }
+        int lenght = evenNumbers.size();
+        int[] finalArray = new int[lenght];
+        for (int i = 0; i < lenght; i ++) {
+            finalArray[i] = evenNumbers.get(i).intValue();
+        }
+        return finalArray;
     }
     
         /**
