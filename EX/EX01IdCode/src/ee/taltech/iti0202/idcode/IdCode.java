@@ -23,7 +23,7 @@
       public static final int TARTU2_ALGUS = 271;
       public static final int TARTU2_LOPP = 370;
       public static final int NARVA_ALGUS = 371;
-      public static final int nARVA_LOPP = 420;
+      public static final int NARVA_LOPP = 420;
       public static final int PARNU_ALGUS = 421;
       public static final int PARNU_LOPP = 470;
       public static final int TALLIN2_ALGUS = 471;
@@ -41,7 +41,9 @@
       public static final int UNKNOWN_ALGUS = 711;
       public static final int UNKNOWN_LOPP = 999;
       public static final int ZERO = 0;
-  
+      public static final int BYEAR_BEGIN_INDEX = 1;
+      public static final int BYEAR_END_INDEX = 3;
+
       private final String idCodeValue;
       enum Gender {
           MALE, FEMALE
@@ -76,7 +78,8 @@
        * @return String containing information.
        */
       public String getInformation() {
-          return null;
+          String birtday = idCodeValue.substring(5,7) + "." + idCodeValue.substring(3,5) + "." + getFullYear();
+          return "This is a " + getGender() + " born on " + birtday + " in " + getBirthPlace() + ".";
       }
 
       /**
@@ -104,7 +107,7 @@
        * @return String with the person's birth place.
        */
       public String getBirthPlace() {
-          int birthnr = Integer.parseInt(idCodeValue.substring(YEAR_BEGIN_INDEX, YEAR_END_INDEX).replaceFirst ("^0*", ""));
+          int birthnr = Integer.parseInt(idCodeValue.substring(YEAR_BEGIN_INDEX, YEAR_END_INDEX).replaceFirst("^0*",""));
           if (KURESSAARE_ALGUS <= birthnr && birthnr <= KURESSAARE_LOPP) {
               return "Kuressaare";
           }
@@ -120,7 +123,7 @@
           if (TARTU2_ALGUS <= birthnr && birthnr <= TARTU2_LOPP) {
               return "Tartu";
           }
-          if (NARVA_ALGUS <= birthnr && birthnr <= nARVA_LOPP) {
+          if (NARVA_ALGUS <= birthnr && birthnr <= NARVA_LOPP) {
               return "Narva";
           }
           if (PARNU_ALGUS <= birthnr && birthnr <= PARNU_LOPP) {
@@ -156,16 +159,16 @@
        * @return int with person's birth year.
        */
       public int getFullYear() {
-          int year_nr = Integer.parseInt(idCodeValue.substring(1,3));
+          int YEAR_NR = Integer.parseInt(idCodeValue.substring(BYEAR_BEGIN_INDEX, BYEAR_END_INDEX));
           int genderNumber = Character.getNumericValue(idCodeValue.charAt(0));
           if (genderNumber == 1 || genderNumber == 2){
-              return Integer.parseInt("18" + year_nr);
+              return Integer.parseInt("18" + YEAR_NR);
           }
           if (genderNumber == 3 || genderNumber == 4) {
-              return Integer.parseInt("19" + year_nr);
+              return Integer.parseInt("19" + YEAR_NR);
           }
           if (genderNumber == 5 || genderNumber == 6) {
-              return Integer.parseInt("20" + year_nr);
+              return Integer.parseInt("20" + YEAR_NR);
           }
           return 0;
       }
