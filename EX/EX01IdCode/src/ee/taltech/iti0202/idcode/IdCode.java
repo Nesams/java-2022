@@ -73,7 +73,8 @@
        */
       public String getBirthPlace() {
           int birthnr = Integer.parseInt(idCodeValue.substring(7, 10).replaceFirst ("^0*", ""));
-          int a1 = 1; int a2 = 11; int b1 = 11; int b2 = 20;
+          int a1 = 1;
+          int a2 = 11; int b1 = 11; int b2 = 20;
           if (a1 <= birthnr && birthnr <= a2) {
               return "Kuressaare";
           }
