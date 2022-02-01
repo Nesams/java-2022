@@ -43,6 +43,8 @@
       public static final int NEXT_YEAR = 2023;
       public static final int MONTHS = 12;
       public static final int ELEVEN = 11;
+      public static final int FOURHUNDRED = 400;
+      public static final int HUNDRED = 100;
 
       private final String idCodeValue;
       enum Gender {
@@ -258,11 +260,7 @@
        * @return boolean describing whether the given year is a leap year.
        */
       private boolean isLeapYear(int fullYear) {
-          if (fullYear % 4 == 0 && fullYear % 100 != 0 || fullYear % 400 == 0) {
-              return true;
-          } else {
-              return false;
-          }
+          return fullYear % 4 == 0 && fullYear % HUNDRED != 0 || fullYear % FOURHUNDRED == 0;
       }
       /**
        * Run tests.
