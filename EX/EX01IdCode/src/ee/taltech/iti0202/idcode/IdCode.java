@@ -7,6 +7,7 @@
   import java.util.Arrays;
   import java.util.List;
   import java.util.stream.IntStream;
+  import java.util.stream.Stream;
 
   public class IdCode {
 
@@ -43,6 +44,7 @@
       public static final int ZERO = 0;
       public static final int BYEAR_BEGIN_INDEX = 1;
       public static final int BYEAR_END_INDEX = 3;
+      public static final int NEXT_YEAR = 2023;
 
       private final String idCodeValue;
       enum Gender {
@@ -201,7 +203,13 @@
        * @return boolean describing whether the gender number is correct.
        */
       private boolean isGenderNumberCorrect() {
-          return false;
+          int genderNumber = Integer.parseInt(idCodeValue.substring(0,1));
+          if (0 < genderNumber && genderNumber <= 6) {
+              return true;
+          }
+          else {
+              return false;
+          }
       }
 
       /**
@@ -210,7 +218,12 @@
        * @return boolean describing whether the year number is correct.
        */
       private boolean isYearNumberCorrect() {
-          return false;
+          if (getFullYear() < NEXT_YEAR) {
+              return true;
+          }
+          else {
+              return false;
+          }
       }
 
       /**
@@ -219,7 +232,13 @@
        * @return boolean describing whether the month number is correct.
        */
       private boolean isMonthNumberCorrect() {
+          int monthNR = Integer.parseInt(idCodeValue.substring(3,5));
+          if (1 <= monthNR && monthNR <= 12) {
+              return true;
+          }
+          else {
           return false;
+          }
       }
 
       /**
