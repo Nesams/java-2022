@@ -69,6 +69,28 @@
        * @return boolean describing whether or not the id code was correct.
        */
       public boolean isCorrect() {
+          if (isGenderNumberCorrect()) {
+              if (isControlNumberCorrect()) {
+                  if (isDayNumberCorrect()) {
+                      if (isMonthNumberCorrect()) {
+                          if (isYearNumberCorrect()) {
+                              return true;
+                          }
+                      }
+                  }
+              }
+          }
+          if (!isGenderNumberCorrect()) {
+              if (!isControlNumberCorrect()) {
+                  if (!isDayNumberCorrect()) {
+                      if (!isMonthNumberCorrect()) {
+                          if (!isYearNumberCorrect()) {
+                              return false;
+                          }
+                      }
+                  }
+              }
+          }
           return false;
       }
 
