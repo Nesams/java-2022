@@ -258,9 +258,12 @@
        * @return boolean describing whether the given year is a leap year.
        */
       private boolean isLeapYear(int fullYear) {
-          return false;
+          if (fullYear % 4 == 0 && fullYear % 100 != 0 || fullYear % 400 == 0) {
+              return true;
+          } else {
+              return false;
+          }
       }
-
       /**
        * Run tests.
        * @param args info.
