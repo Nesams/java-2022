@@ -79,7 +79,7 @@
        */
       public String getInformation() {
           String birtday = idCodeValue.substring(5,7) + "." + idCodeValue.substring(3,5) + "." + getFullYear();
-          return "This is a " + getGender() + " born on " + birtday + " in " + getBirthPlace() + ".";
+          return "This is a " + getGender() + " born on " + birtday + " in " + getBirthPlace();
       }
 
       /**
