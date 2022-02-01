@@ -41,7 +41,6 @@
       public static final int UNKNOWN_ALGUS = 711;
       public static final int UNKNOWN_LOPP = 999;
       public static final int ZERO = 0;
-      public static final int
   
       private final String idCodeValue;
       enum Gender {
