@@ -159,7 +159,7 @@
        * @return int with person's birth year.
        */
       public int getFullYear() {
-          int YEAR_NR = Integer.parseInt(idCodeValue.substring(BYEAR_BEGIN_INDEX, BYEAR_END_INDEX));
+          String YEAR_NR = idCodeValue.substring(BYEAR_BEGIN_INDEX, BYEAR_END_INDEX);
           int genderNumber = Character.getNumericValue(idCodeValue.charAt(0));
           if (genderNumber == 1 || genderNumber == 2){
               return Integer.parseInt("18" + YEAR_NR);
@@ -233,7 +233,7 @@
        * @param args info.
        */
       public static void main(String[] args) {
-          IdCode validMaleIdCode = new IdCode("37605030299");
+          IdCode validMaleIdCode = new IdCode("30205030299");
           System.out.println(validMaleIdCode.isCorrect());
           System.out.println(validMaleIdCode.getInformation());
           System.out.println(validMaleIdCode.getGender());
