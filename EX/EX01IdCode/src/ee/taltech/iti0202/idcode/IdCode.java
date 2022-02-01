@@ -1,9 +1,12 @@
 
   package ee.taltech.iti0202.idcode;
 
+  import org.w3c.dom.ranges.Range;
+
   import java.util.ArrayList;
   import java.util.Arrays;
   import java.util.List;
+  import java.util.stream.IntStream;
 
   public class IdCode {
   
@@ -69,6 +72,49 @@
        * @return String with the person's birth place.
        */
       public String getBirthPlace() {
+          int birthnr = Integer.parseInt(idCodeValue.substring(8, 11));
+          if (1 <= birthnr && birthnr <= 10) {
+              return "Kuressaare";
+          }
+          if (11 <= birthnr && birthnr <= 20) {
+              return "Tartu";
+          }
+          if (21 <= birthnr && birthnr <= 220) {
+              return "Tallinn";
+          }
+          if (221 <= birthnr && birthnr <= 270) {
+              return "Kohtla-Järve";
+          }
+          if (271 <= birthnr && birthnr <= 370) {
+              return "Tartu";
+          }
+          if (371 <= birthnr && birthnr <= 420) {
+              return "Narva";
+          }
+          if (421 <= birthnr && birthnr <= 470) {
+              return "Pärnu";
+          }
+          if (471 <= birthnr && birthnr <= 490) {
+              return "Tallinn";
+          }
+          if (491 <= birthnr && birthnr <= 520) {
+              return "Paide";
+          }
+          if (521 <= birthnr && birthnr <= 570) {
+              return "Rakvere";
+          }
+          if (571 <= birthnr && birthnr <= 600) {
+              return "Valga";
+          }
+          if (601 <= birthnr && birthnr <= 650) {
+              return "Viljandi";
+          }
+          if (651 <= birthnr && birthnr <= 710) {
+              return "Võru";
+          }
+          if (711 <= birthnr && birthnr <= 999 || birthnr == 0) {
+              return "unknown";
+          }
           return null;
       }
 
