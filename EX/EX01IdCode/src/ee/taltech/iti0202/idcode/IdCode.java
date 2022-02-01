@@ -1,13 +1,9 @@
 
   package ee.taltech.iti0202.idcode;
 
-  import org.w3c.dom.ranges.Range;
 
-  import java.util.ArrayList;
   import java.util.Arrays;
   import java.util.List;
-  import java.util.stream.IntStream;
-  import java.util.stream.Stream;
 
   public class IdCode {
 
@@ -50,14 +46,12 @@
       enum Gender {
           MALE, FEMALE
       }
-    
       /**
        * Method returns the id code.
        *
        * @return id code.
        */
       public String getIdCodeValue() {
-
           return idCodeValue;
       }
     
@@ -95,17 +89,15 @@
           }
           return false;
       }
-
       /**
        * Get all information about id code.
        * 
        * @return String containing information.
        */
       public String getInformation() {
-          String birtday = idCodeValue.substring(5,7) + "." + idCodeValue.substring(3,5) + "." + getFullYear();
+          String birtday = idCodeValue.substring(5, 7) + "." + idCodeValue.substring(3, 5) + "." + getFullYear();
           return "This is a " + getGender() + " born on " + birtday + " in " + getBirthPlace();
       }
-
       /**
        * Get gender enum.
        * 
@@ -131,7 +123,8 @@
        * @return String with the person's birth place.
        */
       public String getBirthPlace() {
-          int birthnr = Integer.parseInt(idCodeValue.substring(YEAR_BEGIN_INDEX, YEAR_END_INDEX).replaceFirst("^0*",""));
+          int birthnr = Integer.parseInt(idCodeValue.substring(YEAR_BEGIN_INDEX, YEAR_END_INDEX)
+                  .replaceFirst("^0*",""));
           if (KURESSAARE_ALGUS <= birthnr && birthnr <= KURESSAARE_LOPP) {
               return "Kuressaare";
           }
