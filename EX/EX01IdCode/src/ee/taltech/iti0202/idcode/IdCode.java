@@ -54,7 +54,6 @@
       public String getIdCodeValue() {
           return idCodeValue;
       }
-    
       public IdCode(String idCodeValue) {
           this.idCodeValue = idCodeValue;
       }
@@ -124,7 +123,7 @@
        */
       public String getBirthPlace() {
           int birthnr = Integer.parseInt(idCodeValue.substring(YEAR_BEGIN_INDEX, YEAR_END_INDEX)
-                  .replaceFirst("^0*",""));
+                  .replaceFirst("^0*", ""));
           if (KURESSAARE_ALGUS <= birthnr && birthnr <= KURESSAARE_LOPP) {
               return "Kuressaare";
           }
@@ -169,56 +168,42 @@
           }
           return null;
       }
-
       /**
        * Get the year that the person was born in.
        * 
        * @return int with person's birth year.
        */
       public int getFullYear() {
-          String YEAR_NR = idCodeValue.substring(BYEAR_BEGIN_INDEX, BYEAR_END_INDEX);
+          String yearNR = idCodeValue.substring(BYEAR_BEGIN_INDEX, BYEAR_END_INDEX);
           int genderNumber = Character.getNumericValue(idCodeValue.charAt(0));
-          if (genderNumber == 1 || genderNumber == 2){
-              return Integer.parseInt("18" + YEAR_NR);
+          if (genderNumber == 1 || genderNumber == 2) {
+              return Integer.parseInt("18" + yearNR);
           }
           if (genderNumber == 3 || genderNumber == 4) {
-              return Integer.parseInt("19" + YEAR_NR);
+              return Integer.parseInt("19" + yearNR);
           }
           if (genderNumber == 5 || genderNumber == 6) {
-              return Integer.parseInt("20" + YEAR_NR);
+              return Integer.parseInt("20" + yearNR);
           }
           return 0;
       }
-    
       /**
        * Check if gender number is correct.
        * 
        * @return boolean describing whether the gender number is correct.
        */
       private boolean isGenderNumberCorrect() {
-          int genderNumber = Integer.parseInt(idCodeValue.substring(0,1));
-          if (0 < genderNumber && genderNumber <= 6) {
-              return true;
-          }
-          else {
-              return false;
-          }
+          int genderNumber = Integer.parseInt(idCodeValue.substring(0, 1));
+          return 0 < genderNumber && genderNumber <= 6;
       }
-
       /**
        * Check if the year number is correct.
        * 
        * @return boolean describing whether the year number is correct.
        */
       private boolean isYearNumberCorrect() {
-          if (getFullYear() < NEXT_YEAR) {
-              return true;
-          }
-          else {
-              return false;
-          }
+          return getFullYear() < NEXT_YEAR;
       }
-
       /**
        * Check if the month number is correct.
        * 
@@ -226,14 +211,8 @@
        */
       private boolean isMonthNumberCorrect() {
           int monthNR = Integer.parseInt(idCodeValue.substring(3,5));
-          if (1 <= monthNR && monthNR <= 12) {
-              return true;
-          }
-          else {
-          return false;
-          }
+          return 1 <= monthNR && monthNR <= 12;
       }
-
       /**
        * Check if the day number is correct.
        * 
@@ -242,7 +221,6 @@
       private boolean isDayNumberCorrect() {
           return false;
       }
-
       /**
        * Check if the control number is correct.
        * 
@@ -275,12 +253,7 @@
                   return false;
               }
               if (controlNr2 == 10) {
-                  if (controlNr2 == Integer.parseInt(idCodeValue.substring(idCodeValue.length() - 1))) {
-                      return true;
-                  }
-                  else {
-                      return false;
-                  }
+                  return controlNr2 == Integer.parseInt(idCodeValue.substring(idCodeValue.length() - 1));
               }
           }
           return false;
