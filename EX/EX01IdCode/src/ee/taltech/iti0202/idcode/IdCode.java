@@ -9,6 +9,39 @@
   import java.util.stream.IntStream;
 
   public class IdCode {
+
+      public static final int YEAR_BEGIN_INDEX = 7;
+      public static final int YEAR_END_INDEX = 10;
+      public static final int KURESSAARE_ALGUS = 1;
+      public static final int KURESSAARE_LOPP = 10;
+      public static final int TARTU_ALGUS = 11;
+      public static final int TARTU_LOPP = 20;
+      public static final int TALLINNA_ALGUS = 21;
+      public static final int TALLINNA_LOPP = 220;
+      public static final int KOHTLA_ALGUS = 221;
+      public static final int KOHTLA_LOPP = 270;
+      public static final int TARTU2_ALGUS = 271;
+      public static final int TARTU2_LOPP = 370;
+      public static final int NARVA_ALGUS = 371;
+      public static final int nARVA_LOPP = 420;
+      public static final int PARNU_ALGUS = 421;
+      public static final int PARNU_LOPP = 470;
+      public static final int TALLIN2_ALGUS = 471;
+      public static final int TALLINN2_LOPP = 490;
+      public static final int PAIDE_ALGUS = 491;
+      public static final int PAIDE_LOPP = 520;
+      public static final int RAKVERE_ALGUS = 521;
+      public static final int RAKVERE_LOPP = 570;
+      public static final int VALGA_ALGUS = 571;
+      public static final int VALGA_LOPP = 600;
+      public static final int VILJANDI_ALGUS = 601;
+      public static final int VILJANDI_LOPP = 650;
+      public static final int VORU_ALGUS = 651;
+      public static final int VORU_LOPP = 710;
+      public static final int UNKNOWN_ALGUS = 711;
+      public static final int UNKNOWN_LOPP = 999;
+      public static final int ZERO = 0;
+      public static final int
   
       private final String idCodeValue;
       enum Gender {
@@ -72,49 +105,47 @@
        * @return String with the person's birth place.
        */
       public String getBirthPlace() {
-          int birthnr = Integer.parseInt(idCodeValue.substring(7, 10).replaceFirst ("^0*", ""));
-          int a1 = 1;
-          int a2 = 11; int b1 = 11; int b2 = 20;
-          if (a1 <= birthnr && birthnr <= a2) {
+          int birthnr = Integer.parseInt(idCodeValue.substring(YEAR_BEGIN_INDEX, YEAR_END_INDEX).replaceFirst ("^0*", ""));
+          if (KURESSAARE_ALGUS <= birthnr && birthnr <= KURESSAARE_LOPP) {
               return "Kuressaare";
           }
-          if (b1 <= birthnr && birthnr <= b2) {
+          if (TARTU_ALGUS <= birthnr && birthnr <= TARTU_LOPP) {
               return "Tartu";
           }
-          if (21 <= birthnr && birthnr <= 220) {
+          if (TALLINNA_ALGUS <= birthnr && birthnr <= TALLINNA_LOPP) {
               return "Tallinn";
           }
-          if (221 <= birthnr && birthnr <= 270) {
+          if (KOHTLA_ALGUS <= birthnr && birthnr <= KOHTLA_LOPP) {
               return "Kohtla-Järve";
           }
-          if (271 <= birthnr && birthnr <= 370) {
+          if (TARTU2_ALGUS <= birthnr && birthnr <= TARTU2_LOPP) {
               return "Tartu";
           }
-          if (371 <= birthnr && birthnr <= 420) {
+          if (NARVA_ALGUS <= birthnr && birthnr <= nARVA_LOPP) {
               return "Narva";
           }
-          if (421 <= birthnr && birthnr <= 470) {
+          if (PARNU_ALGUS <= birthnr && birthnr <= PARNU_LOPP) {
               return "Pärnu";
           }
-          if (471 <= birthnr && birthnr <= 490) {
+          if (TALLIN2_ALGUS <= birthnr && birthnr <= TALLINN2_LOPP) {
               return "Tallinn";
           }
-          if (491 <= birthnr && birthnr <= 520) {
+          if (PAIDE_ALGUS <= birthnr && birthnr <= PAIDE_LOPP) {
               return "Paide";
           }
-          if (521 <= birthnr && birthnr <= 570) {
+          if (RAKVERE_ALGUS <= birthnr && birthnr <= RAKVERE_LOPP) {
               return "Rakvere";
           }
-          if (571 <= birthnr && birthnr <= 600) {
+          if (VALGA_ALGUS <= birthnr && birthnr <= VALGA_LOPP) {
               return "Valga";
           }
-          if (601 <= birthnr && birthnr <= 650) {
+          if (VILJANDI_ALGUS <= birthnr && birthnr <= VILJANDI_LOPP) {
               return "Viljandi";
           }
-          if (651 <= birthnr && birthnr <= 710) {
+          if (VORU_ALGUS <= birthnr && birthnr <= VORU_LOPP) {
               return "Võru";
           }
-          if (711 <= birthnr && birthnr <= 999 || birthnr == 0) {
+          if (UNKNOWN_ALGUS <= birthnr && birthnr <= UNKNOWN_LOPP || birthnr == ZERO) {
               return "unknown";
           }
           return null;
