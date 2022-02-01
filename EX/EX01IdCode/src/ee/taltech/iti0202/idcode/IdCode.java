@@ -256,6 +256,40 @@
        * @return boolean describing whether the control number is correct.
        */
       private boolean isControlNumberCorrect() {
+          List<Integer> firstBase = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 1);
+          List<Integer> secondBase = Arrays.asList(3, 4, 5, 6, 7, 8, 9, 1, 2, 3);
+          int sumNr1 = 0;
+          int sumNr2 = 0;
+          for (int i: firstBase) {
+              sumNr1 += firstBase.indexOf(i) * Integer.parseInt(idCodeValue.substring(i));
+          }
+          int controlNr = sumNr1 % 11;
+          if (controlNr == Integer.parseInt(idCodeValue.substring(idCodeValue.length() -1))) {
+              return true;
+          }
+          if (controlNr != Integer.parseInt(idCodeValue.substring(idCodeValue.length() -1))) {
+              return false;
+          }
+          if (controlNr == 10) {
+              for (int i: secondBase) {
+                  sumNr2 += secondBase.indexOf(i) * Integer.parseInt(idCodeValue.substring(i));
+              }
+              int controlNr2 = sumNr2 % 11;
+              if (controlNr2 == Integer.parseInt(idCodeValue.substring(idCodeValue.length() -1))) {
+                  return true;
+              }
+              if (controlNr2 != Integer.parseInt(idCodeValue.substring(idCodeValue.length() -1))) {
+                  return false;
+              }
+              if (controlNr2 == 10) {
+                  if (controlNr2 == Integer.parseInt(idCodeValue.substring(idCodeValue.length() - 1))) {
+                      return true;
+                  }
+                  else {
+                      return false;
+                  }
+              }
+          }
           return false;
       }
 
