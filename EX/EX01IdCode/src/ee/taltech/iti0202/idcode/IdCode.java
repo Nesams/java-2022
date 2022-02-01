@@ -90,7 +90,6 @@
       }
       /**
        * Get all information about id code.
-       * 
        * @return String containing information.
        */
       public String getInformation() {
@@ -99,7 +98,6 @@
       }
       /**
        * Get gender enum.
-       * 
        * @return enum describing person's gender
        */
       public Gender getGender() {
@@ -118,7 +116,6 @@
 
       /**
        * Get person's birth location.
-       * 
        * @return String with the person's birth place.
        */
       public String getBirthPlace() {
