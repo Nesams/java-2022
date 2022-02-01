@@ -41,6 +41,8 @@
       public static final int BYEAR_BEGIN_INDEX = 1;
       public static final int BYEAR_END_INDEX = 3;
       public static final int NEXT_YEAR = 2023;
+      public static final int MONTHS = 12;
+      public static final int ELEVEN = 11;
 
       private final String idCodeValue;
       enum Gender {
@@ -167,7 +169,6 @@
       }
       /**
        * Get the year that the person was born in.
-       * 
        * @return int with person's birth year.
        */
       public int getFullYear() {
@@ -186,7 +187,6 @@
       }
       /**
        * Check if gender number is correct.
-       * 
        * @return boolean describing whether the gender number is correct.
        */
       private boolean isGenderNumberCorrect() {
@@ -195,7 +195,6 @@
       }
       /**
        * Check if the year number is correct.
-       * 
        * @return boolean describing whether the year number is correct.
        */
       private boolean isYearNumberCorrect() {
@@ -203,16 +202,14 @@
       }
       /**
        * Check if the month number is correct.
-       * 
        * @return boolean describing whether the month number is correct.
        */
       private boolean isMonthNumberCorrect() {
-          int monthNR = Integer.parseInt(idCodeValue.substring(3,5));
-          return 1 <= monthNR && monthNR <= 12;
+          int monthNR = Integer.parseInt(idCodeValue.substring(3, 5));
+          return 1 <= monthNR && monthNR <= MONTHS;
       }
       /**
        * Check if the day number is correct.
-       * 
        * @return boolean describing whether the day number is correct.
        */
       private boolean isDayNumberCorrect() {
@@ -220,7 +217,6 @@
       }
       /**
        * Check if the control number is correct.
-       * 
        * @return boolean describing whether the control number is correct.
        */
       private boolean isControlNumberCorrect() {
@@ -231,22 +227,22 @@
           for (int i: firstBase) {
               sumNr1 += firstBase.indexOf(i) * Integer.parseInt(idCodeValue.substring(i));
           }
-          int controlNr = sumNr1 % 11;
-          if (controlNr == Integer.parseInt(idCodeValue.substring(idCodeValue.length() -1))) {
+          int controlNr = sumNr1 % ELEVEN;
+          if (controlNr == Integer.parseInt(idCodeValue.substring(idCodeValue.length() - 1))) {
               return true;
           }
-          if (controlNr != Integer.parseInt(idCodeValue.substring(idCodeValue.length() -1))) {
+          if (controlNr != Integer.parseInt(idCodeValue.substring(idCodeValue.length() - 1))) {
               return false;
           }
           if (controlNr == 10) {
               for (int i: secondBase) {
                   sumNr2 += secondBase.indexOf(i) * Integer.parseInt(idCodeValue.substring(i));
               }
-              int controlNr2 = sumNr2 % 11;
-              if (controlNr2 == Integer.parseInt(idCodeValue.substring(idCodeValue.length() -1))) {
+              int controlNr2 = sumNr2 % ELEVEN;
+              if (controlNr2 == Integer.parseInt(idCodeValue.substring(idCodeValue.length() - 1))) {
                   return true;
               }
-              if (controlNr2 != Integer.parseInt(idCodeValue.substring(idCodeValue.length() -1))) {
+              if (controlNr2 != Integer.parseInt(idCodeValue.substring(idCodeValue.length() - 1))) {
                   return false;
               }
               if (controlNr2 == 10) {
@@ -258,7 +254,6 @@
 
       /**
        * Check if the given year is a leap year.
-       * 
        * @param fullYear
        * @return boolean describing whether the given year is a leap year.
        */
