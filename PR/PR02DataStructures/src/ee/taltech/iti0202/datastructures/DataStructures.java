@@ -1,5 +1,8 @@
 package ee.taltech.iti0202.datastructures;
 
+import com.sun.jdi.Value;
+
+import javax.swing.text.html.parser.Entity;
 import java.util.*;
 
 public class DataStructures {
@@ -72,7 +75,17 @@ public class DataStructures {
      * @return list of strings matching criteria
      */
     public static List<String> onlyEvenWords(List<String> words) {
-        return null;
+        Map<String, Integer> wordsMap = new HashMap<>();
+        ArrayList<String> matchWords = new ArrayList<>();
+        for (String word : words) {
+            wordsMap.put(word, wordsMap.getOrDefault(word, 0) + 1);
+        }
+        for (Map.Entry<String, Integer> entry: wordsMap.entrySet()) {
+            if (entry.getValue() % 2 == 0) {
+                matchWords.add(entry.getKey());
+            }
+        }
+        return matchWords;
     }
 
     /**
