@@ -47,7 +47,7 @@ public class DataStructures {
                     longestWords.add(word);
                 }
             }
-            }
+        }
         Collections.sort(longestWords);
         return longestWords.get(0);
     }
