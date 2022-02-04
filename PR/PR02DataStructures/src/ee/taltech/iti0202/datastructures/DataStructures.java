@@ -96,7 +96,13 @@ public class DataStructures {
      * @param studentInfo String with a pattern (name:grade)
      */
     public void addStudent(String studentInfo) {
-        
+        Map<String, Integer> students = new HashMap<>();
+        List<String> student = List.of(studentInfo.split(":"));
+        List<Integer> grades = List.of(0, 1, 2, 3, 4, 5);
+        Integer grade = Integer.valueOf(student.get(1));
+        if (grades.contains(grade)) {
+            students.put(student.get(0), grade);
+        }
     }
 
     /**
@@ -108,7 +114,7 @@ public class DataStructures {
      * @return int student's grade.
      */
     public int getStudentGrade(String name) {
-        return 0;
+        return ;
     }
 
    /**
