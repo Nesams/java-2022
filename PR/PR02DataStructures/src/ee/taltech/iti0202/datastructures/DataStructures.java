@@ -38,7 +38,8 @@ public class DataStructures {
                     longestWords.add(word);
                 }
                 if (word.length() > longestWords.get(0).length()) {
-                    longestWords.set(0, word);
+                    longestWords.clear();
+                    longestWords.add(word);
                 }
 
                 }
