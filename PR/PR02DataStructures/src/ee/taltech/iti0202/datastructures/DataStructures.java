@@ -1,11 +1,9 @@
 package ee.taltech.iti0202.datastructures;
 
-import com.sun.jdi.Value;
-
-import javax.swing.text.html.parser.Entity;
 import java.util.*;
 
 public class DataStructures {
+    Map<String, Integer> students = new HashMap<>();
 
     /**
      * Given String is a sentence with some words.
@@ -96,7 +94,6 @@ public class DataStructures {
      * @param studentInfo String with a pattern (name:grade)
      */
     public void addStudent(String studentInfo) {
-        Map<String, Integer> students = new HashMap<>();
         List<String> student = List.of(studentInfo.split(":"));
         List<Integer> grades = List.of(0, 1, 2, 3, 4, 5);
         Integer grade = Integer.valueOf(student.get(1));
@@ -114,7 +111,7 @@ public class DataStructures {
      * @return int student's grade.
      */
     public int getStudentGrade(String name) {
-        return ;
+        return students.getOrDefault(name, -1);
     }
 
    /**
