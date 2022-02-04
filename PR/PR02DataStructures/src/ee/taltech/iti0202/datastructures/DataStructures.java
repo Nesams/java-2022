@@ -34,7 +34,7 @@ public class DataStructures {
         for (String word: wordsList) {
             if (longestWords.size() == 0) {
                 longestWords.add(word);
-            }
+                }
             else {
                 if (word.length() < longestWords.get(0).length()) {
                     continue;
