@@ -1,6 +1,12 @@
 package ee.taltech.iti0202.datastructures;
 
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Collections;
+
 
 public class DataStructures {
     Map<String, Integer> students = new HashMap<>();
@@ -16,7 +22,8 @@ public class DataStructures {
      * <p>
      * Hints:
      * You can split words into an array using "str.split()"
-     * Sorting the list with the longest words can definitely help you to find the word which comes alphabetically first.
+     * Sorting the list with the longest words can definitely.
+     * Help you to find the word which comes alphabetically first.
      *
      * @param sentence input String to find the longest words
      * @return the longest String from input
@@ -39,8 +46,7 @@ public class DataStructures {
                     longestWords.clear();
                     longestWords.add(word);
                 }
-
-                }
+            }
             }
         Collections.sort(longestWords);
         return longestWords.get(0);
