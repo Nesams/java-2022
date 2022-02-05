@@ -34,8 +34,7 @@ public class DataStructures {
         for (String word: wordsList) {
             if (longestWords.size() == 0) {
                 longestWords.add(word);
-            }
-            else {
+            } else {
                 if (word.length() < longestWords.get(0).length()) {
                     continue;
                 }
@@ -88,13 +87,13 @@ public class DataStructures {
         for (Map.Entry<String, Integer> entry: wordsMap.entrySet()) {
             if (entry.getValue() % 2 == 0) {
                 int times = entry.getValue() / 2;
-                for (int i = 0;i<times;i++) {
+                for (int i = 0; i < times; i++) {
                     matchWords.add(entry.getKey());
                 }
             }
             if (entry.getValue() % 2 != 0) {
                 int times = (entry.getValue() - 1) / 2;
-                for (int i = 0;i<times;i++) {
+                for (int i = 0; i < times; i++) {
                     matchWords.add(entry.getKey());
                 }
             }
