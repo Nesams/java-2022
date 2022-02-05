@@ -86,8 +86,17 @@ public class DataStructures {
             wordsMap.put(word, wordsMap.getOrDefault(word, 0) + 1);
         }
         for (Map.Entry<String, Integer> entry: wordsMap.entrySet()) {
-            if (entry.getValue() >= 2) {
-                matchWords.add(entry.getKey());
+            if (entry.getValue() % 2 == 0) {
+                int times = entry.getValue() / 2;
+                for (int i = 0;i<times;i++) {
+                    matchWords.add(entry.getKey());
+                }
+            }
+            if (entry.getValue() % 2 != 0) {
+                int times = (entry.getValue() - 1) / 2;
+                for (int i = 0;i<times;i++) {
+                    matchWords.add(entry.getKey());
+                }
             }
         }
         return matchWords;
