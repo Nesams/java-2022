@@ -79,14 +79,14 @@ public class WebBrowser {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(x -> sortedVisitedPages.put(x.getKey(), x.getValue()));
         Map.Entry<String, Integer> entry = sortedVisitedPages.entrySet().iterator().next();
-        String firstFromMap = entry.getKey() + " - " + entry.getValue().toString();
         Object secondKey = sortedVisitedPages.keySet().toArray()[1];
         Object secondValue = sortedVisitedPages.get(secondKey);
         Object thirdKey = sortedVisitedPages.keySet().toArray()[2];
         Object thirdValue = sortedVisitedPages.get(thirdKey);
-        String secondFromMap = secondKey + " - " + secondValue;
-        String thirdFromMap = thirdKey + " - " + thirdValue;
-        String topVisited = String.format("%s%n%s%n%s", entry.getKey() + " - " + entry.getValue().toString(), secondFromMap, thirdFromMap);
+        String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + " visits";
+        String secondFromMap = secondKey + " - " + secondValue + " visits";
+        String thirdFromMap = thirdKey + " - " + thirdValue + " visits";
+        String topVisited = String.format("%s%n%s%n%s", firstFromMap, secondFromMap, thirdFromMap);
         return topVisited;
     }
     /**
