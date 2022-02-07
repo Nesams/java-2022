@@ -111,12 +111,6 @@ public class WebBrowser {
     }
     public static void main(String[] args) {
         WebBrowser webb = new WebBrowser();
-        webb.goTo("twitter.com");
-        webb.goTo("google.com");
-        webb.goTo("pinterest.com");
-        webb.goTo("facebook");
-        webb.removeBookmark("google.com");
-        webb.back();
         System.out.println(webb.getTop3VisitedPages());
         System.out.println(webb.visitedPagesList);
         System.out.println(webb.bookmarks);
