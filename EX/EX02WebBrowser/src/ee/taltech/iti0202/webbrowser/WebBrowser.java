@@ -43,9 +43,9 @@ public class WebBrowser {
     /**
      * Add a webpage as a bookmark.
      */
-    public void addAsBookmark(String bookmark) {
+    public void addAsBookmark() {
 
-        bookmarks.add(bookmark);
+        bookmarks.add(currentPage);
     }
     /**
      * Remove a bookmark.
@@ -115,7 +115,6 @@ public class WebBrowser {
         webb.goTo("Google.com");
         webb.goTo("Pinterest.com");
         webb.goTo("Facebook");
-        webb.addAsBookmark("Google.com");
         webb.removeBookmark("Google.com");
         webb.back();
         System.out.println(webb.getTop3VisitedPages());
