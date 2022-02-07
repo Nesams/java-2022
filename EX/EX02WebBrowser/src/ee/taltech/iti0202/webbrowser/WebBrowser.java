@@ -2,11 +2,11 @@ package ee.taltech.iti0202.webbrowser;
 import java.util.*;
 
 public class WebBrowser {
-    private String home_page = "Google.com";
+    private String home_page = "google.com";
     public Stack<String> backStack = new Stack<>();
     public Stack<String> forwardStack = new Stack<>();
     public String currentPage = home_page;
-    public ArrayList<String> visitedPagesList = new ArrayList<>(List.of("Google.com"));
+    public ArrayList<String> visitedPagesList = new ArrayList<>(List.of("google.com"));
     public HashMap<String, Integer> visitedPages = new HashMap<>();
     public ArrayList<String> bookmarks = new ArrayList<>();
     /**
@@ -111,11 +111,11 @@ public class WebBrowser {
     }
     public static void main(String[] args) {
         WebBrowser webb = new WebBrowser();
-        webb.goTo("Twitter.com");
-        webb.goTo("Google.com");
-        webb.goTo("Pinterest.com");
-        webb.goTo("Facebook");
-        webb.removeBookmark("Google.com");
+        webb.goTo("twitter.com");
+        webb.goTo("google.com");
+        webb.goTo("pinterest.com");
+        webb.goTo("facebook");
+        webb.removeBookmark("google.com");
         webb.back();
         System.out.println(webb.getTop3VisitedPages());
         System.out.println(webb.visitedPagesList);
