@@ -25,15 +25,19 @@ public class WebBrowser {
      * Goes back to previous page.
      */
     public void back() {
-        forwardStack.push(currentPage);
-        goTo(backStack.pop());
+        if (!backStack.isEmpty()) {
+            forwardStack.push(currentPage);
+            goTo(backStack.pop());
+        }
     }
     /**
      * Goes forward to next page.
      */
     public void forward() {
-        backStack.push(currentPage);
-        goTo(forwardStack.pop());
+        if (!forwardStack.isEmpty()) {
+            backStack.push(currentPage);
+            goTo(forwardStack.pop());
+        }
     }
     /**
      * Go to a webpage.
