@@ -54,8 +54,9 @@ public class WebBrowser {
      * Add a webpage as a bookmark.
      */
     public void addAsBookmark() {
-
-        bookmarks.add(currentPage);
+        if (!bookmarks.contains(currentPage)) {
+            bookmarks.add(currentPage);
+        }
     }
     /**
      * Remove a bookmark.
@@ -89,15 +90,29 @@ public class WebBrowser {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(x -> sortedVisitedPages.put(x.getKey(), x.getValue()));
         Map.Entry<String, Integer> entry = sortedVisitedPages.entrySet().iterator().next();
-        Object secondKey = sortedVisitedPages.keySet().toArray()[1];
-        Object secondValue = sortedVisitedPages.get(secondKey);
-        Object thirdKey = sortedVisitedPages.keySet().toArray()[2];
-        Object thirdValue = sortedVisitedPages.get(thirdKey);
-        String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + " visits";
-        String secondFromMap = secondKey + " - " + secondValue + " visits";
-        String thirdFromMap = thirdKey + " - " + thirdValue + " visits";
-        String topVisited = String.format("%s%n%s%n%s", firstFromMap, secondFromMap, thirdFromMap);
-        return topVisited;
+        if (sortedVisitedPages.size() >= 3) {
+            Object secondKey = sortedVisitedPages.keySet().toArray()[1];
+            Object secondValue = sortedVisitedPages.get(secondKey);
+            Object thirdKey = sortedVisitedPages.keySet().toArray()[2];
+            Object thirdValue = sortedVisitedPages.get(thirdKey);
+            String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + " visits";
+            String secondFromMap = secondKey + " - " + secondValue + " visits";
+            String thirdFromMap = thirdKey + " - " + thirdValue + " visits";
+            String topVisited = String.format("%s%n%s%n%s", firstFromMap, secondFromMap, thirdFromMap);
+            return topVisited;
+        }
+        if (sortedVisitedPages.size() == 2) {
+            Object secondKey = sortedVisitedPages.keySet().toArray()[1];
+            Object secondValue = sortedVisitedPages.get(secondKey);
+            String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + " visits";
+            String secondFromMap = secondKey + " - " + secondValue + " visits";
+            String topVisited = String.format("%s%n%s", firstFromMap, secondFromMap);
+            return topVisited;
+        } else {
+            String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + " visits";
+            String topVisited = String.format("%s", firstFromMap);
+            return topVisited;
+        }
     }
     /**
     * Returns a list of all visited pages.
@@ -125,5 +140,6 @@ public class WebBrowser {
         webb.goTo("google.com");
         System.out.println(webb.visitedPagesList);
         System.out.println(webb.bookmarks);
+        System.out.println(webb.getTop3VisitedPages());
     }
 }
