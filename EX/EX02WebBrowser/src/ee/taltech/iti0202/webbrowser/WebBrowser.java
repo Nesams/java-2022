@@ -1,11 +1,17 @@
 package ee.taltech.iti0202.webbrowser;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Comparator;
 
 public class WebBrowser {
-    private String home_page = "google.com";
+    private String homePAge = "google.com";
     public Stack<String> backStack = new Stack<>();
     public Stack<String> forwardStack = new Stack<>();
-    public String currentPage = home_page;
+    public String currentPage = homePAge;
     public ArrayList<String> visitedPagesList = new ArrayList<>(List.of("google.com"));
     public HashMap<String, Integer> visitedPages = new HashMap<>();
     public ArrayList<String> bookmarks = new ArrayList<>();
@@ -13,7 +19,7 @@ public class WebBrowser {
      * Goes to homepage.
      */
     public void homePage() {
-        goTo(home_page);
+        goTo(homePAge);
     }
     /**
      * Goes back to previous page.
@@ -62,7 +68,7 @@ public class WebBrowser {
     }
     public void setHomePage(String homePage) {
 
-        home_page = homePage;
+        homePAge = homePage;
     }
     /**
      * Get top 3 visited pages.
