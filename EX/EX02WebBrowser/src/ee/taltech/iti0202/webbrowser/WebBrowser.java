@@ -1,5 +1,12 @@
 package ee.taltech.iti0202.webbrowser;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Stack;
 
 public class WebBrowser {
     private String homePAge = "google.com";

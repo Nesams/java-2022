@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WebBrowserTest {
     WebBrowser wb = new WebBrowser();
-    public int fifty = 50;
-    public int fiftyOne = 51;
+    public static final int fifty = 50;
+    public static final int fiftyOne = 51;
 
     @Test
     void testIfHomePageWorks() {
@@ -81,7 +81,8 @@ class WebBrowserTest {
         wb.goTo("google.com");
         wb.goTo("twitter.com");
         wb.goTo("pg.com");
-        String testString = String.format("%s%n%s%n%s", "twitter.com - 3 visits", "google.com - 2 visits", "pg.com - 2 visits");
+        String testString = String.format("%s%n%s%n%s", "twitter.com - 3 visits", "google.com - 2 visits",
+                "pg.com - 2 visits");
         Assertions.assertEquals(testString, wb.getTop3VisitedPages());
     }
     @Test
