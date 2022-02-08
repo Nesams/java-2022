@@ -166,6 +166,13 @@ public class WebBrowser {
     public String getCurrentUrl() {
         return currentPage;
     }
+    /**
+     * Returns the home page(string).
+     * @return active web page
+     */
+    public String getHomePage() {
+        return homePAge;
+    }
     public static void main(String[] args) {
         WebBrowser webb = new WebBrowser();
         webb.goTo("twitter.com");
