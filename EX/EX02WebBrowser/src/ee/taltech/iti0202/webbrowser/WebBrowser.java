@@ -27,7 +27,9 @@ public class WebBrowser {
     public void back() {
         if (!backStack.isEmpty()) {
             forwardStack.push(currentPage);
-            goTo(backStack.pop());
+            currentPage = backStack.pop();
+            goTo(currentPage);
+            visitedPagesList.add(currentPage);
         }
     }
     /**
@@ -36,7 +38,9 @@ public class WebBrowser {
     public void forward() {
         if (!forwardStack.isEmpty()) {
             backStack.push(currentPage);
-            goTo(forwardStack.pop());
+            currentPage = forwardStack.pop();
+            goTo(currentPage);
+            visitedPagesList.add(currentPage);
         }
     }
     /**
