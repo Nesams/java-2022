@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WebBrowserTest {
     WebBrowser wb = new WebBrowser();
-    public static final int fifty = 50;
-    public static final int fiftyOne = 51;
+    public static final int FIFTY = 50;
+    public static final int FIFTYONE = 51;
 
     @Test
     void testIfHomePageWorks() {
@@ -45,10 +45,10 @@ class WebBrowserTest {
 
     @Test
     void testVisitedPagesListSize() {
-        for (int i = 0; i < fifty; i++) {
+        for (int i = 0; i < FIFTY; i++) {
             wb.goTo("page" + i);
         }
-        Assertions.assertEquals(fiftyOne, wb.getHistory().size());
+        Assertions.assertEquals(FIFTYONE, wb.getHistory().size());
     }
     @Test
     void testIfForwardStackIsEmpty() {
