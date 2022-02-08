@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WebBrowserTest {
     WebBrowser wb = new WebBrowser();
+    public int fifty = 50;
+    public int fiftyOne = 51;
 
     @Test
     void testIfHomePageWorks() {
@@ -43,10 +45,10 @@ class WebBrowserTest {
 
     @Test
     void testVisitedPagesListSize() {
-        for (int i = 0; i < 50; i++) {
-            wb.goTo("page" + i );
+        for (int i = 0; i < fifty; i++) {
+            wb.goTo("page" + i);
         }
-        Assertions.assertEquals(51, wb.getHistory().size());
+        Assertions.assertEquals(fiftyOne, wb.getHistory().size());
     }
     @Test
     void testIfForwardStackIsEmpty() {
