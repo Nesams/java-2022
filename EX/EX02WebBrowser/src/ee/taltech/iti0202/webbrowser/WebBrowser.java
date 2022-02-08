@@ -9,6 +9,9 @@ public class WebBrowser {
     public ArrayList<String> visitedPagesList = new ArrayList<>(List.of("google.com"));
     public HashMap<String, Integer> visitedPages = new HashMap<>();
     public ArrayList<String> bookmarks = new ArrayList<>();
+    public static String visitFirst = "";
+    public static String visitSecond = "";
+    public static String visitThird = "";
     /**
      * Goes to homepage.
      */
@@ -92,24 +95,54 @@ public class WebBrowser {
         Map.Entry<String, Integer> entry = sortedVisitedPages.entrySet().iterator().next();
         if (sortedVisitedPages.size() >= 3) {
             Object secondKey = sortedVisitedPages.keySet().toArray()[1];
-            Object secondValue = sortedVisitedPages.get(secondKey);
+            int secondValue = sortedVisitedPages.get(secondKey);
             Object thirdKey = sortedVisitedPages.keySet().toArray()[2];
-            Object thirdValue = sortedVisitedPages.get(thirdKey);
-            String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + " visits";
-            String secondFromMap = secondKey + " - " + secondValue + " visits";
-            String thirdFromMap = thirdKey + " - " + thirdValue + " visits";
+            int thirdValue = sortedVisitedPages.get(thirdKey);
+            if (entry.getValue() == 1) {
+                visitFirst = " visit";
+            } else {
+                visitFirst = " visits";
+            }
+            if (secondValue == 1) {
+                visitSecond = " visit";
+            } else {
+                visitSecond = " visits";
+            }
+            if (thirdValue == 1) {
+                visitThird = " visit";
+            } else {
+                visitThird = " visits";
+            }
+            String firstFromMap = entry.getKey() + " - " + entry.getValue() + visitFirst;
+            String secondFromMap = secondKey + " - " + secondValue + visitSecond;
+            String thirdFromMap = thirdKey + " - " + thirdValue + visitThird;
             String topVisited = String.format("%s%n%s%n%s", firstFromMap, secondFromMap, thirdFromMap);
             return topVisited;
         }
         if (sortedVisitedPages.size() == 2) {
             Object secondKey = sortedVisitedPages.keySet().toArray()[1];
-            Object secondValue = sortedVisitedPages.get(secondKey);
-            String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + " visits";
-            String secondFromMap = secondKey + " - " + secondValue + " visits";
+            int secondValue = sortedVisitedPages.get(secondKey);
+            if (entry.getValue().equals(1)) {
+                visitFirst = " visit";
+            } else {
+                visitFirst = " visits";
+            }
+            if (secondValue == 1) {
+                visitSecond = " visit";
+            } else {
+                visitSecond = " visits";
+            }
+            String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + visitFirst;
+            String secondFromMap = secondKey + " - " + secondValue + visitSecond;
             String topVisited = String.format("%s%n%s", firstFromMap, secondFromMap);
             return topVisited;
         } else {
-            String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + " visits";
+            if (entry.getValue().equals(1)) {
+                visitFirst = " visit";
+            } else {
+                visitFirst = " visits";
+            }
+            String firstFromMap = entry.getKey() + " - " + entry.getValue().toString() + visitFirst;
             String topVisited = String.format("%s", firstFromMap);
             return topVisited;
         }
@@ -135,7 +168,6 @@ public class WebBrowser {
     }
     public static void main(String[] args) {
         WebBrowser webb = new WebBrowser();
-        webb.goTo("google.com");
         webb.goTo("twitter.com");
         webb.goTo("google.com");
         System.out.println(webb.visitedPagesList);
