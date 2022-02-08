@@ -1,11 +1,5 @@
 package ee.taltech.iti0202.webbrowser;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Stack;
-import java.util.List;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Comparator;
+import java.util.*;
 
 public class WebBrowser {
     private String homePAge = "google.com";
@@ -49,10 +43,12 @@ public class WebBrowser {
      * @param url url to go to
      */
     public void goTo(String url) {
-        backStack.push(currentPage);
-        currentPage = url;
-        forwardStack.clear();
-        visitedPagesList.add(url);
+        if (!(Objects.equals(currentPage, url))) {
+            backStack.push(currentPage);
+            currentPage = url;
+            forwardStack.clear();
+            visitedPagesList.add(url);
+        }
     }
     /**
      * Add a webpage as a bookmark.
@@ -124,7 +120,9 @@ public class WebBrowser {
     }
     public static void main(String[] args) {
         WebBrowser webb = new WebBrowser();
-        System.out.println(webb.getTop3VisitedPages());
+        webb.goTo("google.com");
+        webb.goTo("twitter.com");
+        webb.goTo("google.com");
         System.out.println(webb.visitedPagesList);
         System.out.println(webb.bookmarks);
     }
