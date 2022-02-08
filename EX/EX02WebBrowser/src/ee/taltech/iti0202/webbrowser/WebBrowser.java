@@ -79,7 +79,7 @@ public class WebBrowser {
         for (String word : visitedPagesList) {
             visitedPages.put(word, visitedPages.getOrDefault(word, 0) + 1);
         }
-        LinkedHashMap <String, Integer> sortedVisitedPages = new LinkedHashMap<>();
+        LinkedHashMap<String, Integer> sortedVisitedPages = new LinkedHashMap<>();
         visitedPages.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -109,7 +109,6 @@ public class WebBrowser {
     }
     /**
     * Returns the active web page (string).
-    * 
     * @return active web page
     */
     public String getCurrentUrl() {
