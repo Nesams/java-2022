@@ -47,7 +47,7 @@ public class Book {
     public int getId() {
         return this.id;
     }
-    public Person setOwner(Person owner) {
+    public void setOwner(Person owner) {
         this.owner = owner;
     }
 
@@ -68,4 +68,3 @@ public class Book {
             }
         }
     }
-}
