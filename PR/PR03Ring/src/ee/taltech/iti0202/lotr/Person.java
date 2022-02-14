@@ -39,7 +39,7 @@ public class Person {
                 && this.ring.getMaterial().equals(Ring.Material.GOLD)) {
             return "No, he just stole the ring";
         }
-        if (this.name.equals("Sauron") && this.ring == null || !this.ring.getType().equals(Ring.Type.THE_ONE)) {
+        if (this.name.equals("Sauron") && !this.ring.getType().equals(Ring.Type.THE_ONE)) {
             return "No, but he's claiming to be";
         } else {
             return "No";
