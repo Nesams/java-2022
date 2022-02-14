@@ -10,39 +10,52 @@ public class Person {
         this.name = name;
         this.ring = ring;
     }
+
     public Person(String race, String name) {
         this.race = race;
         this.name = name;
+        this.ring = null;
     }
+
     public void setRing(Ring ring) {
         this.ring = ring;
     }
+
     public String getRace() {
         return this.race;
     }
+
     public String getName() {
         return this.name;
     }
+
     public Ring getRing() {
         return this.ring;
     }
+
     public String isSauron() {
-        if (this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
-                && this.ring.getMaterial().equals(Ring.Material.GOLD)) {
-            return  "Affirmative";
-        }
-        if (this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
-                && !this.ring.getMaterial().equals(Ring.Material.GOLD)) {
-            return "No, the ring is fake!";
-        }
-        if (!this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
-                && this.ring.getMaterial().equals(Ring.Material.GOLD)) {
-            return "No, he just stole the ring";
-        }
-        if (this.name.equals("Sauron") && !this.ring.getType().equals(Ring.Type.THE_ONE)) {
+        if (this.ring != null) {
+            if (this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
+                    && this.ring.getMaterial().equals(Ring.Material.GOLD)) {
+                return "Affirmative";
+            }
+            if (this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
+                    && !this.ring.getMaterial().equals(Ring.Material.GOLD)) {
+                return "No, the ring is fake!";
+            }
+            if (!this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
+                    && this.ring.getMaterial().equals(Ring.Material.GOLD)) {
+                return "No, he just stole the ring";
+            }
+            if (this.name.equals("Sauron") && !this.ring.getType().equals(Ring.Type.THE_ONE)) {
+                return "No, but he's claiming to be";
+            } else {
+                return "No";
+            }
+        } else if (this.name.equals("Sauron")) {
             return "No, but he's claiming to be";
-        } else {
-            return "No";
         }
+        return null;
     }
 }
+
