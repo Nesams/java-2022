@@ -55,7 +55,7 @@ public class Person {
         } else if (this.name.equals("Sauron")) {
             return "No, but he's claiming to be";
         }
-        return null;
+        return "No";
     }
 }
 
