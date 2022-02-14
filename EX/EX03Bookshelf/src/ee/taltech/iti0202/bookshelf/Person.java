@@ -23,7 +23,7 @@ public class Person {
     }
 
     public boolean buyBook(Book book) {
-        if (book.buy(this)) {
+        if (book != null) {
             book.setOwner(this);
             this.ownedBooks.add(book);
             this.money -= book.getPrice();
