@@ -27,16 +27,16 @@ public class Person {
         return this.ring;
     }
     public String isSauron() {
-        if (this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE) &&
-                this.ring.getMaterial().equals(Ring.Material.GOLD)) {
+        if (this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
+                && this.ring.getMaterial().equals(Ring.Material.GOLD)) {
             return  "Affirmative";
         }
-        if (this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE) &&
-                !this.ring.getMaterial().equals(Ring.Material.GOLD)) {
+        if (this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
+                && !this.ring.getMaterial().equals(Ring.Material.GOLD)) {
             return "No, the ring is fake!";
         }
-        if (!this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE) &&
-                this.ring.getMaterial().equals(Ring.Material.GOLD)) {
+        if (!this.name.equals("Sauron") && this.ring.getType().equals(Ring.Type.THE_ONE)
+                && this.ring.getMaterial().equals(Ring.Material.GOLD)) {
             return "No, he just stole the ring";
         }
         if (this.name.equals("Sauron") && this.ring == null || !this.ring.getType().equals(Ring.Type.THE_ONE)) {

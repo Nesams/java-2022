@@ -16,10 +16,10 @@ public class Ring {
         this.ringType = type;
         this.ringMaterial = material;
     }
-    public Type getType(){
+    public Type getType() {
         return this.ringType;
     }
-    public Material getMaterial(){
+    public Material getMaterial() {
         return this.ringMaterial;
     }
     public static void main(String[] args) {
