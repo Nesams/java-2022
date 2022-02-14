@@ -26,7 +26,7 @@ public class Person {
     }
 
     public boolean buyBook(Book book) {
-        if (book != null) {
+        if (book != null && this.money >= book.getPrice()) {
             book.setOwner(this);
             this.ownedBooks.add(book);
             this.money -= book.getPrice();
