@@ -1,14 +1,20 @@
 package ee.taltech.iti0202.bookshelf;
 
+import java.util.*;
+import java.util.HashMap;
+
 public class Book {
 
-    private int id;
+    private final int id;
     private Person owner;
-    private String author;
-    private int yearOfPublishing;
-    private int price;
-    private String title;
+    private final String author;
+    private final int yearOfPublishing;
+    private final int price;
+    private final String title;
     private static int booksIdcount;
+    private static ArrayList<Book> books = new ArrayList<>();
+    private static Book lastAddedBook;
+    static Map<String, List<Book>> AuthorMap = new HashMap<>();
 
     /**
      * Adds to the Id value.
@@ -18,6 +24,7 @@ public class Book {
         booksIdcount++;
         return followingId;
     }
+
     /**
      * Goes Constructor.
      */
@@ -53,11 +60,14 @@ public class Book {
     public int getId() {
         return this.id;
     }
+
     public void setOwner(Person owner) {
         this.owner = owner;
     }
+
     /**
      * Can buyer buy the book or not.
+     *
      * @return bool
      */
     public boolean buy(Person buyer) {
@@ -77,6 +87,55 @@ public class Book {
             return true;
         } else {
             return false;
-            }
         }
     }
+
+    public static Book of(String title, String author, int yearOfPublishing, int price) {
+        Book newBook = new Book(title, author, yearOfPublishing, price);
+        if (!books.contains(newBook)) {
+            books.add(newBook);
+            lastAddedBook = newBook;
+            AuthorMap.put(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+            AuthorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
+        }
+        return newBook;
+    }
+    public static Book of(String title, int price) {
+        if (!(books == null)){
+            if (books.isEmpty()) {
+                return null;
+            } else {
+                String author = lastAddedBook.author;
+                int yearOfPublishing = lastAddedBook.yearOfPublishing;
+                Book newBook = new Book(title, author, yearOfPublishing, price);
+                if (!books.contains(newBook)) {
+                    books.add(newBook);
+                    lastAddedBook = newBook;
+                    AuthorMap.put(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+                    AuthorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
+                }
+            }
+        return null;
+        }
+        return null;
+    }
+    public static ArrayList getBooksByOwner(Person owner){
+        return owner.getBooks();
+    }
+    public static boolean removeBook(Book book) {
+        if (books.contains(book)) {
+            books.remove(book);
+            book.owner.sellBook(book);
+            return true;
+        } else {
+            if (book == null) {
+                return false;
+            }
+            return false;
+        }
+    }
+    public static List<Book> getBooksByAuthor(String author) {
+        return AuthorMap.get(author.toUpperCase(Locale.ROOT));
+    }
+}
+
