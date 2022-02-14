@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.bookshelf;
+
 public class Book {
 
     private int id;
@@ -14,7 +15,6 @@ public class Book {
         booksIdcount++;
         return followingId;
     }
-
     public Book(String title, String author, int yearOfPublishing, int price) {
         this.title = title;
         this.author = author;
