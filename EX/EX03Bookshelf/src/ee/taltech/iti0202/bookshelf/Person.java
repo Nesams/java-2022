@@ -1,12 +1,13 @@
 package ee.taltech.iti0202.bookshelf;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Person {
 
     private String name;
     private int money;
-    private ArrayList<Book> ownedBooks;
+    private List<Book> ownedBooks;
     /**
      * Constructor.
      */
@@ -23,7 +24,7 @@ public class Person {
     public String getName() {
         return this.name;
     }
-    public ArrayList getBooks() {
+    public List getBooks() {
         return ownedBooks;
     }
     /**
