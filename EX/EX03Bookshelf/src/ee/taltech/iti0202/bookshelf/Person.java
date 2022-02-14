@@ -7,7 +7,9 @@ public class Person {
     private String name;
     private int money;
     private ArrayList<Book> ownedBooks;
-
+    /**
+     * Constructor.
+     */
     public Person(String name, int money) {
         this.name = name;
         this.money = money;
@@ -24,7 +26,9 @@ public class Person {
     public ArrayList getBooks() {
         return ownedBooks;
     }
-
+    /**
+     * Person buys the book and returns true if the deal is done, false if something went wrong.
+     */
     public boolean buyBook(Book book) {
         if (book != null && this.money >= book.getPrice()) {
             book.setOwner(this);
@@ -34,7 +38,9 @@ public class Person {
         }
         return false;
     }
-
+    /**
+     * Person sells the book and returns true if the deal is done, false if something went wrong.
+     */
     public boolean sellBook(Book book) {
         if (book != null && this.ownedBooks.contains(book)) {
             book.setOwner(null);

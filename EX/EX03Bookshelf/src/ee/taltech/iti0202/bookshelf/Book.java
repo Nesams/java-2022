@@ -10,11 +10,17 @@ public class Book {
     private String title;
     private static int booksIdcount;
 
+    /**
+     * Adds to the Id value.
+     */
     public static int getAndIncrementNextId() {
         int followingId = booksIdcount;
         booksIdcount++;
         return followingId;
     }
+    /**
+     * Goes Constructor.
+     */
     public Book(String title, String author, int yearOfPublishing, int price) {
         this.title = title;
         this.author = author;
@@ -50,7 +56,10 @@ public class Book {
     public void setOwner(Person owner) {
         this.owner = owner;
     }
-
+    /**
+     * Can buyer buy the book or not.
+     * @return bool
+     */
     public boolean buy(Person buyer) {
         if (buyer == null && this.owner != null) {
             this.owner.buyBook(this);
