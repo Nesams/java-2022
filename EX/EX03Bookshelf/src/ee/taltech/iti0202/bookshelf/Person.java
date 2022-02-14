@@ -37,7 +37,7 @@ public class Person {
 
     public boolean sellBook(Book book) {
         if (book != null && this.ownedBooks.contains(book)) {
-            book.setOwner(this);
+            book.setOwner(null);
             this.ownedBooks.remove(book);
             this.money += book.getPrice();
             return true;
