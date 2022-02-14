@@ -14,7 +14,7 @@ public class Book {
     private static int booksIdcount;
     private static ArrayList<Book> books = new ArrayList<>();
     private static Book lastAddedBook;
-    static Map<String, List<Book>> AuthorMap = new HashMap<>();
+    static Map<String, List<Book>> authorMap = new HashMap<>();
 
     /**
      * Adds to the Id value.
@@ -95,8 +95,8 @@ public class Book {
         if (!books.contains(newBook)) {
             books.add(newBook);
             lastAddedBook = newBook;
-            AuthorMap.put(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
-            AuthorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
+            authorMap.put(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+            authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
         }
         return newBook;
     }
@@ -111,8 +111,8 @@ public class Book {
                 if (!books.contains(newBook)) {
                     books.add(newBook);
                     lastAddedBook = newBook;
-                    AuthorMap.put(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
-                    AuthorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
+                    authorMap.put(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+                    authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
                 }
             }
         return null;
