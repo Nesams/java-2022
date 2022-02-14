@@ -21,6 +21,9 @@ public class Person {
     public String getName() {
         return this.name;
     }
+    public ArrayList getBooks() {
+        return ownedBooks;
+    }
 
     public boolean buyBook(Book book) {
         if (book != null) {
