@@ -1,7 +1,10 @@
 package ee.taltech.iti0202.bookshelf;
 
-import java.util.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class Book {
 
@@ -100,8 +103,11 @@ public class Book {
         }
         return newBook;
     }
+    /**
+     * New constructor for new books.
+     */
     public static Book of(String title, int price) {
-        if (!(books == null)){
+        if (!(books == null)) {
             if (books.isEmpty()) {
                 return null;
             } else {
@@ -119,9 +125,15 @@ public class Book {
         }
         return null;
     }
+    /**
+     * Returns books by owner.
+     */
     public static List getBooksByOwner(Person owner){
         return owner.getBooks();
     }
+    /**
+     * Method that removes book from the book objects list.
+     */
     public static boolean removeBook(Book book) {
         if (books.contains(book)) {
             books.remove(book);
@@ -134,8 +146,11 @@ public class Book {
             return false;
         }
     }
+    /**
+     * Returns a list of books from the same author.
+     */
     public static List<Book> getBooksByAuthor(String author) {
-        return AuthorMap.get(author.toUpperCase(Locale.ROOT));
+        return authorMap.get(author.toUpperCase(Locale.ROOT));
     }
 }
 
