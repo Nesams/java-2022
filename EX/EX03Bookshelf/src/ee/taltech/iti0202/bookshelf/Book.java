@@ -92,7 +92,9 @@ public class Book {
             return false;
         }
     }
-
+    /**
+     * Constructor for new books.
+     */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book newBook = new Book(title, author, yearOfPublishing, price);
         if (!books.contains(newBook)) {
@@ -104,7 +106,7 @@ public class Book {
         return newBook;
     }
     /**
-     * New constructor for new books.
+     * Makes a new Book object by title and price.
      */
     public static Book of(String title, int price) {
         if (!(books == null)) {
