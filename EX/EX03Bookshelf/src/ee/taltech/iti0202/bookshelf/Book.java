@@ -119,7 +119,7 @@ public class Book {
         }
         return null;
     }
-    public static ArrayList getBooksByOwner(Person owner){
+    public static List getBooksByOwner(Person owner){
         return owner.getBooks();
     }
     public static boolean removeBook(Book book) {
