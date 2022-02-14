@@ -60,7 +60,9 @@ public class Book {
             return false;
         }
         if (this.price <= buyer.getMoney() && !(this.owner == buyer)) {
-            this.owner.sellBook(this);
+            if (this.owner != null && this.owner.getBooks().contains(this)) {
+                this.owner.sellBook(this);
+            }
             buyer.buyBook(this);
             return true;
         } else {
