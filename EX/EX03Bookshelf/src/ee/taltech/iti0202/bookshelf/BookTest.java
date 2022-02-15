@@ -79,7 +79,7 @@ class BookTest {
 
     @org.junit.jupiter.api.Test
     void getBooksByAuthor() {
-        List<Book> authorList= new ArrayList<>();
+        List<Book> authorList = new ArrayList<>();
         authorList.add(b2);
         Assertions.assertEquals(authorList, Book.getBooksByAuthor("Author2"));
     }
