@@ -103,10 +103,8 @@ public class Book {
         if (!books.contains(newBook)) {
             books.add(newBook);
             lastAddedBook = newBook;
-            authorMap.put(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+            authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
             authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
-            ArrayList<Book> authorBooks = (ArrayList<Book>) authorMap.get(newBook.author.toUpperCase(Locale.ROOT));
-            authorBooks.add(newBook);
         }
         return newBook;
     }
@@ -123,10 +121,8 @@ public class Book {
             if (!books.contains(newBook)) {
                 books.add(newBook);
                 lastAddedBook = newBook;
-                authorMap.put(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+                authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
                 authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
-                ArrayList<Book> authorBooks = (ArrayList<Book>) authorMap.get(newBook.author.toUpperCase(Locale.ROOT));
-                authorBooks.add(newBook);
                 return newBook;
                 }
             }
