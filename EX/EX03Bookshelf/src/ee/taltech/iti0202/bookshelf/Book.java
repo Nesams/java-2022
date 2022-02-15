@@ -101,11 +101,24 @@ public class Book {
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book newBook = new Book(title, author, yearOfPublishing, price);
-        if (!books.contains(newBook)) {
+        if (!books.isEmpty()) {
+            for (Book book : books) {
+                if (!book.author.equals(newBook.author) && !book.title.equals(newBook.title)
+                        && !(book.yearOfPublishing == newBook.yearOfPublishing)) {
+                    books.add(newBook);
+                    lastAddedBook = newBook;
+                    authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+                    authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
+                    return newBook;
+                }
+                return newBook;
+            }
+        } else {
             books.add(newBook);
             lastAddedBook = newBook;
             authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
             authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
+            return newBook;
         }
         return newBook;
     }
@@ -119,15 +132,20 @@ public class Book {
             String author1 = lastAddedBook.getAuthor();
             int yearOfPublishing1 = lastAddedBook.getYearOfPublishing();
             Book newBook = new Book(title, author1, yearOfPublishing1, price);
-            if (!books.contains(newBook)) {
-                books.add(newBook);
-                lastAddedBook = newBook;
-                authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
-                authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
-                return newBook;
+            for (Book book :books) {
+                if (!book.author.equals(newBook.author) && !book.title.equals(newBook.title)
+                        && !(book.yearOfPublishing == newBook.yearOfPublishing)) {
+                    books.add(newBook);
+                    lastAddedBook = newBook;
+                    authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+                    authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
+                    return newBook;
+                } else {
+                    return newBook;
                 }
             }
-        return null;
+            return newBook;
+        }
     }
     /**
      * Returns books by owner.
