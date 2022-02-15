@@ -141,7 +141,9 @@ public class Book {
     public static boolean removeBook(Book book) {
         if (books.contains(book)) {
             books.remove(book);
-            book.owner.sellBook(book);
+            if (book.owner != null){
+                book.owner.sellBook(book);
+            }
             return true;
         } else {
             if (book == null) {
