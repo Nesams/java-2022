@@ -33,7 +33,7 @@ public class Book {
      */
     public Book(String title, String author, int yearOfPublishing, int price) {
         this.title = title;
-        this.author = author;
+        this.author = author.toUpperCase(Locale.ROOT);
         this.yearOfPublishing = yearOfPublishing;
         this.price = price;
         this.owner = null;
