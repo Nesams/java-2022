@@ -67,6 +67,11 @@ public class Book {
     public void setOwner(Person owner) {
         this.owner = owner;
     }
+    /**
+     * Get the last book added to the book list.
+     *
+     * @return lastAddedBook
+     */
     public static Book getlastaddedbook() {
         return lastAddedBook;
     }
