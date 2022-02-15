@@ -67,11 +67,6 @@ public class Book {
     public void setOwner(Person owner) {
         this.owner = owner;
     }
-    /**
-     * Get the last book added to the book list.
-     *
-     * @return lastAddedBook
-     */
     public static Book getlastaddedbook() {
         return lastAddedBook;
     }
@@ -106,24 +101,11 @@ public class Book {
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         Book newBook = new Book(title, author, yearOfPublishing, price);
-        if (!books.isEmpty()) {
-            for (Book book : books) {
-                if (!book.author.equals(newBook.author) && !book.title.equals(newBook.title)
-                        && !(book.yearOfPublishing == newBook.yearOfPublishing)) {
-                    books.add(newBook);
-                    lastAddedBook = newBook;
-                    authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
-                    authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
-                    return newBook;
-                }
-                return newBook;
-            }
-        } else {
+        if (!books.contains(newBook)) {
             books.add(newBook);
             lastAddedBook = newBook;
             authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
             authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
-            return newBook;
         }
         return newBook;
     }
@@ -137,20 +119,15 @@ public class Book {
             String author1 = lastAddedBook.getAuthor();
             int yearOfPublishing1 = lastAddedBook.getYearOfPublishing();
             Book newBook = new Book(title, author1, yearOfPublishing1, price);
-            for (Book book :books) {
-                if (!book.author.equals(newBook.author) && !book.title.equals(newBook.title)
-                        && !(book.yearOfPublishing == newBook.yearOfPublishing)) {
-                    books.add(newBook);
-                    lastAddedBook = newBook;
-                    authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
-                    authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
-                    return newBook;
-                } else {
-                    return newBook;
-                }
+            if (!books.contains(newBook)) {
+                books.add(newBook);
+                lastAddedBook = newBook;
+                authorMap.putIfAbsent(newBook.author.toUpperCase(Locale.ROOT), new ArrayList<>());
+                authorMap.get(newBook.author.toUpperCase(Locale.ROOT)).add(newBook);
+                return newBook;
             }
-            return newBook;
         }
+        return null;
     }
     /**
      * Returns books by owner.
@@ -165,7 +142,7 @@ public class Book {
         if (books.contains(book)) {
             books.remove(book);
             authorMap.get(book.author.toUpperCase(Locale.ROOT)).remove(book);
-            if (book.owner != null) {
+            if (book.owner != null){
                 book.owner.sellBook(book);
             }
             return true;
@@ -183,4 +160,3 @@ public class Book {
         return authorMap.get(author.toUpperCase(Locale.ROOT));
     }
 }
-
