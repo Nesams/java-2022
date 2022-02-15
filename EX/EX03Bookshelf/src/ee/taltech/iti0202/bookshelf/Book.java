@@ -78,7 +78,7 @@ public class Book {
      */
     public boolean buy(Person buyer) {
         if (buyer == null && this.owner != null) {
-            this.owner.buyBook(this);
+            this.owner.sellBook(this);
             this.owner = null;
             return false;
         }
