@@ -24,7 +24,7 @@ public class Person {
     public String getName() {
         return this.name;
     }
-    public List getBooks() {
+    public List<Book> getBooks() {
         return ownedBooks;
     }
     /**

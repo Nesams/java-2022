@@ -130,7 +130,7 @@ public class Book {
     /**
      * Returns books by owner.
      */
-    public static List getBooksByOwner(Person owner) {
+    public static List<Book> getBooksByOwner(Person owner) {
         return owner.getBooks();
     }
     /**
