@@ -88,6 +88,7 @@ public class Book {
         if (this.price <= buyer.getMoney() && !(this.owner == buyer)) {
             if (this.owner != null && this.owner.getBooks().contains(this)) {
                 this.owner.sellBook(this);
+                buyer.buyBook(this);
             }
             buyer.buyBook(this);
             return true;
