@@ -67,10 +67,14 @@ public class Book {
     public void setOwner(Person owner) {
         this.owner = owner;
     }
+    /**
+     * Get the last added book.
+     *
+     * @return lastAddedBook
+     */
     public static Book getlastaddedbook() {
         return lastAddedBook;
     }
-
     /**
      * Can buyer buy the book or not.
      *
@@ -142,7 +146,7 @@ public class Book {
         if (books.contains(book)) {
             books.remove(book);
             authorMap.get(book.author.toUpperCase(Locale.ROOT)).remove(book);
-            if (book.owner != null){
+            if (book.owner != null) {
                 book.owner.sellBook(book);
             }
             return true;
