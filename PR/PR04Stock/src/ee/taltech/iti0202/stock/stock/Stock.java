@@ -52,7 +52,7 @@ public class Stock {
         if (products.contains(product)) {
             throw new StockException(StockException.Reason.STOCK_ALREADY_CONTAINS_PRODUCT);
         }
-        if (this.maxCapacity <= products.size() + 1) {
+        if (this.maxCapacity < products.size() + 1) {
             throw new StockException(StockException.Reason.STOCK_IS_FULL);
         } else {
             products.add(product);
