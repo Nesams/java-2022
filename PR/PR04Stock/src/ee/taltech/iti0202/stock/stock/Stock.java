@@ -2,7 +2,10 @@ package ee.taltech.iti0202.stock.stock;
 
 import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -73,9 +76,7 @@ public class Stock {
     /**
      * Remove and return a product from a stock,
      * if stock has a given product.
-     *
      * Use getProduct() method to get the product.
-     * 
      * If there is nothing to remove, return Optional.empty()
      *
      * @param name Name of the product to be removed
