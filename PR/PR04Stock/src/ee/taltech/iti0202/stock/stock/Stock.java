@@ -69,19 +69,16 @@ public class Stock {
      * @return Optional
      */
     public Optional<Product> getProduct(String name) {
-        ArrayList<Product> productsByName = new ArrayList<>();
-        for (Product product : products) {
-            if (Objects.equals(product.getName(), name)) {
-                productsByName.add(product);
-            }
-        }
-        if (productsByName.isEmpty()) {
+        List<Product> nameRight = products.stream().filter(p -> p.getName().equals(name))
+                .sorted(Comparator.comparing(Product::getId)).toList();
+        if (nameRight.isEmpty()) {
             return Optional.empty();
         } else {
-            return Optional.ofNullable(products.stream()
-                    .sorted(Comparator.comparing(Product::getPrice)).toList().get(0));
+            return Optional.of(nameRight.stream().sorted(Comparator.comparing(Product::getPrice)).toList().get(0));
         }
     }
+
+
 
     /**
      * Remove and return a product from a stock,
@@ -150,7 +147,7 @@ public class Stock {
      * @return boolean
      */
     public boolean isFull() {
-        return this.maxCapacity <= products.size();
+        return this.maxCapacity == products.size();
     }
 
 }
