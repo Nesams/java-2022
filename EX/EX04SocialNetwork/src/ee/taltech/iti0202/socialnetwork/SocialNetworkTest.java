@@ -59,7 +59,7 @@ class SocialNetworkTest {
         Assertions.assertEquals(g1.getMessages(), groupMessages);
     }
     @Test
-    void TestIfFeedConstructorWorks() {
+    void testIfFeedConstructorWorks() {
         messagesSet.add(m1);
         Assertions.assertEquals(f1.getMessages(), messagesSet);
         Assertions.assertEquals(f1.getUser(), u2);
