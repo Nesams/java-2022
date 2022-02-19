@@ -52,7 +52,7 @@ public class Stock {
         if (products.contains(product)) {
             throw new StockException(StockException.Reason.STOCK_ALREADY_CONTAINS_PRODUCT);
         }
-        if (this.maxCapacity < products.size() + 1) {
+        if (this.maxCapacity <= products.size()) {
             throw new StockException(StockException.Reason.STOCK_IS_FULL);
         } else {
             products.add(product);
@@ -123,8 +123,8 @@ public class Stock {
     public List<Product> getProducts(String name) {
         return products.stream()
                 .filter(p -> p.getName().equals(name))
-                .sorted(Comparator.comparing(Product::getId))
-                .sorted(Comparator.comparing(Product::getPrice))
+                .sorted(Comparator.comparingInt(Product::getId))
+                .sorted(Comparator.comparingInt(Product::getPrice))
                 .collect(Collectors.toList());
     }
 
