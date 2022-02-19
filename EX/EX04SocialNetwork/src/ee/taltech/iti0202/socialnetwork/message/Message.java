@@ -1,4 +1,4 @@
-package ee.taltech.iti0202.socialnetwork.message.Message;
+package ee.taltech.iti0202.socialnetwork.message;
 
 import ee.taltech.iti0202.socialnetwork.user.User;
 
