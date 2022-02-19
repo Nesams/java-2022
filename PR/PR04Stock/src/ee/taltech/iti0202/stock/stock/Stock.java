@@ -78,12 +78,9 @@ public class Stock {
         if (productsByName.isEmpty()) {
             return Optional.empty();
         } else {
-            products.stream()
+            return Optional.ofNullable(products.stream()
                     .filter(p -> p.getName().equals(name))
-                    .sorted(Comparator.comparing(Product::getId))
-                    .sorted(Comparator.comparing(Product::getPrice))
-                    .collect(Collectors.toList());
-            return Optional.ofNullable(products.get(0));
+                    .sorted(Comparator.comparing(Product::getPrice)).toList().get(0));
         }
     }
 
@@ -100,9 +97,10 @@ public class Stock {
      */
 
     public Optional<Product> removeProduct(String name) {
-        if (getProduct(name).isPresent()) {
-            products.remove(getProduct(name));
-            return getProduct(name);
+        Optional<Product> product = getProduct(name);
+        if (product.isPresent()) {
+            products.remove(product.get());
+            return product;
         } else {
             return Optional.empty();
         }
