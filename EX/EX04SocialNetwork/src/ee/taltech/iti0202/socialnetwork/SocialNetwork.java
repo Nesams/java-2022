@@ -12,14 +12,21 @@ package ee.taltech.iti0202.socialnetwork;
 
 public class SocialNetwork {
         private final LinkedHashSet<Group> groups = new LinkedHashSet<>();
+        /**
+        * Constructor.
+        */
         public void registerGroup(Group group) {
             groups.add(group);
         }
-
+        /**
+        * Get groups.
+        */
         public Set<Group> getGroups() {
             return this.groups;
         }
-
+        /**
+        * Compile a feed for the user.
+        */
         public Feed getFeedForUser(User user) {
             LinkedList<Group> userGroups = (LinkedList<Group>) this.groups.stream()
                     .filter(u -> u.getParticipants().contains(user))

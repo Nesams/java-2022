@@ -6,6 +6,9 @@ public class Message {
     private final String title;
     private final String message;
     private final User author;
+    /**
+     * Constructor. Add new message.
+     */
     public Message(String title, String message, User author) {
         this.title = title;
         this.message = message;

@@ -8,6 +8,9 @@ import java.util.Set;
 public class Feed {
     private final User user;
     private final Set<Message> messages;
+    /**
+     * Constructor for the new feed.
+     */
     public Feed(User user, Set<Message> messages) {
         this.user = user;
         this.messages = messages;
