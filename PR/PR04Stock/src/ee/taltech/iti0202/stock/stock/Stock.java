@@ -70,11 +70,11 @@ public class Stock {
      */
     public Optional<Product> getProduct(String name) {
         List<Product> nameRight = products.stream().filter(p -> p.getName().equals(name))
-                .sorted(Comparator.comparing(Product::getId)).toList();
-        if (nameRight.isEmpty()) {
+                .sorted(Comparator.comparingInt(Product::getId)).toList();
+        if (nameRight.size() == 0) {
             return Optional.empty();
         } else {
-            return Optional.of(nameRight.stream().sorted(Comparator.comparing(Product::getPrice)).toList().get(0));
+            return Optional.of(nameRight.stream().sorted(Comparator.comparingInt(Product::getPrice)).toList().get(0));
         }
     }
 
