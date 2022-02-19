@@ -79,7 +79,6 @@ public class Stock {
             return Optional.empty();
         } else {
             return Optional.ofNullable(products.stream()
-                    .filter(p -> p.getName().equals(name))
                     .sorted(Comparator.comparing(Product::getPrice)).toList().get(0));
         }
     }
@@ -99,8 +98,9 @@ public class Stock {
     public Optional<Product> removeProduct(String name) {
         Optional<Product> product = getProduct(name);
         if (product.isPresent()) {
-            products.remove(product.get());
-            return product;
+            Product removedProduct =  product.get();
+            products.remove(removedProduct);
+            return Optional.of(removedProduct);
         } else {
             return Optional.empty();
         }
