@@ -4,7 +4,7 @@ import ee.taltech.iti0202.stock.exceptions.StockException;
 public class Product {
     private final String name;
     private final int price;
-    private static int idCounter = 1;
+    private static int idcounter = 0;
     private final int id;
 
     /**
@@ -18,15 +18,14 @@ public class Product {
      */
     public Product(String name, int price) throws StockException {
         this.name = name;
+        getNextId();
+        this.id = idcounter;
         if (price < 0) {
         throw  new StockException(StockException.Reason.NEGATIVE_PRICE);
         } else {
             this.price = price;
         }
-        this.id = getNextId();
     }
-
-
     /**
      * Returns the next id.
      *
@@ -35,11 +34,8 @@ public class Product {
      * @return The next id.
      */
     public static int getNextId() {
-        int followingId = idCounter;
-        idCounter++;
-        return followingId;
+        return idcounter++;
     }
-
     /**
      * Returns id of the product.
      * 
@@ -48,7 +44,6 @@ public class Product {
     public int getId() {
         return id;
     }
-
     /**
      * Returns the name of the product.
      * 
@@ -57,7 +52,6 @@ public class Product {
     public String getName() {
         return this.name;
     }
-
     /**
      * Returns the price of the product.
      * 
@@ -65,5 +59,9 @@ public class Product {
      */
     public int getPrice() {
         return this.price;
+    }
+
+    public String nameToString() {
+        return this.getName();
     }
 }

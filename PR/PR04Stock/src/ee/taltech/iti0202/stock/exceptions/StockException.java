@@ -6,7 +6,6 @@ package ee.taltech.iti0202.stock.exceptions;
  * Use this exception in your implementation.
  */
 public class StockException extends Exception {
-
     /**
      * Different reasons for exception.
      *
@@ -18,9 +17,7 @@ public class StockException extends Exception {
         STOCK_IS_FULL,
         STOCK_ALREADY_CONTAINS_PRODUCT
     }
-
     private Reason reason;
-
     /**
      * Constructor with the reason.
      * 
@@ -29,7 +26,6 @@ public class StockException extends Exception {
     public StockException(Reason reason) {
         this.reason = reason;
     }
-
     /**
      * Returns the reason of the exception.
      * 
@@ -38,7 +34,6 @@ public class StockException extends Exception {
     public Reason getReason() {
         return reason;
     }
-
     @Override
     public String getMessage() {
         return toString();

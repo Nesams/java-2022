@@ -2,8 +2,6 @@ package ee.taltech.iti0202.stock.stock;
 
 import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
-
-import java.sql.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,10 +23,8 @@ public class Stock {
     private final String name;
     private final int maxCapacity;
     static ArrayList<Product> products = new ArrayList<>();
-
     /**
      * Create a new stock with the given name and the max capacity for the products.
-     * 
      * @param name the name of the stock.
      * @param maxCapacity max amount of products allowed in the stock.
      */
@@ -36,7 +32,6 @@ public class Stock {
         this.name = name;
         this.maxCapacity = maxCapacity;
     }
-
     /**
      * Add a product to the stock, if stock does not contain the product and is not full yet.
      * <p>
@@ -47,7 +42,6 @@ public class Stock {
      * @param product to be added
      * @throws StockException STOCK_ALREADY_CONTAINS_PRODUCT, STOCK_IS_FULL
      */
-
     public void addProduct(Product product) throws StockException {
         if (products.contains(product)) {
             throw new StockException(StockException.Reason.STOCK_ALREADY_CONTAINS_PRODUCT);
@@ -58,7 +52,6 @@ public class Stock {
             products.add(product);
         }
     }
-
     /**
      * Get a product from a stock by name with the lowest price.
      *
@@ -77,9 +70,6 @@ public class Stock {
             return Optional.of(nameRight.stream().sorted(Comparator.comparingInt(Product::getPrice)).toList().get(0));
         }
     }
-
-
-
     /**
      * Remove and return a product from a stock,
      * if stock has a given product.
@@ -91,7 +81,6 @@ public class Stock {
      * @param name Name of the product to be removed
      * @return Optional
      */
-
     public Optional<Product> removeProduct(String name) {
         Optional<Product> product = getProduct(name);
         if (product.isPresent()) {
@@ -102,7 +91,6 @@ public class Stock {
             return Optional.empty();
         }
     }
-
     /**
      * Get a list of current products in the stock.
      *
@@ -111,7 +99,6 @@ public class Stock {
     public List<Product> getProducts() {
         return products;
     }
-
     /**
      * Get a list of current products in the stock filtered by name.
      *
@@ -127,7 +114,6 @@ public class Stock {
                 .sorted(Comparator.comparingInt(Product::getPrice))
                 .collect(Collectors.toList());
     }
-
     /**
      * Get total price of all the products.
      *
@@ -140,7 +126,6 @@ public class Stock {
         }
         return productsTogether;
     }
-
     /**
      * Check if stock is full.
      *
@@ -149,5 +134,4 @@ public class Stock {
     public boolean isFull() {
         return this.maxCapacity == products.size();
     }
-
 }
