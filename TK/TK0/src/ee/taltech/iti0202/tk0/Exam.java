@@ -71,7 +71,7 @@ public class Exam {
         String result = "";
         String p = "bread";
         int count = str.split(Pattern.quote(p), -1).length - 1;
-        if (count != 2) {
+        if (count < 2) {
             return "";
         } else {
             String newString = str.substring(str.indexOf("bread") + 5);
