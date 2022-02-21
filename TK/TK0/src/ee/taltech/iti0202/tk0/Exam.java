@@ -1,9 +1,12 @@
 package ee.taltech.iti0202.tk0;
 
+import org.junit.platform.commons.util.StringUtils;
+
+import java.security.Key;
 import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Pattern;
+
 public class Exam {
 
 
@@ -22,10 +25,13 @@ public class Exam {
         for (Integer i: nums) {
             if (i % 2 == 0) {
                 resultList.add(i);
-                nums.remove(i);
             }
         }
-        resultList.addAll(nums);
+        for (Integer i: nums) {
+            if (i % 2 != 0) {
+                resultList.add(i);
+            }
+        }
         return resultList;
     }
 
@@ -62,7 +68,15 @@ public class Exam {
      * getSandwich("xxbreadyy") → ""
      */
     public static String getSandwich(String str) {
-        return "";
+        String result = "";
+        String p = "bread";
+        int count = str.split(Pattern.quote(p), -1).length - 1;
+        if (count != 2) {
+            return "";
+        } else {
+            String newString = str.substring(str.indexOf("bread") + 5);
+            return newString.substring(0,newString.indexOf("bread"));
+        }
     }
 
 
@@ -76,9 +90,17 @@ public class Exam {
      * topping({}) → {"bread": "butter"}
      * topping({"pancake": "syrup"}) → {"bread": "butter", "pancake": "syrup"}
      */
-    public static Map<String, String> topping(Map<String, String> map) {
-        return null;
+    public static HashMap<String, String> topping(HashMap<String, String> map) {
+        map.putIfAbsent("bread", "butter");
+        map.replace("ice cream", "cherry");
+        return map;
     }
 
+    public static void main(String[] args) {
+        System.out.println(evenOdd(List.of(1, 0, 1, 0, 0, 1, 1)));
+        System.out.println(getSandwich("xxbreadjambreadyy"));
+        System.out.println(getSandwich("xxbreadyy"));
+        System.out.println(getSandwich("breadjambread"));
+    }
 
 }
