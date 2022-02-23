@@ -41,10 +41,12 @@ public class Painting {
     public String getAuthor() {
         return author;
     }
-    public String toString(Painting p) {
-        if (p.author != null) {
-            return  "This is a painting named " + p.title + " and made by" + p.author + ".";
+
+    @Override
+    public String toString() {
+        if (author != null) {
+            return  "This is a painting named " + title + " and made by" + author + ".";
         }
-        return  "This is a painting named " + p.title + " and made by an unknown artist.";
+        return  "This is a painting named " + title + " and made by an unknown artist.";
     }
 }
