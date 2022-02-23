@@ -42,12 +42,12 @@ public class Painting {
         return author;
     }
     public String toString(Painting p) {
+        String result;
         if (p.author != null) {
-            String result = "This is a painting named " + p.title + " and made by" + p.author + ".";
-            return result;
+            result = "This is a painting named " + p.title + " and made by" + p.author + ".";
         } else {
-            String result = "This is a painting named " + p.title + " and made by an unknown artist.";
-            return result;
+            result = "This is a painting named " + p.title + " and made by an unknown artist.";
         }
+        return result;
     }
 }
