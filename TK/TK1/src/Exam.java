@@ -4,8 +4,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Exam {
-
-
     /**
      * Return the "centered" average of an array of ints, which we'll say is the mean average of the values,
      * except ignoring the largest and smallest values in the array. If there are multiple copies of the
@@ -45,15 +43,16 @@ public class Exam {
      * blackjack(19, 22) → 19
      */
     public static int blackjack(int a, int b) {
-        if (a > 21 && b >21) {
+        final int twentyOne = 21;
+        if (a > twentyOne && b > twentyOne) {
             return 0;
         } else {
-            int aOr = 21 - a;
-            int bOr = 21 - b;
-            if (a > 21) {
+            int aOr = twentyOne - a;
+            int bOr = twentyOne - b;
+            if (a > twentyOne) {
                 return b;
             }
-            if (b > 21) {
+            if (b > twentyOne) {
                 return a;
             }
             if (aOr < bOr) {
@@ -94,14 +93,5 @@ public class Exam {
             map.remove("b");
         }
         return map;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(centeredAverage(List.of(1, 2, 3, 4, 100)));
-        System.out.println(centeredAverage(List.of(1, 1, 5, 5, 10, 8, 7)));
-        System.out.println(blackjack(19, 21));
-        System.out.println(blackjack(19, 22));
-        System.out.println(repeatEnd("Hello", 3));
-        System.out.println(repeatEnd("Hello", 1));
     }
 }
