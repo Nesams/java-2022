@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Exam {
 
@@ -64,8 +65,6 @@ public class Exam {
         }
         return 0;
     }
-
-
     /**
 
      Given a string and an int n, return a string made of n repetitions of the last n characters
@@ -76,8 +75,8 @@ public class Exam {
      repeatEnd("Hello", 1) → "o"
      */
     public static String repeatEnd(String str, int n) {
-        return "";
-
+        String substring = str.substring(str.length() - n);
+        return substring.repeat(n);
     }
 
     /**
@@ -90,7 +89,11 @@ public class Exam {
      mapAB({"a": "aaa", "b": "bbb", "c": "aaa"}) → {"a": "aaa", "b": "bbb", "c": "aaa"}
      */
     public static Map<String, String> mapAB(Map<String, String> map) {
-        return null;
+        if (Objects.equals(map.get("a"), map.get("b"))) {
+            map.remove("a");
+            map.remove("b");
+        }
+        return map;
     }
 
     public static void main(String[] args) {
@@ -98,5 +101,7 @@ public class Exam {
         System.out.println(centeredAverage(List.of(1, 1, 5, 5, 10, 8, 7)));
         System.out.println(blackjack(19, 21));
         System.out.println(blackjack(19, 22));
+        System.out.println(repeatEnd("Hello", 3));
+        System.out.println(repeatEnd("Hello", 1));
     }
 }
