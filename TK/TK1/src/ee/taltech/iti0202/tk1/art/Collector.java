@@ -5,9 +5,18 @@ import java.util.List;
 
 public class Collector {
     private ArrayList<Painting> paintings;
+
+    /**
+     * Collector object.
+     */
     public Collector() {
         this.paintings = new ArrayList<>();
     }
+
+    /**
+     * @param painting
+     * @return
+     */
     public boolean addPainting(Painting painting) {
         if (!paintings.contains(painting)) {
             paintings.add(painting);
@@ -15,6 +24,12 @@ public class Collector {
         }
         return false;
     }
+
+    /**
+     * @param painting
+     * @param fellowCollector
+     * @return
+     */
     public boolean sellPainting(Painting painting, Collector fellowCollector) {
         if (this.paintings.contains(painting) && this != fellowCollector) {
             this.paintings.remove(painting);
@@ -22,6 +37,10 @@ public class Collector {
         }
         return false;
     }
+
+    /**
+     * @return
+     */
     public List<Painting> getPaintings() {
         return this.paintings;
     }
