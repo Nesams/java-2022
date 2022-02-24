@@ -29,10 +29,10 @@ public class InfinityMagicOven extends MagicOven {
      */
     public Optional<Orb> craftOrb() {
         if (!isBroken()) {
-            if (this.resourceStorage.hasEnoughResource("gold", 1)
-                    && this.resourceStorage.hasEnoughResource("dust", 3)) {
-                this.resourceStorage.takeResource("gold", 1);
-                this.resourceStorage.takeResource("dust", 1);
+            if (this.resourceStorage.hasEnoughResource("GOLD", 1)
+                    && this.resourceStorage.hasEnoughResource("DUST", 3)) {
+                this.resourceStorage.takeResource("GOLD", 1);
+                this.resourceStorage.takeResource("DUST", 1);
                 this.createdOrbs += 1;
                 return Optional.of(new Orb(this.name));
             }

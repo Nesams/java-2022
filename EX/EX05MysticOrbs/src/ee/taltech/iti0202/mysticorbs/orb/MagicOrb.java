@@ -1,5 +1,7 @@
 package ee.taltech.iti0202.mysticorbs.orb;
 
+import java.util.Locale;
+
 public class MagicOrb extends Orb {
     /**
      * Constructor.
@@ -15,7 +17,8 @@ public class MagicOrb extends Orb {
      */
     @Override
     public void charge(String resource, int amount) {
-        if (!resource.equals("dust") && resource.contains(" ")) {
+        resource = resource.trim();
+        if (!resource.toUpperCase(Locale.ROOT).equals("DUST") && (amount > 0) && !(resource.length() == 0)) {
             this.energy += resource.length() * amount;
         }
     }

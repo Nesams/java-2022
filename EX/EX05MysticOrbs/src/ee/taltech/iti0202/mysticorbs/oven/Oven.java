@@ -47,10 +47,10 @@ public class Oven {
      */
     public Optional<Orb> craftOrb() {
         if (!isBroken()) {
-            if (this.resourceStorage.hasEnoughResource("pearl", 1)
-                    && this.resourceStorage.hasEnoughResource("silver", 1)) {
-                this.resourceStorage.takeResource("pearl", 1);
-                this.resourceStorage.takeResource("silver", 1);
+            if (this.resourceStorage.hasEnoughResource("PEARL", 1)
+                    && this.resourceStorage.hasEnoughResource("SILVER", 1)) {
+                this.resourceStorage.takeResource("PEARL", 1);
+                this.resourceStorage.takeResource("SILVER", 1);
                 this.createdOrbs += 1;
                 return Optional.of(new Orb(this.name));
             }
