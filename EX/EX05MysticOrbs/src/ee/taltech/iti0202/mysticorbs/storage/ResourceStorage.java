@@ -21,7 +21,7 @@ public class ResourceStorage {
      */
     public void addResource(String resource, int amount) {
         resource = resource.toUpperCase(Locale.ROOT);
-        resourceMap.put(resource, resourceMap.getOrDefault(resource, 0) + 1);
+        resourceMap.put(resource, resourceMap.getOrDefault(resource, 0) + amount);
     }
     /**
      * @param resource

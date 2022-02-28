@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.mysticorbs.oven;
 
+import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixExceptions;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.orb.SpaceOrb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
@@ -7,7 +8,9 @@ import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 import java.util.Locale;
 import java.util.Optional;
 
-public class SpaceOven extends Oven{
+public class SpaceOven extends Oven implements Fixable{
+    private boolean alwaysFixed;
+    private int timesFixed;
     /**
      * Constructor.
      */
@@ -22,7 +25,11 @@ public class SpaceOven extends Oven{
      */
     @Override
     public boolean isBroken() {
-        return this.createdOrbs == 25;
+        if (alwaysFixed) {
+            return true;
+        } else {
+            return this.createdOrbs == 25;
+        }
     }
     /**
      * @return optional.
@@ -54,5 +61,37 @@ public class SpaceOven extends Oven{
             return Optional.of(new Orb(this.name));
         }
         return Optional.empty();
+    }
+
+    /**
+     * @throws CannotFixExceptions
+     */
+    @Override
+    public void fix() throws CannotFixExceptions {
+        if (!isBroken() || getTimesFixed() >= 5) {
+            throw new CannotFixExceptions(this, CannotFixExceptions.Reason.IS_NOT_BROKEN);
+        } else if (isBroken() && !getResourceStorage().hasEnoughResource("LIQUID SILVER", 40)
+                && !getResourceStorage().hasEnoughResource("STAR ESSENCE", 10)) {
+            throw new CannotFixExceptions(this, CannotFixExceptions.Reason.NOT_ENOUGH_RESOURCES);
+        } else if (resourceStorage.hasEnoughResource("LIQUID SILVER", 40)) {
+            resourceStorage.takeResource("LIQUID SILVER", 40);
+            this.timesFixed++;
+            this.createdOrbs = 0;
+        } else if (resourceStorage.hasEnoughResource("STAR ESSENCE", 10)) {
+            resourceStorage.takeResource("STAR ESSENCE", 10);
+            this.timesFixed++;
+            this.createdOrbs = 0;
+        }
+        if (getTimesFixed() == 5) {
+            this.alwaysFixed = true;
+        }
+    }
+
+    /**
+     * @return int.
+     */
+    @Override
+    public int getTimesFixed() {
+        return timesFixed;
     }
 }
