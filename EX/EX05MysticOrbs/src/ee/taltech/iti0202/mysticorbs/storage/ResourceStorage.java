@@ -18,7 +18,9 @@ public class ResourceStorage {
      */
     public void addResource(String resource, int amount) {
         resource = resource.toUpperCase(Locale.ROOT).trim();
-        resourceMap.put(resource, resourceMap.getOrDefault(resource, 0) + amount);
+        if (amount > 0) {
+            resourceMap.put(resource, resourceMap.getOrDefault(resource, 0) + amount);
+        }
     }
     /**
      * @param resource
