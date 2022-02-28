@@ -1,11 +1,14 @@
 package ee.taltech.iti0202.mysticorbs.oven;
 
+import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixExceptions;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
+import javax.naming.CannotProceedException;
 import java.util.Optional;
 
 public class Oven {
+    private boolean canBeFixed;
     public String name;
     public ResourceStorage resourceStorage;
     public int createdOrbs;
@@ -17,31 +20,48 @@ public class Oven {
         this.name = name;
         this.resourceStorage = resourceStorage;
         this.createdOrbs = 0;
+        this.canBeFixed = true;
     }
+
     /**
      * @return string.
      */
     public String getName() {
         return this.name;
     }
+
+    /**
+     * H.
+     */
+    public boolean getCanBeFixed() {
+        return this.canBeFixed;
+    }
+
     /**
      * @return resourceStorage.
      */
     public ResourceStorage getResourceStorage() {
         return this.resourceStorage;
     }
+
     /**
      * @return createdOrbsAmount.
      */
     public int getCreatedOrbsAmount() {
         return this.createdOrbs;
     }
+
     /**
      * @return boolean.
      */
     public boolean isBroken() {
-        return createdOrbs == 15;
+        if (createdOrbs == 15) {
+            this.canBeFixed = false;
+            return true;
+        }
+        return false;
     }
+
     /**
      * @return optional.
      */
@@ -52,9 +72,19 @@ public class Oven {
                 this.resourceStorage.takeResource("PEARL", 1);
                 this.resourceStorage.takeResource("SILVER", 1);
                 this.createdOrbs += 1;
-                return Optional.of(new Orb(this.name));
+                Orb orb = new Orb(getName());
+                orb.charge("PEARL", 1);
+                orb.charge("PEARL", 1);
+                return Optional.of(orb);
             }
         }
         return Optional.empty();
+    }
+
+    /**
+     * H.
+     */
+    public void fix() throws CannotFixExceptions {
+        throw new CannotFixExceptions(this, CannotFixExceptions.Reason.IS_NOT_BROKEN);
     }
 }

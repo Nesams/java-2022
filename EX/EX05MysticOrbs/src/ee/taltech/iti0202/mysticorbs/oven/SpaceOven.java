@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public class SpaceOven extends Oven implements Fixable{
     private boolean alwaysFixed;
+    private boolean canBeFixed;
     private int timesFixed;
     /**
      * Constructor .
@@ -19,14 +20,24 @@ public class SpaceOven extends Oven implements Fixable{
         this.name = name;
         this.resourceStorage = resourceStorage;
         this.createdOrbs = 0;
+        this.timesFixed = 0;
+        this.alwaysFixed = false;
+        this.canBeFixed = false;
+    }
+
+    /**
+     * @return
+     */
+    public int getCreatedOrbs() {
+        return this.createdOrbs;
     }
     /**
      * @return boolean.
      */
     @Override
     public boolean isBroken() {
-        if (alwaysFixed) {
-            return true;
+        if (this.alwaysFixed) {
+            return false;
         } else {
             return this.createdOrbs == 25;
         }
@@ -92,6 +103,6 @@ public class SpaceOven extends Oven implements Fixable{
      */
     @Override
     public int getTimesFixed() {
-        return timesFixed;
+        return this.timesFixed;
     }
 }

@@ -10,17 +10,14 @@ public class ResourceStorage {
      * @return boolean.
      */
     public boolean isEmpty() {
-        if (resourceMap.isEmpty()) {
-            return true;
-        }
-        return false;
+        return resourceMap.isEmpty();
     }
     /**
      * @param resource
      * @param amount
      */
     public void addResource(String resource, int amount) {
-        resource = resource.toUpperCase(Locale.ROOT);
+        resource = resource.toUpperCase(Locale.ROOT).trim();
         resourceMap.put(resource, resourceMap.getOrDefault(resource, 0) + amount);
     }
     /**
@@ -29,7 +26,10 @@ public class ResourceStorage {
      */
     public int getResourceAmount(String resource) {
         resource = resource.toUpperCase(Locale.ROOT);
-        return resourceMap.get(resource);
+        if (this.resourceMap.containsKey(resource)) {
+            return resourceMap.get(resource);
+        }
+        return 0;
     }
     /**
      * @param resource
@@ -39,7 +39,7 @@ public class ResourceStorage {
     public boolean hasEnoughResource(String resource, int amount) {
         resource = resource.toUpperCase(Locale.ROOT);
         if (amount >= 1) {
-            return resourceMap.get(resource) >= amount;
+            return getResourceAmount(resource) >= amount;
         }
         return false;
     }
@@ -52,7 +52,10 @@ public class ResourceStorage {
         resource = resource.toUpperCase(Locale.ROOT);
         if (hasEnoughResource(resource, amount)) {
             int newAmount = resourceMap.get(resource) - amount;
-            resourceMap.replace(resource, newAmount);
+            this.resourceMap.replace(resource, newAmount);
+            if (this.resourceMap.get(resource) == 0) {
+                this.resourceMap.remove(resource);
+            }
             return true;
         }
         return false;

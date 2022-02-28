@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.mysticorbs.factory;
 
+import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixExceptions;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.oven.Oven;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
@@ -12,6 +13,7 @@ public class OrbFactory {
     private ResourceStorage resourceStorage;
     private ArrayList<Oven> ovensList;
     private ArrayList<Orb> orbsList;
+    private List<Oven> cannotFixOvens;
 
     /**
      *Constructor.
@@ -20,15 +22,16 @@ public class OrbFactory {
         this.resourceStorage = resourceStorage;
         this.ovensList = new ArrayList<>();
         this.orbsList = new ArrayList<>();
+        this.cannotFixOvens = new ArrayList<>();
     }
 
     /**
      * @param oven
      */
     public void addOven(Oven oven) {
-        if (oven.getResourceStorage() == this.resourceStorage) {
+        if (oven.getResourceStorage().equals(this.resourceStorage)) {
             if (!ovensList.contains(oven)) {
-                ovensList.add(oven);
+                this.ovensList.add(oven);
             }
         }
     }
@@ -36,7 +39,7 @@ public class OrbFactory {
      * @return ovensList
      */
     public List<Oven> getOvens() {
-        return ovensList;
+        return this.ovensList;
     }
     /**
      * @return producedOrbList and clear it.
@@ -52,10 +55,17 @@ public class OrbFactory {
      */
     public int produceOrbs() {
         for (Oven o: ovensList) {
-            o.craftOrb();
-            if (!o.craftOrb().equals(Optional.empty())) {
-                this.orbsList.add(o.craftOrb().get());
+            if (o.isBroken()) {
+                try {
+                    o.fix();
+                } catch (CannotFixExceptions ex) {
+                    if (!o.getCanBeFixed()) {
+                        this.cannotFixOvens.add(o);
+                    }
+                }
             }
+            Optional<Orb> newOrb = o.craftOrb();
+            newOrb.ifPresent(orb -> this.orbsList.add(orb));
         }
         return this.orbsList.size();
     }
@@ -66,15 +76,30 @@ public class OrbFactory {
      */
     public int produceOrbs(int cycles) {
         int i = 0;
+        int orbsSum = 0;
         while (i < cycles) {
-            for (Oven o: ovensList) {
-                o.craftOrb();
-                if (!o.craftOrb().equals(Optional.empty())) {
-                    this.orbsList.add(o.craftOrb().get());
-                }
-            }
+            orbsSum += produceOrbs();
             i ++;
         }
-        return this.orbsList.size();
+        return orbsSum;
+    }
+    /**
+     * H.
+     */
+    public List<Oven> getOvensThatCannotBeFixed() {
+        return this.cannotFixOvens;
+    }
+    /**
+     * H.
+     */
+    public void getRidOfOvensThatCannotBeFixed() {
+        ArrayList<Oven> canBeFixed = new ArrayList<>();
+        for (Oven o: getOvens()) {
+            if (o.getCanBeFixed()) {
+                canBeFixed.add(o);
+            }
+        }
+        this.ovensList.clear();
+        this.ovensList = canBeFixed;
     }
 }

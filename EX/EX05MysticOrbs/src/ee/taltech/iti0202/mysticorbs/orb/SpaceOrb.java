@@ -19,7 +19,7 @@ public class SpaceOrb extends Orb{
      * @return string.
      */
     public String toString() {
-        return "SpaceOrb by " + creator;
+        return "SpaceOrb by " + this.creator;
     }
     /**
      * @param orb
@@ -27,8 +27,8 @@ public class SpaceOrb extends Orb{
      */
     public boolean absorb(Orb orb) {
         if (orb.energy < this.energy) {
-            orb.energy = 0;
             this.energy += orb.getEnergy();
+            orb.energy = 0;
             return true;
         }
         return false;

@@ -14,7 +14,6 @@ public class InfinityMagicOven extends MagicOven {
         super(name, resourceStorage);
         this.name = name;
         this.resourceStorage = resourceStorage;
-        this.createdOrbs = 0;
     }
     /**
      * @return boolean.
@@ -22,21 +21,5 @@ public class InfinityMagicOven extends MagicOven {
     @Override
     public boolean isBroken() {
         return false;
-    }
-
-    /**
-     * @return optional.
-     */
-    public Optional<Orb> craftOrb() {
-        if (!isBroken()) {
-            if (this.resourceStorage.hasEnoughResource("GOLD", 1)
-                    && this.resourceStorage.hasEnoughResource("DUST", 3)) {
-                this.resourceStorage.takeResource("GOLD", 1);
-                this.resourceStorage.takeResource("DUST", 1);
-                this.createdOrbs += 1;
-                return Optional.of(new Orb(this.name));
-            }
-        }
-        return Optional.empty();
     }
 }
