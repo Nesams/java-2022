@@ -12,7 +12,7 @@ public class SpaceOven extends Oven implements Fixable{
     private boolean alwaysFixed;
     private int timesFixed;
     /**
-     * Constructor.
+     * Constructor .
      */
     public SpaceOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
