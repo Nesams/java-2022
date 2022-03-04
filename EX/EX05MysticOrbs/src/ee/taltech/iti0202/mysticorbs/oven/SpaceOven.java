@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.mysticorbs.oven;
 
-import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixExceptions;
+import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixException;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.orb.SpaceOrb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
@@ -83,12 +83,12 @@ public class SpaceOven extends Oven implements Fixable {
      * @throws CannotFixExceptions
      */
     @Override
-    public void fix() throws CannotFixExceptions {
+    public void fix() throws CannotFixException {
         if (!isBroken() || getTimesFixed() >= five) {
-            throw new CannotFixExceptions(this, CannotFixExceptions.Reason.IS_NOT_BROKEN);
+            throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
         } else if (isBroken() && !getResourceStorage().hasEnoughResource("LIQUID SILVER", forty)
                 && !getResourceStorage().hasEnoughResource("STAR ESSENCE", ten)) {
-            throw new CannotFixExceptions(this, CannotFixExceptions.Reason.NOT_ENOUGH_RESOURCES);
+            throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
         } else if (resourceStorage.hasEnoughResource("LIQUID SILVER", forty)) {
             resourceStorage.takeResource("LIQUID SILVER", forty);
             this.timesFixed++;

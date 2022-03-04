@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.mysticorbs.oven;
 
-import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixExceptions;
+import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixException;
 import ee.taltech.iti0202.mysticorbs.orb.MagicOrb;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
@@ -60,17 +60,17 @@ public class MagicOven extends Oven implements Fixable {
     }
 
     @Override
-    public void fix() throws CannotFixExceptions {
+    public void fix() throws CannotFixException {
         if (!isBroken()) {
-            throw new CannotFixExceptions(this, CannotFixExceptions.Reason.IS_NOT_BROKEN);
+            throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
         }
         if (this.timesFixed >= ten) {
             this.canBeFixed = false;
-            throw new CannotFixExceptions(this, CannotFixExceptions.Reason.FIXED_MAXIMUM_TIMES);
+            throw new CannotFixException(this, CannotFixException.Reason.FIXED_MAXIMUM_TIMES);
         }
         if (!(resourceStorage.hasEnoughResource("CLAY", twentyFive + this.timesFixed * twentyFive))
                 && resourceStorage.hasEnoughResource("FREEZING POWDER", hundred + timesFixed * twentyFive)) {
-            throw new CannotFixExceptions(this, CannotFixExceptions.Reason.NOT_ENOUGH_RESOURCES);
+            throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
         }
         if ((resourceStorage.hasEnoughResource("CLAY", twentyFive + this.timesFixed * twentyFive))
                 && resourceStorage.hasEnoughResource("FREEZING POWDER", hundred + timesFixed * twentyFive)) {

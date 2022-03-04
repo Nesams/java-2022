@@ -1,12 +1,12 @@
 package ee.taltech.iti0202.mysticorbs.oven;
 
-import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixExceptions;
+import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixException;
 
 public interface Fixable {
     /**
-     * @throws CannotFixExceptions
+     * @throws CannotFixException
      */
-    void fix() throws CannotFixExceptions;
+    void fix() throws CannotFixException;
 
     /**
      * @return int

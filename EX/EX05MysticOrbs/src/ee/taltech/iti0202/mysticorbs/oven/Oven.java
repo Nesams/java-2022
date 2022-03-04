@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.mysticorbs.oven;
 
-import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixExceptions;
+import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixException;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 import java.util.Optional;
@@ -83,7 +83,7 @@ public class Oven {
     /**
      * H.
      */
-    public void fix() throws CannotFixExceptions {
-        throw new CannotFixExceptions(this, CannotFixExceptions.Reason.IS_NOT_BROKEN);
+    public void fix() throws CannotFixException {
+        throw new CannotFixException(this, CannotFixException.Reason.IS_NOT_BROKEN);
     }
 }
