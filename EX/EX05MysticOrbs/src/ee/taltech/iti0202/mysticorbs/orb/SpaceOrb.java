@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.mysticorbs.orb;
 
-public class SpaceOrb extends Orb{
+public class SpaceOrb extends Orb {
     /**
      * Constructor.
      */
