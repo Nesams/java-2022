@@ -9,6 +9,11 @@ public class CannotFixExceptions extends Throwable {
     public enum Reason {
         IS_NOT_BROKEN, FIXED_MAXIMUM_TIMES, NOT_ENOUGH_RESOURCES;
     }
+
+    /**
+     * @param oven
+     * @param reason
+     */
     public CannotFixExceptions(Oven oven, Reason reason) {
         this.oven = oven;
         this.reason = reason;

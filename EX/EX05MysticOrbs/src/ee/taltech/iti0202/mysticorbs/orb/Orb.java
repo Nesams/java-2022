@@ -30,6 +30,9 @@ public class Orb {
         return this.energy;
     }
 
+    /**
+     * @return str.
+     */
     public String toString() {
         return  "Orb by " + this.creator;
     }

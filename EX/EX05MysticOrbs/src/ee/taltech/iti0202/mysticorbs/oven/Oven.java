@@ -3,8 +3,6 @@ package ee.taltech.iti0202.mysticorbs.oven;
 import ee.taltech.iti0202.mysticorbs.exceptions.CannotFixExceptions;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
-
-import javax.naming.CannotProceedException;
 import java.util.Optional;
 
 public class Oven {
@@ -12,6 +10,7 @@ public class Oven {
     public String name;
     public ResourceStorage resourceStorage;
     public int createdOrbs;
+    final int fifteen = 15;
 
     /**
      * Constructor.
@@ -55,7 +54,7 @@ public class Oven {
      * @return boolean.
      */
     public boolean isBroken() {
-        if (createdOrbs == 15) {
+        if (createdOrbs == fifteen) {
             this.canBeFixed = false;
             return true;
         }

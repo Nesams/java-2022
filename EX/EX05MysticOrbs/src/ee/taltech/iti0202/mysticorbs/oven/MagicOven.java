@@ -6,10 +6,12 @@ import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 
 import java.util.Optional;
-
-public class MagicOven extends Oven implements Fixable{
+public class MagicOven extends Oven implements Fixable {
     private int timesFixed;
     private boolean canBeFixed;
+    final int twentyFive = 25;
+    final int hundred = 100;
+    final int ten = 10;
 
     /**
      * Constructor.
@@ -62,18 +64,18 @@ public class MagicOven extends Oven implements Fixable{
         if (!isBroken()) {
             throw new CannotFixExceptions(this, CannotFixExceptions.Reason.IS_NOT_BROKEN);
         }
-        if (this.timesFixed >= 10) {
+        if (this.timesFixed >= ten) {
             this.canBeFixed = false;
             throw new CannotFixExceptions(this, CannotFixExceptions.Reason.FIXED_MAXIMUM_TIMES);
         }
-        if (!(resourceStorage.hasEnoughResource("CLAY", 25 + this.timesFixed * 25))
-                && resourceStorage.hasEnoughResource("FREEZING POWDER", 100 + timesFixed * 25)) {
+        if (!(resourceStorage.hasEnoughResource("CLAY", twentyFive + this.timesFixed * twentyFive))
+                && resourceStorage.hasEnoughResource("FREEZING POWDER", hundred + timesFixed * twentyFive)) {
             throw new CannotFixExceptions(this, CannotFixExceptions.Reason.NOT_ENOUGH_RESOURCES);
         }
-        if ((resourceStorage.hasEnoughResource("CLAY", 25 + this.timesFixed * 25))
-                && resourceStorage.hasEnoughResource("FREEZING POWDER", 100 + timesFixed * 25)) {
-            resourceStorage.takeResource("CLAY", 25 + this.timesFixed * 25);
-            resourceStorage.takeResource("FREEZING POWDER", 100 + timesFixed * 25);
+        if ((resourceStorage.hasEnoughResource("CLAY", twentyFive + this.timesFixed * twentyFive))
+                && resourceStorage.hasEnoughResource("FREEZING POWDER", hundred + timesFixed * twentyFive)) {
+            resourceStorage.takeResource("CLAY", twentyFive + this.timesFixed * twentyFive);
+            resourceStorage.takeResource("FREEZING POWDER", hundred + timesFixed * twentyFive);
             this.timesFixed++;
             this.createdOrbs = 0;
             this.canBeFixed = true;

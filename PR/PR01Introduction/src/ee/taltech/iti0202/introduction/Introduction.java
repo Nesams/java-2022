@@ -30,12 +30,11 @@ public class Introduction {
         }
         if (valueTwo == valueOne * 2) {
             return "good";
-        }
-        else {
+        } else {
             return "ok";
         }
     }
-    
+
     /**
      * Method gets a list of numbers.
      * Return a list containing only even numbers of the given list.
@@ -49,13 +48,13 @@ public class Introduction {
                 .filter(number -> number % 2 == 0)
                 .collect(Collectors.toList());
         return Even;
-        }
-    
+    }
+
     /**
      * Method gets an array of numbers.
      * Return an array containing only even numbers of the given array.
      * If the given array does not contain any even numbers, return an empty array.
-     *
+     * <p>
      * You must not use the previous function in this function!
      *
      * @param numbers given array that contains numbers.
@@ -70,13 +69,13 @@ public class Introduction {
         }
         int lenght = evenNumbers.size();
         int[] finalArray = new int[lenght];
-        for (int i = 0; i < lenght; i ++) {
+        for (int i = 0; i < lenght; i++) {
             finalArray[i] = evenNumbers.get(i).intValue();
         }
         return finalArray;
     }
-    
-        /**
+
+    /**
      * Method gets two Strings as parameters.
      * If two words have the same length, just put them together. If the length is
      * different, remove so many letters from the beginning of the longer word that the two words are the same length, and
@@ -85,7 +84,7 @@ public class Introduction {
      * return the answer in capital letters.
      * If both words are empty or with spaces, return FALSE.
      *
-     * @param first String
+     * @param first  String
      * @param second String
      * @return String based on the values of first and second
      */
@@ -95,7 +94,7 @@ public class Introduction {
         if (firstLenght == secondLenght && firstLenght != 0) {
             return first + second;
         }
-        if (firstLenght > secondLenght && !second.contains(" ") && secondLenght != 0)  {
+        if (firstLenght > secondLenght && !second.contains(" ") && secondLenght != 0) {
             return (first.substring(firstLenght - secondLenght) + second).toLowerCase(Locale.ROOT);
         }
         if (firstLenght < secondLenght && !first.contains(" ") && firstLenght != 0) {
@@ -118,9 +117,20 @@ public class Introduction {
      * @param word String
      * @return The number of triples
      */
-    public int countTripleChars(String word){
-        return 1;
+    public int countTripleChars(String word) {
+        int triplets = 0;
+        int wordLenght = word.length();
+        while (wordLenght > 2) {
+            for (int i = 0; i < wordLenght - 2; i++) {
+                char chr = word.charAt(i);
+                if (chr * 3 == word.charAt(i) + word.charAt(i + 1) + word.charAt(i + 2)) {
+                    triplets++;
+                    String word = new word.replaceAll(String.valueOf(chr * 3), "");
+                }
+            }
         }
+        return triplets;
+}
 
     /**
      * Run tests.

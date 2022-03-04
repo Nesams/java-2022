@@ -8,10 +8,15 @@ import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 import java.util.Locale;
 import java.util.Optional;
 
-public class SpaceOven extends Oven implements Fixable{
+public class SpaceOven extends Oven implements Fixable {
     private boolean alwaysFixed;
     private boolean canBeFixed;
     private int timesFixed;
+    final int twentyFive = 25;
+    final int forty = 40;
+    final int fifteen = 15;
+    final int ten = 10;
+    final int five = 5;
     /**
      * Constructor .
      */
@@ -39,7 +44,7 @@ public class SpaceOven extends Oven implements Fixable{
         if (this.alwaysFixed) {
             return false;
         } else {
-            return this.createdOrbs == 25;
+            return this.createdOrbs == twentyFive;
         }
     }
     /**
@@ -49,9 +54,9 @@ public class SpaceOven extends Oven implements Fixable{
     public Optional<Orb> craftOrb() {
         if (!isBroken()) {
             if (this.resourceStorage.hasEnoughResource("meteorite stone".toUpperCase(Locale.ROOT), 1)
-                    && this.resourceStorage.hasEnoughResource("star fragment".toUpperCase(Locale.ROOT), 15)) {
+                    && this.resourceStorage.hasEnoughResource("star fragment".toUpperCase(Locale.ROOT), fifteen)) {
                 this.resourceStorage.takeResource("meteorite stone".toUpperCase(Locale.ROOT), 1);
-                this.resourceStorage.takeResource("star fragment".toUpperCase(Locale.ROOT), 15);
+                this.resourceStorage.takeResource("star fragment".toUpperCase(Locale.ROOT), fifteen);
                 this.createdOrbs += 1;
                 return Optional.of(new SpaceOrb(this.name));
             } else {
@@ -79,21 +84,21 @@ public class SpaceOven extends Oven implements Fixable{
      */
     @Override
     public void fix() throws CannotFixExceptions {
-        if (!isBroken() || getTimesFixed() >= 5) {
+        if (!isBroken() || getTimesFixed() >= five) {
             throw new CannotFixExceptions(this, CannotFixExceptions.Reason.IS_NOT_BROKEN);
-        } else if (isBroken() && !getResourceStorage().hasEnoughResource("LIQUID SILVER", 40)
-                && !getResourceStorage().hasEnoughResource("STAR ESSENCE", 10)) {
+        } else if (isBroken() && !getResourceStorage().hasEnoughResource("LIQUID SILVER", forty)
+                && !getResourceStorage().hasEnoughResource("STAR ESSENCE", ten)) {
             throw new CannotFixExceptions(this, CannotFixExceptions.Reason.NOT_ENOUGH_RESOURCES);
-        } else if (resourceStorage.hasEnoughResource("LIQUID SILVER", 40)) {
-            resourceStorage.takeResource("LIQUID SILVER", 40);
+        } else if (resourceStorage.hasEnoughResource("LIQUID SILVER", forty)) {
+            resourceStorage.takeResource("LIQUID SILVER", forty);
             this.timesFixed++;
             this.createdOrbs = 0;
-        } else if (resourceStorage.hasEnoughResource("STAR ESSENCE", 10)) {
-            resourceStorage.takeResource("STAR ESSENCE", 10);
+        } else if (resourceStorage.hasEnoughResource("STAR ESSENCE", ten)) {
+            resourceStorage.takeResource("STAR ESSENCE", ten);
             this.timesFixed++;
             this.createdOrbs = 0;
         }
-        if (getTimesFixed() == 5) {
+        if (getTimesFixed() == five) {
             this.alwaysFixed = true;
         }
     }

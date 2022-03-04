@@ -79,7 +79,7 @@ public class OrbFactory {
         int orbsSum = 0;
         while (i < cycles) {
             orbsSum += produceOrbs();
-            i ++;
+            i++;
         }
         return orbsSum;
     }

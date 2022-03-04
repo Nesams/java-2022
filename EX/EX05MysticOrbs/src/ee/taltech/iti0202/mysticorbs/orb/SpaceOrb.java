@@ -14,7 +14,7 @@ public class SpaceOrb extends Orb{
      * @param amount
      */
     @Override
-    public void charge(String resource, int amount) {}
+    public void charge(String resource, int amount) { }
     /**
      * @return string.
      */
