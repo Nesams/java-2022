@@ -8,6 +8,7 @@ import java.util.List;
 public class AnimalShelter {
     private final AnimalProvider animalProvider;
     private List<Animal> providerAnimals;
+
     public AnimalShelter(AnimalProvider animalProvider) {
         this.animalProvider = animalProvider;
         this.providerAnimals = new ArrayList<>();
@@ -25,20 +26,19 @@ public class AnimalShelter {
      * and return whatever you have by that point.
      *
      * @param animalType Type.
-     * @param color Color used when filtering.
-     * @param count Maximum number of result to return.
+     * @param color      Color used when filtering.
+     * @param count      Maximum number of result to return.
      * @return Maximum {count} number of animals with the given type and color.
      */
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
         List<Animal> requiredAnimals = new ArrayList<>();
         while (requiredAnimals.size() < count) {
             this.providerAnimals = animalProvider.provide(animalType);
-            for (Animal a: providerAnimals) {
-                if (a.getColor().equals(color) && !requiredAnimals.contains(a) && requiredAnimals.size() != count) {
-                    requiredAnimals.add(a);
-                    count--;
-                } else {
-                    break;
+            if (providerAnimals.size() >= count) {
+                for (Animal a : providerAnimals) {
+                    if (a.getColor().equals(color) && !requiredAnimals.contains(a) && providerAnimals.size() >= count) {
+                        requiredAnimals.add(a);
+                    }
                 }
             }
         }
