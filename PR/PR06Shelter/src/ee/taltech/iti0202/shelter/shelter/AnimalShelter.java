@@ -4,6 +4,7 @@ import ee.taltech.iti0202.shelter.animalprovider.AnimalProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AnimalShelter {
     private final AnimalProvider animalProvider;
@@ -32,16 +33,15 @@ public class AnimalShelter {
      */
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
         List<Animal> requiredAnimals = new ArrayList<>();
+        this.providerAnimals = animalProvider.provide(animalType);
         while (requiredAnimals.size() < count) {
-            this.providerAnimals = animalProvider.provide(animalType);
-            if (providerAnimals.size() >= count) {
-                for (Animal a : providerAnimals) {
-                    if (a.getColor().equals(color) && !requiredAnimals.contains(a) && providerAnimals.size() >= count) {
+            List<Animal> animals = providerAnimals.stream().filter(c -> c.getColor().equals(color)).limit(count).toList();
+                for (Animal a : animals) {
+                    if (!requiredAnimals.contains(a)){
                         requiredAnimals.add(a);
                     }
                 }
             }
-        }
         return requiredAnimals;
     }
 }
