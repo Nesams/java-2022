@@ -36,12 +36,15 @@ public class AnimalShelter {
         this.providerAnimals = animalProvider.provide(animalType);
         while (requiredAnimals.size() < count) {
             List<Animal> animals = providerAnimals.stream().filter(c -> c.getColor().equals(color)).limit(count).toList();
-                for (Animal a : animals) {
-                    if (!requiredAnimals.contains(a)){
-                        requiredAnimals.add(a);
-                    }
+            for (Animal a : animals) {
+                if (!requiredAnimals.contains(a)){
+                    requiredAnimals.add(a);
                 }
             }
+            if (animals.isEmpty() || requiredAnimals.size() == count) {
+                break;
+            }
+        }
         return requiredAnimals;
     }
 }
