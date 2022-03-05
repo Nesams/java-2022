@@ -30,13 +30,15 @@ public class AnimalShelter {
      * @return Maximum {count} number of animals with the given type and color.
      */
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
-        this.providerAnimals = animalProvider.provide(animalType);
         List<Animal> requiredAnimals = new ArrayList<>();
-        while (requiredAnimals.size() < count || providerAnimals.size() != 0) {
+        while (requiredAnimals.size() < count) {
+            this.providerAnimals = animalProvider.provide(animalType);
             for (Animal a: providerAnimals) {
-                if (a.getColor().equals(color) && !requiredAnimals.contains(a)) {
+                if (a.getColor().equals(color) && !requiredAnimals.contains(a) && requiredAnimals.size() != count) {
                     requiredAnimals.add(a);
                     count--;
+                } else {
+                    break;
                 }
             }
         }
