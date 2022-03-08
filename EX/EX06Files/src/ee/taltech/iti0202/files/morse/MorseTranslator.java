@@ -7,6 +7,7 @@ public class MorseTranslator {
     Map<String, String> morseChar;
     public MorseTranslator() {
         this.charMorse = new HashMap<>();
+        this.morseChar = new HashMap<>();
     }
 
     public Map<String, String> addMorseCodes(List<String> lines) {
