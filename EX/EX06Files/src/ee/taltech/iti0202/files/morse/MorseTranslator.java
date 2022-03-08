@@ -1,5 +1,9 @@
 package ee.taltech.iti0202.files.morse;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 
 public class MorseTranslator {
@@ -10,6 +14,10 @@ public class MorseTranslator {
         this.morseChar = new HashMap<>();
     }
 
+    /**
+     * @param lines
+     * @return
+     */
     public Map<String, String> addMorseCodes(List<String> lines) {
         for (String l:lines) {
             List<String> splitted = List.of(l.split(" "));
@@ -19,6 +27,10 @@ public class MorseTranslator {
         return charMorse;
     }
 
+    /**
+     * @param lines
+     * @return
+     */
     public List<String> translateLinesToMorse(List<String> lines) {
         List<String> morse = new ArrayList<>();
         for (String l: lines) {
@@ -27,6 +39,10 @@ public class MorseTranslator {
         return morse;
     }
 
+    /**
+     * @param lines
+     * @return
+     */
     public List<String> translateLinesFromMorse(List<String> lines) {
         List<String> words = new ArrayList<>();
         for (String l: lines) {
@@ -35,6 +51,10 @@ public class MorseTranslator {
         return words;
     }
 
+    /**
+     * @param line
+     * @return
+     */
     private String translateLineToMorse(String line) {
         StringBuilder finalMorse = new StringBuilder();
         for (char character: line.toLowerCase(Locale.ROOT).toCharArray()) {
@@ -51,6 +71,10 @@ public class MorseTranslator {
         return finalMorse.toString();
     }
 
+    /**
+     * @param line
+     * @return
+     */
     private String translateLineFromMorse(String line) {
         StringBuilder finalLine = new StringBuilder();
         for (String l: line.split("\t")) {
