@@ -9,6 +9,10 @@ import java.util.Map;
 public class MorseTranslator {
     Map<String, String> charMorse;
     Map<String, String> morseChar;
+
+    /**
+     * Constructor.
+     */
     public MorseTranslator() {
         this.charMorse = new HashMap<>();
         this.morseChar = new HashMap<>();
