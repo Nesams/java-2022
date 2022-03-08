@@ -40,6 +40,7 @@ public class MorseTranslator {
         for (char character: line.toLowerCase(Locale.ROOT).toCharArray()) {
             String sCharacter = Character.toString(character);
             if (sCharacter.equals(" ")) {
+                finalMorse.deleteCharAt(finalMorse.length() - 1);
                 finalMorse.append("\t");
             } else {
                 finalMorse.append(this.charMorse.get(sCharacter));
