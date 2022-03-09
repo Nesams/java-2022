@@ -60,7 +60,7 @@ class FilesReaderWriterTests {
 }
 
 class MorseTranslationTests {
-    public int FIFTYFOUR= 54;
+    final int FIFTYFOUR = 54;
     @org.junit.jupiter.api.Test
     void testMorseMap() {
         InputFilesBufferReader bufferReader = new InputFilesBufferReader();
@@ -82,9 +82,9 @@ class MorseTranslationTests {
         MorseTranslator morseTranslator = new MorseTranslator();
         Map<String, String> charMorse = morseTranslator.addMorseCodes(morseLines);
 
-        String morse = ".-.. --- .-. . --\t.. .--. ... ..- --\t-.. --- .-.. --- .-.\t... .. -\t" +
-                ".- -- . - --..--\t-.-. --- -. ... . -.-. - . - ..- .-.\t" +
-                ".- -.. .. .--. .. ... -.-. .. -. --.\t. .-.. .. - --..--";
+        String morse = ".-.. --- .-. . --\t.. .--. ... ..- --\t-.. --- .-.. --- .-.\t... .. -\t"
+                + ".- -- . - --..--\t-.-. --- -. ... . -.-. - . - ..- .-.\t"
+                + ".- -.. .. .--. .. ... -.-. .. -. --.\t. .-.. .. - --..--";
         List<String> testLine = bufferReader.readTextFromFile("src/ee/taltech/iti0202/files/files/test.txt");
 
         Assertions.assertEquals(morseTranslator.translateLinesToMorse(testLine).get(0), morse);
