@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 class FilesReaderWriterTests {
-    final int FIFTYFOUR = 54;
+    final int fiftyFour = 54;
     @org.junit.jupiter.api.Test
     void testBufferReadingFromFile() {
         InputFilesBufferReader bufferReader = new InputFilesBufferReader();
         String exceptionMessage = "";
         Assertions.assertEquals(bufferReader.readTextFromFile("src/ee/taltech/iti0202/files/files/morse.txt")
-                .size(), FIFTYFOUR);
+                .size(), fiftyFour);
 
         try {
             List<String> readingResult = bufferReader.
@@ -32,7 +32,7 @@ class FilesReaderWriterTests {
         InputFilesScanner scanner = new InputFilesScanner();
         String exceptionMessage = "";
         Assertions.assertEquals(scanner
-                .readTextFromFile("src/ee/taltech/iti0202/files/files/morse.txt").size(), FIFTYFOUR);
+                .readTextFromFile("src/ee/taltech/iti0202/files/files/morse.txt").size(), fiftyFour);
 
         try {
             List<String> readingResult = scanner
@@ -47,7 +47,7 @@ class FilesReaderWriterTests {
         InputFilesLines linesReader = new InputFilesLines();
         String exceptionMessage = "";
         Assertions.assertEquals(linesReader
-                .readTextFromFile("src/ee/taltech/iti0202/files/files/morse.txt").size(), FIFTYFOUR);
+                .readTextFromFile("src/ee/taltech/iti0202/files/files/morse.txt").size(), fiftyFour);
 
         try {
             List<String> readingResult = linesReader
@@ -60,7 +60,7 @@ class FilesReaderWriterTests {
 }
 
 class MorseTranslationTests {
-    final int FIFTYFOUR = 54;
+    final int fiftyFour = 54;
     @org.junit.jupiter.api.Test
     void testMorseMap() {
         InputFilesBufferReader bufferReader = new InputFilesBufferReader();
@@ -70,7 +70,7 @@ class MorseTranslationTests {
                 .readTextFromFile("src/ee/taltech/iti0202/files/files/morse.txt");
         Map<String, String> charMorse = morseTranslator.addMorseCodes(readingResult);
 
-        Assertions.assertEquals(charMorse.size(), FIFTYFOUR);
+        Assertions.assertEquals(charMorse.size(), fiftyFour);
         Assertions.assertEquals(charMorse.get("e"), ".");
     }
     @org.junit.jupiter.api.Test
