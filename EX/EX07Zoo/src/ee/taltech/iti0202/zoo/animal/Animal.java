@@ -42,14 +42,6 @@ public class Animal {
         return currentVoice;
     }
 
-    public int getTilHungry() {
-        return tilHungry;
-    }
-
-    public void setVoice(String voice) {
-        this.voice = voice;
-    }
-
     public void setTilHungry() {
         if (this.tilHungry > 0) {
             this.tilHungry--;

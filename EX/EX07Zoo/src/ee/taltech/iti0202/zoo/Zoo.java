@@ -18,9 +18,6 @@ public class Zoo {
     public List<Animal> getAnimals() {
         return animals;
     }
-    public List<Caretaker> getCaretakers() {
-        return caretakers;
-    }
     public void addCaretaker(Caretaker caretaker) {
         this.caretakers.add(caretaker);
     }
