@@ -2,7 +2,6 @@ package ee.taltech.iti0202.zoo;
 
 import ee.taltech.iti0202.zoo.animal.Animal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Caretaker {

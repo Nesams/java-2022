@@ -36,7 +36,7 @@ public class Zoo {
     public Map<String, String> getCurrentSounds() {
         Map<String, String> currentSounds = new HashMap<>();
         for (Animal animal: this.animals) {
-            String animalType = animal.getName() + " (" + animal.getType() +")";
+            String animalType = animal.getName() + " (" + animal.getType() + ")";
             String animalSound = animal.getCurrentVoice();
             currentSounds.put(animalType, animalSound);
         }
