@@ -20,7 +20,7 @@ public class CoffeeMachine implements CoffeeMachineInterface {
     WaterTank waterTank;
     Supplies supplies;
     private ArrayList<Drink> madeDrinks;
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public CoffeeMachine(String name, WaterTank waterTank,
                          Supplies supplies, List<Drink.Type> knownDrinks) {
@@ -32,26 +32,26 @@ public class CoffeeMachine implements CoffeeMachineInterface {
         this.madeDrinks = new ArrayList<>();
     }
     public void throwOutTrash() {
-        LOGGER.info("Trash has been thrown away.");
+        logger.info("Trash has been thrown away.");
         this.tilTrashFull = 5;
     }
     public boolean usable() {
-        if(this.tilTrashFull != 0 && this.waterTank.hasWater()) {
-            LOGGER.info("This Coffee machine is usable!");
+        if (this.tilTrashFull != 0 && this.waterTank.hasWater()) {
+            logger.info("This Coffee machine is usable!");
             return true;
         }
-        LOGGER.info("Can't use this Coffee machine!");
+        logger.info("Can't use this Coffee machine!");
         return false;
     }
 
     public Optional<Drink> start(Drink drink) throws NotEnoughSupplies, MachineNeedsCare, DrinkDoesNotExist {
-        if(!supplies.hasEnoughSupplies(drink)) {
+        if (!supplies.hasEnoughSupplies(drink)) {
             throw new NotEnoughSupplies("Not enough supplies for this drink!");
         }
         if (!usable()) {
             throw new MachineNeedsCare("Fill water tank or throw out trash!");
         }
-        if(!knownDrinks.contains(drink.getType())) {
+        if (!knownDrinks.contains(drink.getType())) {
             throw new DrinkDoesNotExist("No such drink!");
         } else {
             supplies.takeSupplies(drink);
@@ -60,7 +60,7 @@ public class CoffeeMachine implements CoffeeMachineInterface {
             madeDrinks.add(drink);
             Drink newDrink = new Drink(drink.getType(), drink.getNeededWater(),
                     drink.getNeededPowder(), drink.getNeededSugar(), drink.getNeededMilk());
-            LOGGER.info("New drink %s is ready.".formatted(newDrink.getType()));
+            logger.info("New drink %s is ready.".formatted(newDrink.getType()));
             return Optional.of(newDrink);
         }
     }

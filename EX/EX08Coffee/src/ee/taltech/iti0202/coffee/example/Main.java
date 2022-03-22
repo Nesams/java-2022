@@ -17,8 +17,12 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws NotEnoughSupplies, MachineNeedsCare, DrinkDoesNotExist, OutOfSupplies {
+    public static void main(String[] args) throws NotEnoughSupplies, MachineNeedsCare,
+            DrinkDoesNotExist, OutOfSupplies {
 
+        int six = 6;
+        int five = 5;
+        int ten = 10;
         List<Drink.Type> drinkTypes1 = List.of(Drink.Type.COFFEE, Drink.Type.CAPPUCCINO,
                 Drink.Type.COCOA);
         List<Drink.Type> drinkTypes2 = List.of(Drink.Type.COFFEE, Drink.Type.CAPPUCCINO,
@@ -26,20 +30,20 @@ public class Main {
 
         Drink coffee = new Drink(Drink.Type.COFFEE, 1, 2, 1, 1);
         Drink cappuccino = new Drink(Drink.Type.CAPPUCCINO, 1, 2, 2, 3);
-        Drink cocoa = new Drink(Drink.Type.COCOA, 1, 3, 3, 5);
+        Drink cocoa = new Drink(Drink.Type.COCOA, 1, 3, 3, five);
         Drink tea = new Drink(Drink.Type.TEA, 1, 3, 1, 0);
 
-        WaterTank waterTank = new WaterTank(6);
+        WaterTank waterTank = new WaterTank(six);
 
         Kitchen kitchen = new Kitchen("My kitchen");
 
         Supplies supplies = new Supplies();
 
         supplies.addSupplies("Coffee Powder", 3);
-        supplies.addSupplies("Cocoa Powder", 5);
-        supplies.addSupplies("Sugar", 5);
-        supplies.addSupplies("Milk", 10);
-        supplies.addSupplies("Tea", 5);
+        supplies.addSupplies("Cocoa Powder", five);
+        supplies.addSupplies("Sugar", five);
+        supplies.addSupplies("Milk", ten);
+        supplies.addSupplies("Tea", five);
         supplies.addSupplies("Coffee Capsule", 1);
         supplies.addSupplies("Cappuccino Capsule", 1);
         supplies.addSupplies("Cocoa Capsule", 1);
@@ -48,7 +52,7 @@ public class Main {
                 .withName("CoffeeMachine")
                 .withSupplies(supplies)
                 .withWaterTank(waterTank)
-                .withTilTrashFull(5)
+                .withTilTrashFull(five)
                 .withKnownDrinks(drinkTypes2)
                 .buildCoffeeMachine();
 
@@ -56,7 +60,7 @@ public class Main {
                 .withName("CapsuleMachine")
                 .withKnownDrinks(drinkTypes1)
                 .withSupplies(supplies)
-                .withTilTrashFull(10)
+                .withTilTrashFull(ten)
                 .withWaterTank(waterTank)
                 .buildCapsuleMachine();
 
@@ -64,7 +68,7 @@ public class Main {
                 .withName("AutomaticMachine")
                 .withSupplies(supplies)
                 .withWaterTank(waterTank)
-                .withTilTrashFull(5)
+                .withTilTrashFull(five)
                 .withKnownDrinks(drinkTypes2)
                 .buildAutomaticMachine();
 
@@ -77,7 +81,7 @@ public class Main {
         kitchen.makeADrink(capsuleMachine, cocoa);
         //kitchen.makeADrink(capsuleMachine, cocoa);
         waterTank.fill();
-        supplies.addSupplies("Sugar", 5);
+        supplies.addSupplies("Sugar", five);
         kitchen.makeADrink(coffeeMachine, tea);
     }
 }

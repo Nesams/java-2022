@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.coffee.exceptions;
 
-public class NotEnoughSupplies extends Exception{
+public class NotEnoughSupplies extends Exception {
     public NotEnoughSupplies(String exceptionMessage) {
         super(exceptionMessage);
     }

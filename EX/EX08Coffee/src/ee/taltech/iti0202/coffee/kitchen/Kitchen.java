@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.coffee.kitchen;
 
 import ee.taltech.iti0202.coffee.coffeeMachine.CoffeeMachineInterface;
-import ee.taltech.iti0202.coffee.coffeeMachine.CoffeeMachine;
 import ee.taltech.iti0202.coffee.drinks.Drink;
 import ee.taltech.iti0202.coffee.exceptions.DrinkDoesNotExist;
 import ee.taltech.iti0202.coffee.exceptions.MachineNeedsCare;
@@ -24,7 +23,7 @@ public class Kitchen {
     }
     public Constable makeADrink(CoffeeMachineInterface machine, Drink drink) throws MachineNeedsCare, DrinkDoesNotExist,
             NotEnoughSupplies, OutOfSupplies {
-        if(coffeeMachines.contains(machine)) {
+        if (coffeeMachines.contains(machine)) {
             machine.start(drink);
         }
         return "Could not make a drink";

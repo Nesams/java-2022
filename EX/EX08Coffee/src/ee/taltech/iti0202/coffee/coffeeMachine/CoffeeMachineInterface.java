@@ -10,7 +10,8 @@ import java.util.Optional;
 
 public interface CoffeeMachineInterface {
 
-    public Optional<Drink> start(Drink drink) throws NotEnoughSupplies, MachineNeedsCare, OutOfSupplies, DrinkDoesNotExist;
+    Optional<Drink> start(Drink drink) throws NotEnoughSupplies,
+            MachineNeedsCare, OutOfSupplies, DrinkDoesNotExist;
 
-    public boolean usable();
+    boolean usable();
 }

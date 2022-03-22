@@ -21,12 +21,12 @@ public class CapsuleMachine implements CoffeeMachineInterface {
     private int tilTrashFull;
     private Capsule capsule;
     private ArrayList<Drink> madeDrinks;
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public CapsuleMachine(String name, WaterTank waterTank, Supplies supplies, List<Drink.Type> knownCapsules) {
         this.name = name;
         this.waterTank = waterTank;
-        this.supplies= supplies;
+        this.supplies = supplies;
         this.knownCapsules = knownCapsules;
         this.capsule = null;
         this.tilTrashFull = 10;
@@ -35,11 +35,11 @@ public class CapsuleMachine implements CoffeeMachineInterface {
 
     @Override
     public boolean usable() {
-        if(this.tilTrashFull != 0 && this.waterTank.hasWater()) {
-            LOGGER.info("This Coffee machine is usable!");
+        if (this.tilTrashFull != 0 && this.waterTank.hasWater()) {
+            logger.info("This Coffee machine is usable!");
             return true;
         }
-        LOGGER.info("Can't use this Coffee machine!");
+        logger.info("Can't use this Coffee machine!");
         return false;
     }
 
@@ -60,7 +60,7 @@ public class CapsuleMachine implements CoffeeMachineInterface {
             Drink newDrink = new Drink(drink.getType(), drink.getNeededWater(), drink.getNeededPowder(),
                     drink.getNeededSugar(), drink.getNeededMilk());
             madeDrinks.add(newDrink);
-            LOGGER.info("New drink %s is ready.".formatted(newDrink.getType()));
+            logger.info("New drink %s is ready.".formatted(newDrink.getType()));
             return Optional.of(newDrink);
         }
     }
