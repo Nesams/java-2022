@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 public class WaterTank {
     public int amountOfWater;
-    public int six = 6;
+    final int six = 6;
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public WaterTank(int amountOfWater) {

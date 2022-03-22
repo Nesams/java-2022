@@ -8,14 +8,14 @@ import java.util.logging.Logger;
 
 public class Supplies {
     private final HashMap<String, Integer> suppliesMap;
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public Supplies() {
         this.suppliesMap = new HashMap<>();
     }
 
     public void addSupplies(String product, int amount) {
-        LOGGER.info("Adding supplies.");
+        logger.info("Adding supplies.");
         if (suppliesMap.containsKey(product)) {
             int oldAmount = suppliesMap.get(product);
             int newAmount = oldAmount + amount;
@@ -33,27 +33,27 @@ public class Supplies {
         int oldCocoaPowder = suppliesMap.get("Cocoa Powder");
         int newCocoaPowder = oldCocoaPowder + drink.getNeededPowder();
         int oldTeaLeaves = suppliesMap.get("Tea");
-        int newTeaLeaves= oldTeaLeaves + drink.getNeededPowder();
+        int newTeaLeaves = oldTeaLeaves + drink.getNeededPowder();
         if (drink.getType().equals(Drink.Type.COFFEE)) {
-            LOGGER.info("Adding needed supplies for coffee.");
+            logger.info("Adding needed supplies for coffee.");
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
             suppliesMap.replace("Coffee Powder", newCoffeePowder);
         }
         if (drink.getType().equals(Drink.Type.CAPPUCCINO)) {
-            LOGGER.info("Adding needed supplies for cappuccino.");
+            logger.info("Adding needed supplies for cappuccino.");
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
             suppliesMap.replace("Coffee Powder", newCoffeePowder);
         }
         if (drink.getType().equals(Drink.Type.COCOA)) {
-            LOGGER.info("Adding needed supplies for cocoa.");
+            logger.info("Adding needed supplies for cocoa.");
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
             suppliesMap.replace("Cocoa Powder", newCocoaPowder);
         }
         if (drink.getType().equals(Drink.Type.TEA)) {
-            LOGGER.info("Adding needed supplies for tea.");
+            logger.info("Adding needed supplies for tea.");
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Tea", newTeaLeaves);
         }
@@ -64,39 +64,39 @@ public class Supplies {
             if (suppliesMap.get("Sugar") >= drink.getNeededSugar()
                     && suppliesMap.get("Coffee Powder") >= drink.getNeededPowder()
                     && suppliesMap.get("Milk") >= drink.getNeededMilk()) {
-                LOGGER.info("Enough supplies for coffee.");
+                logger.info("Enough supplies for coffee.");
                 return true;
             }
-            LOGGER.info("There is not enough supplies for coffee.");
+            logger.info("There is not enough supplies for coffee.");
             return false;
         }
         if (drink.getType().equals(Drink.Type.CAPPUCCINO)) {
             if (suppliesMap.get("Sugar") >= drink.getNeededSugar()
                     && suppliesMap.get("Coffee Powder") >= drink.getNeededPowder()
                     && suppliesMap.get("Milk") >= drink.getNeededMilk()) {
-                LOGGER.info("Enough supplies for cappuccino.");
+                logger.info("Enough supplies for cappuccino.");
                 return true;
             }
-            LOGGER.info("There is not enough supplies for cappuccino.");
+            logger.info("There is not enough supplies for cappuccino.");
             return false;
         }
         if (drink.getType().equals(Drink.Type.COCOA)) {
             if (suppliesMap.get("Sugar") >= drink.getNeededSugar()
                     && suppliesMap.get("Cocoa Powder") >= drink.getNeededPowder()
                     && suppliesMap.get("Milk") >= drink.getNeededMilk()) {
-                LOGGER.info("Enough supplies for cocoa.");
+                logger.info("Enough supplies for cocoa.");
                 return true;
             }
-            LOGGER.info("There is not enough supplies for cocoa.");
+            logger.info("There is not enough supplies for cocoa.");
             return false;
         }
         if (drink.getType().equals(Drink.Type.TEA)) {
             if (suppliesMap.get("Sugar") >= drink.getNeededSugar()
                     && suppliesMap.get("Tea") >= drink.getNeededPowder()) {
-                LOGGER.info("Enough supplies for tea.");
+                logger.info("Enough supplies for tea.");
                 return true;
             }
-            LOGGER.info("Not enough supplies for tea.");
+            logger.info("Not enough supplies for tea.");
             return false;
         }
         return false;
@@ -117,68 +117,67 @@ public class Supplies {
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
             suppliesMap.replace("Coffee Powder", newCoffeePowder);
-            LOGGER.info("Taking supplies for Coffee.");
+            logger.info("Taking supplies for Coffee.");
         }
         if (drink.getType().equals(Drink.Type.CAPPUCCINO)) {
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
             suppliesMap.replace("Coffee Powder", newCoffeePowder);
-            LOGGER.info("Taking supplies for Cappuccino.");
+            logger.info("Taking supplies for Cappuccino.");
         }
         if (drink.getType().equals(Drink.Type.COCOA)) {
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
             suppliesMap.replace("Cocoa Powder", newCocoaPowder);
-            LOGGER.info("Taking supplies for Cocoa.");
+            logger.info("Taking supplies for Cocoa.");
         }
         if (drink.getType().equals(Drink.Type.TEA)) {
             suppliesMap.replace("Tea", newTeaLeaves);
             suppliesMap.replace("Sugar", newSugar);
-            LOGGER.info("Taking supplies for Tea.");
+            logger.info("Taking supplies for Tea.");
         }
-
     }
 
     public boolean hasEnoughCapsules(Drink drink) {
         if (drink.getType().equals(Drink.Type.COFFEE)) {
             if (suppliesMap.get("Coffee Capsule") >= 1) {
-                LOGGER.info("Enough capsules for one coffee.");
+                logger.info("Enough capsules for one coffee.");
                 return true;
             }
-            LOGGER.info("Not enough capsules for one coffee.");
+            logger.info("Not enough capsules for one coffee.");
             return false;
         }
         if (drink.getType().equals(Drink.Type.CAPPUCCINO)) {
             if (suppliesMap.get("Cappuccino Capsule") >= 1) {
-                LOGGER.info("Enough capsules for one cappuccino.");
+                logger.info("Enough capsules for one cappuccino.");
                 return true;
             }
-            LOGGER.info("Not enough capsules for one cappuccino.");
+            logger.info("Not enough capsules for one cappuccino.");
             return false;
         }
         if (drink.getType().equals(Drink.Type.COCOA)) {
             if (suppliesMap.get("Cocoa Capsule") >= 1) {
-                LOGGER.info("Enough capsules for one cocoa.");
+                logger.info("Enough capsules for one cocoa.");
                 return true;
             }
-            LOGGER.info("Not enough capsules for one cocoa.");
+            logger.info("Not enough capsules for one cocoa.");
             return false;
         }
         return false;
     }
     public void takeCapsule(Drink drink) {
         if (drink.getType().equals(Drink.Type.COFFEE)) {
-            LOGGER.info("Taking coffee capsule.");
+            logger.info("Taking coffee capsule.");
             suppliesMap.replace("Coffee Capsule", suppliesMap.get("Coffee Capsule"),
                     suppliesMap.get("Coffee Capsule") - 1);
         }
         if (drink.getType().equals(Drink.Type.CAPPUCCINO)) {
-            LOGGER.info("Taking cappuccino capsule.");
+            logger.info("Taking cappuccino capsule.");
             suppliesMap.replace("Cappuccino Capsule", suppliesMap.get("Cappuccino Capsule"),
                     suppliesMap.get("Cappuccino Capsule") - 1);
         }
         if (drink.getType().equals(Drink.Type.COCOA)) {
-            LOGGER.info("Taking cocoa capsule.");
+            logger.info("Taking cocoa capsule.");
             suppliesMap.replace("Cocoa Capsule", suppliesMap.get("Cocoa Capsule"),
                     suppliesMap.get("Cocoa Capsule") - 1);
         }

@@ -20,9 +20,9 @@ public class Main {
     public static void main(String[] args) throws NotEnoughSupplies, MachineNeedsCare,
             DrinkDoesNotExist, OutOfSupplies {
 
-        int six = 6;
-        int five = 5;
-        int ten = 10;
+        final int six = 6;
+        final int five = 5;
+        final int ten = 10;
         List<Drink.Type> drinkTypes1 = List.of(Drink.Type.COFFEE, Drink.Type.CAPPUCCINO,
                 Drink.Type.COCOA);
         List<Drink.Type> drinkTypes2 = List.of(Drink.Type.COFFEE, Drink.Type.CAPPUCCINO,
