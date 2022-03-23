@@ -16,11 +16,17 @@ import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CoffeeMachineTests {
     final int five = 5;
     final int ten = 10;
+    final int six = 6;
+    final int eight = 8;
+    final int twelve = 12;
+    final int thirtyFour = 34;
+
     List<Drink.Type> knownDrinks1 = List.of(Drink.Type.COFFEE, Drink.Type.CAPPUCCINO, Drink.Type.COCOA);
     List<Drink.Type> knownDrinks2 = List.of(Drink.Type.COFFEE, Drink.Type.CAPPUCCINO, Drink.Type.COCOA, Drink.Type.TEA);
 
@@ -29,7 +35,7 @@ class CoffeeMachineTests {
     Drink cocoa = new Drink(Drink.Type.COCOA, 1, 3, 3, five);
     Drink tea = new Drink(Drink.Type.TEA, 1, 3, 1, 0);
 
-    WaterTank waterTank = new WaterTank(6);
+    WaterTank waterTank = new WaterTank(six);
     Supplies supplies = new Supplies();
 
     CoffeeMachine coffeeMachine = new CoffeeMachine("CoffeeMachine", waterTank, supplies, knownDrinks2);
@@ -63,7 +69,7 @@ class CoffeeMachineTests {
         supplies.addSupplies("Cappuccino Capsule", 1);
         supplies.addSupplies("Cocoa Capsule", 1);
 
-        Assertions.assertEquals(supplies.getSuppliesMap().size(), 8);
+        Assertions.assertEquals(supplies.getSuppliesMap().size(), eight);
         Assertions.assertEquals(supplies.getSuppliesMap().get("Sugar"), five);
     }
     @org.junit.jupiter.api.Test
@@ -103,9 +109,9 @@ class CoffeeMachineTests {
     void testExceptions() throws MachineNeedsCare, DrinkDoesNotExist, NotEnoughSupplies {
         supplies.addSupplies("Coffee Beans", 1);
         supplies.addSupplies("Cocoa Powder", five);
-        supplies.addSupplies("Sugar", 12);
+        supplies.addSupplies("Sugar", twelve);
         supplies.addSupplies("Milk", ten);
-        supplies.addSupplies("Tea", 34);
+        supplies.addSupplies("Tea", thirtyFour);
         String cause1 = null;
         String cause2 = null;
         String cause3 = null;
@@ -145,9 +151,9 @@ class CoffeeMachineTests {
 
     @org.junit.jupiter.api.Test
     void hasEnoughSuppliesTest() {
-        supplies.addSupplies("Cocoa Powder", 6);
-        supplies.addSupplies("Sugar", 12);
-        supplies.addSupplies("Milk", 12);
+        supplies.addSupplies("Cocoa Powder", six);
+        supplies.addSupplies("Sugar", twelve);
+        supplies.addSupplies("Milk", twelve);
         supplies.addSupplies("Tea", 2);
         supplies.addSupplies("Coffee Capsule", 3);
         supplies.takeCapsule(coffee);

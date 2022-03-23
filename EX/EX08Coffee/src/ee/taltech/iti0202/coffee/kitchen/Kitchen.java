@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public class Kitchen {
     private String name;
     private ArrayList<CoffeeMachineInterface> coffeeMachines;
-    private ArrayList<Drink> made_drinks;
+    private ArrayList<Drink> madeDrinks;
 
     public Kitchen(String name) {
         this.name = name;
         this.coffeeMachines = new ArrayList<>();
-        this.made_drinks = new ArrayList<>();
+        this.madeDrinks = new ArrayList<>();
     }
 
     public ArrayList<CoffeeMachineInterface> getCoffeeMachines() {
@@ -25,7 +25,7 @@ public class Kitchen {
     }
 
     public ArrayList<Drink> getMade_drinks() {
-        return made_drinks;
+        return madeDrinks;
     }
 
     public void addMachine(CoffeeMachineInterface machine) {
@@ -35,7 +35,7 @@ public class Kitchen {
             NotEnoughSupplies {
         if (coffeeMachines.contains(machine)) {
             machine.start(drink);
-            made_drinks.add(drink);
+            madeDrinks.add(drink);
         }
         return "Could not make a drink";
     }
