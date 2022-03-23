@@ -33,6 +33,10 @@ public class CapsuleMachine implements CoffeeMachineInterface {
         this.madeDrinks = new ArrayList<>();
     }
 
+    public Capsule getCapsule() {
+        return capsule;
+    }
+
     @Override
     public boolean usable() {
         if (this.tilTrashFull != 0 && this.waterTank.hasWater()) {
@@ -45,15 +49,16 @@ public class CapsuleMachine implements CoffeeMachineInterface {
 
     @Override
     public Optional<Drink> start(Drink drink) throws NotEnoughSupplies, MachineNeedsCare, DrinkDoesNotExist {
+        if (!knownCapsules.contains(drink.getType())) {
+            throw new DrinkDoesNotExist("No such capsule!");
+        }
         if (!supplies.hasEnoughCapsules(drink)) {
             throw new NotEnoughSupplies("Not enough supplies for this drink!");
         }
         if (!usable()) {
             throw new MachineNeedsCare("Fill water tank or throw out trash!");
-        }
-        if (!knownCapsules.contains(drink.getType())) {
-            throw new DrinkDoesNotExist("No such capsule!");
         } else {
+            this.capsule = new Capsule(drink.getType());
             supplies.takeCapsule(drink);
             waterTank.takeWater();
             tilTrashFull -= 1;
@@ -61,6 +66,7 @@ public class CapsuleMachine implements CoffeeMachineInterface {
                     drink.getNeededSugar(), drink.getNeededMilk());
             madeDrinks.add(newDrink);
             logger.info("New drink %s is ready.".formatted(newDrink.getType()));
+            this.capsule.useCapsule();
             return Optional.of(newDrink);
         }
     }

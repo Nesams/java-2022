@@ -45,14 +45,14 @@ public class CoffeeMachine implements CoffeeMachineInterface {
     }
 
     public Optional<Drink> start(Drink drink) throws NotEnoughSupplies, MachineNeedsCare, DrinkDoesNotExist {
-        if (!supplies.hasEnoughSupplies(drink)) {
-            throw new NotEnoughSupplies("Not enough supplies for this drink!");
-        }
         if (!usable()) {
             throw new MachineNeedsCare("Fill water tank or throw out trash!");
         }
         if (!knownDrinks.contains(drink.getType())) {
             throw new DrinkDoesNotExist("No such drink!");
+        }
+        if (!supplies.hasEnoughSupplies(drink)) {
+            throw new NotEnoughSupplies("Not enough supplies for this drink!");
         } else {
             supplies.takeSupplies(drink);
             waterTank.takeWater();

@@ -10,16 +10,11 @@ public class Capsule {
         this.type = type;
         this.timesUsed = 0;
     }
-
-    public Drink.Type getType() {
-        return type;
-    }
-
     public void useCapsule() {
         this.timesUsed = 1;
     }
 
     public boolean isUsable() {
-        return this.timesUsed == 1;
+        return this.timesUsed == 0;
     }
 }

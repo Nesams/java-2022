@@ -14,6 +14,10 @@ public class Supplies {
         this.suppliesMap = new HashMap<>();
     }
 
+    public HashMap<String, Integer> getSuppliesMap() {
+        return suppliesMap;
+    }
+
     public void addSupplies(String product, int amount) {
         logger.info("Adding supplies.");
         if (suppliesMap.containsKey(product)) {
@@ -28,7 +32,7 @@ public class Supplies {
         int newSugar = oldSugar + drink.getNeededSugar();
         int oldMilk = suppliesMap.get("Milk");
         int newMilk = oldMilk + drink.getNeededMilk();
-        int oldCoffeePowder = suppliesMap.get("Coffee Powder");
+        int oldCoffeePowder = suppliesMap.get("Coffee Beans");
         int newCoffeePowder = oldCoffeePowder + drink.getNeededPowder();
         int oldCocoaPowder = suppliesMap.get("Cocoa Powder");
         int newCocoaPowder = oldCocoaPowder + drink.getNeededPowder();
@@ -38,13 +42,13 @@ public class Supplies {
             logger.info("Adding needed supplies for coffee.");
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
-            suppliesMap.replace("Coffee Powder", newCoffeePowder);
+            suppliesMap.replace("Coffee Beans", newCoffeePowder);
         }
         if (drink.getType().equals(Drink.Type.CAPPUCCINO)) {
             logger.info("Adding needed supplies for cappuccino.");
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
-            suppliesMap.replace("Coffee Powder", newCoffeePowder);
+            suppliesMap.replace("Coffee Beans", newCoffeePowder);
         }
         if (drink.getType().equals(Drink.Type.COCOA)) {
             logger.info("Adding needed supplies for cocoa.");
@@ -62,7 +66,7 @@ public class Supplies {
     public boolean hasEnoughSupplies(Drink drink) {
         if (drink.getType().equals(Drink.Type.COFFEE)) {
             if (suppliesMap.get("Sugar") >= drink.getNeededSugar()
-                    && suppliesMap.get("Coffee Powder") >= drink.getNeededPowder()
+                    && suppliesMap.get("Coffee Beans") >= drink.getNeededPowder()
                     && suppliesMap.get("Milk") >= drink.getNeededMilk()) {
                 logger.info("Enough supplies for coffee.");
                 return true;
@@ -72,7 +76,7 @@ public class Supplies {
         }
         if (drink.getType().equals(Drink.Type.CAPPUCCINO)) {
             if (suppliesMap.get("Sugar") >= drink.getNeededSugar()
-                    && suppliesMap.get("Coffee Powder") >= drink.getNeededPowder()
+                    && suppliesMap.get("Coffee Beans") >= drink.getNeededPowder()
                     && suppliesMap.get("Milk") >= drink.getNeededMilk()) {
                 logger.info("Enough supplies for cappuccino.");
                 return true;
@@ -107,7 +111,7 @@ public class Supplies {
         int newSugar = oldSugar - drink.getNeededSugar();
         int oldMilk = suppliesMap.get("Milk");
         int newMilk = oldMilk - drink.getNeededMilk();
-        int oldCoffeePowder = suppliesMap.get("Coffee Powder");
+        int oldCoffeePowder = suppliesMap.get("Coffee Beans");
         int newCoffeePowder = oldCoffeePowder - drink.getNeededPowder();
         int oldCocoaPowder = suppliesMap.get("Cocoa Powder");
         int newCocoaPowder = oldCocoaPowder - drink.getNeededPowder();
@@ -116,13 +120,13 @@ public class Supplies {
         if (drink.getType().equals(Drink.Type.COFFEE)) {
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
-            suppliesMap.replace("Coffee Powder", newCoffeePowder);
+            suppliesMap.replace("Coffee Beans", newCoffeePowder);
             logger.info("Taking supplies for Coffee.");
         }
         if (drink.getType().equals(Drink.Type.CAPPUCCINO)) {
             suppliesMap.replace("Sugar", newSugar);
             suppliesMap.replace("Milk", newMilk);
-            suppliesMap.replace("Coffee Powder", newCoffeePowder);
+            suppliesMap.replace("Coffee Beans", newCoffeePowder);
             logger.info("Taking supplies for Cappuccino.");
         }
         if (drink.getType().equals(Drink.Type.COCOA)) {

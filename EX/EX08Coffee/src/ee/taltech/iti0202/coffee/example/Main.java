@@ -8,7 +8,6 @@ import ee.taltech.iti0202.coffee.drinks.Drink;
 import ee.taltech.iti0202.coffee.exceptions.DrinkDoesNotExist;
 import ee.taltech.iti0202.coffee.exceptions.MachineNeedsCare;
 import ee.taltech.iti0202.coffee.exceptions.NotEnoughSupplies;
-import ee.taltech.iti0202.coffee.exceptions.OutOfSupplies;
 import ee.taltech.iti0202.coffee.kitchen.Kitchen;
 import ee.taltech.iti0202.coffee.resources.Supplies;
 import ee.taltech.iti0202.coffee.resources.WaterTank;
@@ -18,7 +17,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws NotEnoughSupplies, MachineNeedsCare,
-            DrinkDoesNotExist, OutOfSupplies {
+            DrinkDoesNotExist {
 
         final int six = 6;
         final int five = 5;
@@ -39,7 +38,7 @@ public class Main {
 
         Supplies supplies = new Supplies();
 
-        supplies.addSupplies("Coffee Powder", 3);
+        supplies.addSupplies("Coffee Beans", 3);
         supplies.addSupplies("Cocoa Powder", five);
         supplies.addSupplies("Sugar", five);
         supplies.addSupplies("Milk", ten);
