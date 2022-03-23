@@ -24,7 +24,7 @@ public class Kitchen {
         return coffeeMachines;
     }
 
-    public ArrayList<Drink> getMade_drinks() {
+    public ArrayList<Drink> getMadeDrinks() {
         return madeDrinks;
     }
 

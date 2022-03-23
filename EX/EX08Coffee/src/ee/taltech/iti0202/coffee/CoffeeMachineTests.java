@@ -96,7 +96,7 @@ class CoffeeMachineTests {
         kitchen.makeADrink(automaticMachine, coffee);
         kitchen.makeADrink(capsuleMachine, cocoa);
 
-        Assertions.assertEquals(kitchen.getMade_drinks().size(), 3);
+        Assertions.assertEquals(kitchen.getMadeDrinks().size(), 3);
     }
     @org.junit.jupiter.api.Test
     void testIfCapsuleIsUsed() throws MachineNeedsCare, DrinkDoesNotExist, NotEnoughSupplies {
