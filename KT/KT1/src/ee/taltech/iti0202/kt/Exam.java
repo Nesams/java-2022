@@ -1,12 +1,9 @@
 package ee.taltech.iti0202.kt;
 
-import java.sql.Array;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Exam {
@@ -24,7 +21,8 @@ public class Exam {
         String s22 = str2.toUpperCase(Locale.ROOT);
         String fullString = s11 + s22;
         int count = 0;
-        Map<String, Long> countMap = Arrays.stream(fullString.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<String, Long> countMap = Arrays.stream(fullString.split(""))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
             for (Map.Entry<String, Long> entry: countMap.entrySet()) {
                 if (entry.getValue() % 2 != 0) {
                     count++;

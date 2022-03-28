@@ -6,6 +6,7 @@ public class Postman {
     private final String name;
     private final Integer age;
     private final ArrayList<Letter> letters;
+    final int postmanAgeLimit = 40;
 
     /**
      * Create a postman with the name and the age.
@@ -26,7 +27,7 @@ public class Postman {
 
     public int getLettersLimit() {
         int limit = 0;
-        if (this.age >= 40) {
+        if (this.age >= postmanAgeLimit) {
             limit = this.age - this.name.length();
         } else {
             limit = this.age + this.name.length();

@@ -6,6 +6,7 @@ public class PostOffice {
     private final String location;
     private final ArrayList<Letter> letters;
     private final ArrayList<Postman> postmen;
+    final int forty = 40;
 
     /**
      * Create a post office with the location.
@@ -71,7 +72,6 @@ public class PostOffice {
         int i = 0;
         for (Postman postman:postmen) {
             if (postman.addLetter(letters.get(i))) {
-                //postman.addLetter(letters.get(i));
                 letters.remove(letters.get(i));
             }
             i++;
@@ -81,7 +81,7 @@ public class PostOffice {
     public static void main(String[] args) {
         PostOffice postOffice = new PostOffice("Tallinn");
 
-        Postman postman = new Postman("Martin", 40);
+        Postman postman = new Postman("Martin", forty);
 
         postOffice.addPostman(postman);
 
