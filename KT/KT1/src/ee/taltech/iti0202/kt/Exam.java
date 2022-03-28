@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Exam {
@@ -47,14 +49,27 @@ public class Exam {
      */
     public static boolean prefixExistsAgain(String str, int n) {
         String prefix = str.substring(0, n);
+        Pattern pattern = Pattern.compile(prefix);
+        int count = 0;
+        for(int i = 0; i < str.length(); i++) {
+            String sub = str.substring(i);
+            Matcher matcher = pattern.matcher(sub);
+            while (matcher.find()) {
+                count++;
+            }
+        }
 
-        int s = str.split(prefix, -1).length - 1;
-
-        return s >= 2;
+        return count >= 2;
     }
     public static void main(String[] args) {
         System.out.println(rotatedString("piimavunts", "ntspiimavu"));
         System.out.println(rotatedString("ABC", "cab"));
         System.out.println(rotatedString("kurgid", "gikur"));
+        System.out.println(prefixExistsAgain("abXXabc", 1));
+        System.out.println(prefixExistsAgain("abXXabc", 2));
+        System.out.println(prefixExistsAgain("abXXabc", 3));
+        System.out.println(prefixExistsAgain("ababa", 3));
+        System.out.println(prefixExistsAgain("aaaa", 3));
+        System.out.println(prefixExistsAgain("aaaa", 4));
     }
 }
