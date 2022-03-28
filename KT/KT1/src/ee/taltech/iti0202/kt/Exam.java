@@ -45,7 +45,7 @@ public class Exam {
     public static boolean prefixExistsAgain(String str, int n) {
         String prefix = str.substring(0, n);
 
-        int s = str.split(prefix, -1).length - 1;
+        int s = str.split(prefix, -1).length;
 
         return s >= 2;
     }
