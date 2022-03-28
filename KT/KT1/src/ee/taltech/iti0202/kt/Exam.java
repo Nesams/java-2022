@@ -1,6 +1,13 @@
 package ee.taltech.iti0202.kt;
 
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Exam {
     /**
@@ -13,19 +20,17 @@ public class Exam {
      * rotatedString("kurgid", "gikur") => false
      */
     public static boolean rotatedString(String str1, String str2) {
-        String str11 = str1.toUpperCase(Locale.ROOT);
-        String str22 = str2.toUpperCase(Locale.ROOT);
-        int stringLength = str11.length();
-        StringBuilder reversed = new StringBuilder();
-        char character;
-
-        for (int i = 0; i < stringLength; i++) {
-            character = str11.charAt(i);
-
-            reversed.insert(0, character);
-        }
-
-        return reversed.toString().equals(str22);
+        String s11 = str1.toUpperCase(Locale.ROOT);
+        String s22 = str2.toUpperCase(Locale.ROOT);
+        String fullString = s11 + s22;
+        int count = 0;
+        Map<String, Long> countMap = Arrays.stream(fullString.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            for (Map.Entry<String, Long> entry: countMap.entrySet()) {
+                if (entry.getValue() % 2 != 0) {
+                    count++;
+                }
+            }
+            return count == 0;
         }
 
     /**
@@ -49,5 +54,9 @@ public class Exam {
 
         return s >= 2;
     }
-
+    public static void main(String[] args) {
+        System.out.println(rotatedString("piimavunts", "ntspiimavu"));
+        System.out.println(rotatedString("ABC", "cab"));
+        System.out.println(rotatedString("kurgid", "gikur"));
+    }
 }
