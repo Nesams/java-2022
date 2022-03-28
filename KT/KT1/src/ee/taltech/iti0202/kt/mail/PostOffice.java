@@ -77,19 +77,4 @@ public class PostOffice {
             i++;
         }
     }
-
-    public static void main(String[] args) {
-        PostOffice postOffice = new PostOffice("Tallinn");
-
-        Postman postman = new Postman("Martin", forty);
-
-        postOffice.addPostman(postman);
-
-        postOffice.addLetter(new Letter("Toomas", "Tartu", "Rahu tn"));
-        postOffice.addLetter(new Letter("Erki", "Tallinn", "Männi tee"));
-
-        postOffice.divideLetters();
-
-        System.out.println(postman.getLetters());   // [City: Tallinn, Address: Männi tee, Recipient: Erki]
-    }
 }
