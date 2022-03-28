@@ -51,7 +51,7 @@ public class Exam {
         String prefix = str.substring(0, n);
         Pattern pattern = Pattern.compile(prefix);
         int count = 0;
-        for(int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length(); i++) {
             String sub = str.substring(i);
             Matcher matcher = pattern.matcher(sub);
             while (matcher.find()) {
