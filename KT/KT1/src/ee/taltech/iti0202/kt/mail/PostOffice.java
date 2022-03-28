@@ -6,7 +6,7 @@ public class PostOffice {
     private final String location;
     private final ArrayList<Letter> letters;
     private final ArrayList<Postman> postmen;
-    final int forty = 40;
+    final static int forty = 40;
 
     /**
      * Create a post office with the location.

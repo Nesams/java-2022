@@ -6,7 +6,7 @@ public class Postman {
     private final String name;
     private final Integer age;
     private final ArrayList<Letter> letters;
-    final int postmanAgeLimit = 40;
+    final static int postmanAgeLimit = 40;
 
     /**
      * Create a postman with the name and the age.
