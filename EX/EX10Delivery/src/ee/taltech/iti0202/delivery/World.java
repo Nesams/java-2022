@@ -29,7 +29,7 @@ public class World {
                     Packet packet = currentlocation.getPacket(pack).get();
                     courier.addPacket(packet);
                 }
-                Location nextLocation = nextAction.getLocation();
+                Location nextLocation = nextAction.getGoTo();
                 int distanceToNextLocation = nextLocation.getDistanceTo(nextLocation.getName());
                 courier.setDistanceToNextLocation(distanceToNextLocation);
                 courier.setLocation(nextLocation);

@@ -15,7 +15,6 @@ public class Location {
         this.packets = new ArrayList<>();
         this.distances = new HashMap<>();
     }
-
     public String getName() {
         return name;
     }

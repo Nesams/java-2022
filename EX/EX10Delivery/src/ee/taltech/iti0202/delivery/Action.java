@@ -20,7 +20,7 @@ public class Action {
         return take;
     }
 
-    Location getLocation() {
+    Location getGoTo() {
         return location;
     }
 

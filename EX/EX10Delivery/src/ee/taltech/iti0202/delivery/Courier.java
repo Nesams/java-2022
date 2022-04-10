@@ -18,6 +18,10 @@ public class Courier {
         this.strategy = null;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setLocation(Location location) {
         this.location = location;
     }
