@@ -12,7 +12,7 @@ public class World {
     }
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        if (distances.size() == otherLocations.size() || otherLocations.size() == locations.size() || !locations.containsKey(name)) {
+        if (checkIfOtherLocationsContainsAllLocations(otherLocations) || !locations.containsKey(name)) {
             Location location = new Location(name);
             locations.put(name, location);
             for (int i = 0; i < otherLocations.size(); i++) {
@@ -22,6 +22,12 @@ public class World {
             return Optional.of(location);
         }
         return Optional.empty();
+    }
+
+    public boolean checkIfOtherLocationsContainsAllLocations(List<String> otherLocations) {
+        List<String> locationsNames = new ArrayList<>();
+        locationsNames.addAll(locations.keySet());
+        return otherLocations.containsAll(locationsNames);
     }
 
     public void updateLocations(Location location, List<String> otherLocations, List<Integer> distances) {
