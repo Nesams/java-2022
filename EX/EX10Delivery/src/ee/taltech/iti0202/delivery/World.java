@@ -1,6 +1,7 @@
 package ee.taltech.iti0202.delivery;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class World {
     private Map<String, Location> locations;
@@ -26,7 +27,8 @@ public class World {
 
     public boolean checkIfOtherLocationsContainsAllLocations(List<String> otherLocations) {
         List<String> locationsNames = new ArrayList<>(locations.keySet());
-        return otherLocations.containsAll(locationsNames);
+        Set<String> otherLocationsSet = new HashSet<>(otherLocations);
+        return otherLocationsSet.containsAll(locationsNames);
     }
 
     public void updateLocations(Location location, List<String> otherLocations, List<Integer> distances) {
