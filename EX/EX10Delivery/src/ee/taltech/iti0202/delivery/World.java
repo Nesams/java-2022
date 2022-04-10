@@ -12,9 +12,15 @@ public class World {
     }
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        Location location = new Location(name);
-        locations.put(name, location);
-        return Optional.of(location);
+        if (distances.size() == locations.size() || !locations.containsKey(name)) {
+            Location location = new Location(name);
+            locations.put(name, location);
+            for (int i = 0; i < otherLocations.size(); i++) {
+                location.addDistance(otherLocations.get(i), distances.get(i));
+            }
+            return Optional.of(location);
+        }
+        return Optional.empty();
     }
 
     public void tick() {
@@ -45,9 +51,12 @@ public class World {
     }
 
     public Optional<Courier> addCourier(String name, String location) {
-        Courier courier = new Courier(name);
-        courier.setLocation(locations.get(location));
-        couriers.put(name, courier);
-        return Optional.of(courier);
+        if (!couriers.containsKey(name) && locations.containsKey(location)) {
+            Courier courier = new Courier(name);
+            courier.setLocation(locations.get(location));
+            couriers.put(name, courier);
+            return Optional.of(courier);
+        }
+        return Optional.empty();
     }
 }
