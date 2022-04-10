@@ -13,16 +13,24 @@ public class World {
     }
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        if (checkIfOtherLocationsContainsAllLocations(otherLocations) && otherLocations.size() == distances.size() && !locations.containsKey(name)) {
-            Location location = new Location(name);
-            locations.put(name, location);
-            for (int i = 0; i < otherLocations.size(); i++) {
-                location.addDistance(otherLocations.get(i), distances.get(i));
+        if (!locations.isEmpty()) {
+            if (checkIfOtherLocationsContainsAllLocations(otherLocations) && otherLocations.size() == distances.size() && !locations.containsKey(name)) {
+                Location location = new Location(name);
+                locations.put(name, location);
+                for (int i = 0; i < otherLocations.size(); i++) {
+                    location.addDistance(otherLocations.get(i), distances.get(i));
+                }
+                updateLocations(location, otherLocations, distances);
+                return Optional.of(location);
             }
-            updateLocations(location, otherLocations, distances);
-            return Optional.of(location);
+            return Optional.empty();
         }
-        return Optional.empty();
+        Location location = new Location(name);
+        locations.put(name, location);
+        for (int i = 0; i < otherLocations.size(); i++) {
+            location.addDistance(otherLocations.get(i), distances.get(i));
+        }
+        return Optional.of(location);
     }
 
     public boolean checkIfOtherLocationsContainsAllLocations(List<String> otherLocations) {
