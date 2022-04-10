@@ -25,8 +25,7 @@ public class World {
     }
 
     public boolean checkIfOtherLocationsContainsAllLocations(List<String> otherLocations) {
-        List<String> locationsNames = new ArrayList<>();
-        locationsNames.addAll(locations.keySet());
+        List<String> locationsNames = new ArrayList<>(locations.keySet());
         return otherLocations.containsAll(locationsNames);
     }
 
