@@ -18,7 +18,9 @@ public class World {
                 Location location = new Location(name);
                 locations.put(name, location);
                 for (int i = 0; i < otherLocations.size(); i++) {
-                    location.addDistance(otherLocations.get(i), distances.get(i));
+                    if (locations.containsKey(otherLocations.get(i))) {
+                        location.addDistance(otherLocations.get(i), distances.get(i));
+                    }
                 }
                 updateLocations(location, otherLocations, distances);
                 return Optional.of(location);
