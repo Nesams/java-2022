@@ -41,6 +41,6 @@ public class Location {
     }
 
     public void addDistance(String location, int distance) {
-        distances.put(location, distance);
+        distances.putIfAbsent(location, distance);
     }
 }
