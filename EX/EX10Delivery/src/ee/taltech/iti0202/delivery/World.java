@@ -13,7 +13,7 @@ public class World {
     }
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
-        if (checkIfOtherLocationsContainsAllLocations(otherLocations) || !locations.containsKey(name)) {
+        if (checkIfOtherLocationsContainsAllLocations(otherLocations) && !locations.containsKey(name)) {
             Location location = new Location(name);
             locations.put(name, location);
             for (int i = 0; i < otherLocations.size(); i++) {
