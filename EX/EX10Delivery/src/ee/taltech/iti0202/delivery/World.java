@@ -18,9 +18,17 @@ public class World {
             for (int i = 0; i < otherLocations.size(); i++) {
                 location.addDistance(otherLocations.get(i), distances.get(i));
             }
+            updateLocations(location, otherLocations, distances);
             return Optional.of(location);
         }
         return Optional.empty();
+    }
+
+    public void updateLocations(Location location, List<String> otherLocations, List<Integer> distances) {
+        for (int i = 0; i < otherLocations.size(); i++) {
+            String locationName = otherLocations.get(i);
+            locations.get(locationName).addDistance(location.getName(), distances.get(i));
+        }
     }
 
     public void tick() {
