@@ -9,10 +9,12 @@ public class Location {
     private String name;
     private ArrayList<Packet> packets;
     private HashMap<String, Integer> distances;
+    private HashMap<String, Packet> packetss;
 
     public Location(String name) {
         this.name = name;
         this.packets = new ArrayList<>();
+        this.packetss = new HashMap<>();
         this.distances = new HashMap<>();
     }
     public String getName() {
@@ -27,15 +29,14 @@ public class Location {
     }
 
     void addPacket(Packet packet) {
-        packets.add(packet);
+        packetss.put(packet.getName(), packet);
     }
 
     public Optional<Packet> getPacket(String name) {
-        for (Packet packet: packets) {
-            if (packet.getName().equals(name)) {
-                packets.remove(packet);
-                return Optional.of(packet);
-            }
+        if (packetss.containsKey(name)) {
+            Packet packet = packetss.get(name);
+            packetss.remove(name);
+            return Optional.of(packet);
         }
         return Optional.empty();
     }
