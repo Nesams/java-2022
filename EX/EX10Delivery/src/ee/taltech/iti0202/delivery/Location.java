@@ -19,7 +19,7 @@ public class Location {
         return name;
     }
 
-    Integer getDistanceTo(String name) {
+    public Integer getDistanceTo(String name) {
         if (distances.containsKey(name)) {
             return distances.get(name);
         }
@@ -30,7 +30,7 @@ public class Location {
         packets.add(packet);
     }
 
-    Optional<Packet> getPacket(String name) {
+    public Optional<Packet> getPacket(String name) {
         for (Packet packet: packets) {
             if (packet.getName().equals(name)) {
                 packets.remove(packet);
