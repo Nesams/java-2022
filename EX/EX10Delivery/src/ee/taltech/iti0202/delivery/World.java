@@ -43,8 +43,10 @@ public class World {
 
     public void updateLocations(Location location, List<String> otherLocations, List<Integer> distances) {
         for (int i = 0; i < otherLocations.size(); i++) {
-            String locationName = otherLocations.get(i);
-            locations.get(locationName).addDistance(location.getName(), distances.get(i));
+            if(locations.containsKey(otherLocations.get(i))) {
+                String locationName = otherLocations.get(i);
+                locations.get(locationName).addDistance(location.getName(), distances.get(i));
+            }
         }
     }
 
