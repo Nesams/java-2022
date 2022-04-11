@@ -5,11 +5,14 @@ import java.util.List;
 
 public class Action {
     private Location location;
-    public List<String> take = new ArrayList<>();
-    public List<String> deposit = new ArrayList<>();
+    public List<String> take;
+    public List<String> deposit;
 
     public Action(Location location) {
+
         this.location = location;
+        this.take = new ArrayList<>();
+        this.deposit = new ArrayList<>();
     }
 
     List<String> getDeposit() {
@@ -25,10 +28,10 @@ public class Action {
     }
 
     void addDeposit(String packetName) {
-        take.add(packetName);
+        deposit.add(packetName);
     }
 
     void addTake(String packetName) {
-        deposit.add(packetName);
+        take.add(packetName);
     }
 }
