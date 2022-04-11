@@ -1,7 +1,12 @@
 package ee.taltech.iti0202.delivery;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 public class World {
     private Map<String, Location> locations;
@@ -14,7 +19,8 @@ public class World {
 
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
         if (!locations.isEmpty()) {
-            if (checkIfOtherLocationsContainsAllLocations(otherLocations) && otherLocations.size() == distances.size() && !locations.containsKey(name)) {
+            if (checkIfOtherLocationsContainsAllLocations(otherLocations) && otherLocations.size() == distances.size()
+                    && !locations.containsKey(name)) {
                 Location location = new Location(name);
                 locations.put(name, location);
                 for (int i = 0; i < otherLocations.size(); i++) {
@@ -43,7 +49,7 @@ public class World {
 
     public void updateLocations(Location location, List<String> otherLocations, List<Integer> distances) {
         for (int i = 0; i < otherLocations.size(); i++) {
-            if(locations.containsKey(otherLocations.get(i))) {
+            if (locations.containsKey(otherLocations.get(i))) {
                 String locationName = otherLocations.get(i);
                 locations.get(locationName).addDistance(location.getName(), distances.get(i));
             }
@@ -51,14 +57,14 @@ public class World {
     }
 
     public void tick() {
-        for(Courier courier: couriers.values()) {
-            if(courier.getLocation().isPresent()) {
+        for (Courier courier: couriers.values()) {
+            if (courier.getLocation().isPresent()) {
                 Action nextAction = courier.getStrategy().getAction();
                 Location currentlocation = courier.getLocation().get();
-                for(String pack: nextAction.getDeposit()) {
+                for (String pack: nextAction.getDeposit()) {
                     courier.removePacket(courier.getPacketByName(pack));
                 }
-                for(String pack: nextAction.getTake()) {
+                for (String pack: nextAction.getTake()) {
                     Packet packet = currentlocation.getPacket(pack).get();
                     courier.addPacket(packet);
                 }

@@ -42,7 +42,7 @@ public class Location {
     }
 
     public void addDistance(String location, int distance) {
-        if(distances.containsKey(location)) {
+        if (distances.containsKey(location)) {
             distances.put(location, distance);
         }
         distances.put(location, distance);

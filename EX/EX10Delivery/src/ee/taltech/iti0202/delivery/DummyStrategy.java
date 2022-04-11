@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DummyStrategy implements Strategy {
-    private int actionIndex;
     private ArrayList<Action> actions;
 
     public DummyStrategy(List<Action> actionss) {

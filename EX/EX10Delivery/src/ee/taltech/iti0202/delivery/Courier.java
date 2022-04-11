@@ -61,13 +61,13 @@ public class Courier {
         return packages;
     }
     public void removePacket(Packet packet) {
-        if(packages.contains(packet)) {
+        if (packages.contains(packet)) {
             packages.remove(packet);
         }
     }
     public Packet getPacketByName(String packetName) {
-        for(Packet packet: packages) {
-            if(packet.getName().equals(packetName)) {
+        for (Packet packet: packages) {
+            if (packet.getName().equals(packetName)) {
                 packages.remove(packet);
                 return packet;
             }
