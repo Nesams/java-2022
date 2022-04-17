@@ -6,6 +6,7 @@ import ee.taltech.iti0202.computerstore.exceptions.NotEnoughMoneyException;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.math.BigDecimal;
@@ -85,7 +86,7 @@ public class Store {
     }
 
     public BigDecimal getInventoryValue() {
-        List<Component> componentsValues = (List<Component>) database.getComponents().values();
+        List<Component> componentsValues = new ArrayList<>(database.getComponents().values());
         int inventoryValue = 0;
         for (int i = 0; i < componentsValues.size(); i++) {
             inventoryValue += componentsValues.get(i).getPrice().intValue() * profitMargin.intValue() * componentsValues.get(i).getAmount();
