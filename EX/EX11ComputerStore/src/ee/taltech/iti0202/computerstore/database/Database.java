@@ -73,7 +73,7 @@ public class Database {
     }
 
     public void resetEntireDatabase() {
-        Component.setId(0);
+        Component.setId(-1);
         components.clear();
     }
 
