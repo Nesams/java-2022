@@ -89,7 +89,8 @@ public class Store {
         List<Component> componentsValues = new ArrayList<>(database.getComponents().values());
         int inventoryValue = 0;
         for (int i = 0; i < componentsValues.size(); i++) {
-            inventoryValue += componentsValues.get(i).getPrice().intValue() * profitMargin.intValue() * componentsValues.get(i).getAmount();
+            inventoryValue += componentsValues.get(i).getPrice().intValue() *
+                    profitMargin.intValue() * componentsValues.get(i).getAmount();
         }
         return BigDecimal.valueOf(inventoryValue);
     }
