@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
-public class Database {
+public final class Database {
     private final Map<Integer, Component> components = new HashMap<>();
     private static Database instance = null;
 
@@ -41,7 +43,8 @@ public class Database {
         }
     }
 
-    public void increaseComponentStock(int id, int amount) throws ProductNotFoundException, IllegalArgumentException, NullPointerException {
+    public void increaseComponentStock(int id, int amount) throws ProductNotFoundException,
+            IllegalArgumentException, NullPointerException {
         try {
             if (amount <= 0) {
                 throw new IllegalArgumentException();
@@ -53,12 +56,12 @@ public class Database {
         }
     }
 
-    public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException, IllegalArgumentException, NullPointerException  {
+    public void decreaseComponentStock(int id, int amount) throws OutOfStockException,
+            ProductNotFoundException, IllegalArgumentException, NullPointerException  {
         try {
             if (amount <= 0) {
                 throw new IllegalArgumentException();
-            }
-            else if (components.get(id).getAmount() < amount) {
+            } else if (components.get(id).getAmount() < amount) {
                 throw new OutOfStockException();
             } else {
                 this.components.get(id).decreaseAmount(amount);
