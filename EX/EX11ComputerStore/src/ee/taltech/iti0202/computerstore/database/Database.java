@@ -45,8 +45,9 @@ public class Database {
         try {
             if (amount <= 0) {
                 throw new IllegalArgumentException();
+            } else {
+                this.components.get(id).increaseAmount(amount);
             }
-            this.components.get(id).increaseAmount(amount);
         } catch (NullPointerException e) {
             throw new ProductNotFoundException();
         }
@@ -72,6 +73,7 @@ public class Database {
     }
 
     public void resetEntireDatabase() {
+        Component.setId(0);
         components.clear();
     }
 
