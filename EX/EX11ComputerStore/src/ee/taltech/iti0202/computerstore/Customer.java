@@ -27,6 +27,10 @@ public class Customer {
         return components;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }

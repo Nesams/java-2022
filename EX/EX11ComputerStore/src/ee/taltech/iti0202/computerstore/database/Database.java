@@ -51,7 +51,7 @@ public class Database {
         }
     }
 
-    public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException {
+    public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException, IllegalArgumentException  {
         try {
             if (amount <= 0) {
                 throw new IllegalArgumentException();
@@ -74,7 +74,7 @@ public class Database {
         components.clear();
     }
 
-    public void saveToFile(String location) {
+    public void saveToFile(String location) throws IOException{
         Path path = Paths.get(location);
         Gson gson = new Gson();
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {

@@ -30,7 +30,8 @@ public class Store {
 
     public Component purchaseComponent(int id, Customer customer) throws OutOfStockException,
             ProductNotFoundException,
-            NotEnoughMoneyException {
+            NotEnoughMoneyException,
+            NullPointerException {
         try {
             Component component = database.getComponents().get(id);
             int price = component.getPrice().intValue() * profitMargin.intValue();
@@ -112,7 +113,7 @@ public class Store {
         return this.profitMargin;
     }
 
-    public void setProfitMargin(BigDecimal profitMargin) {
+    public void setProfitMargin(BigDecimal profitMargin) throws IllegalArgumentException {
         if (profitMargin.intValue() < 1) {
             throw new IllegalArgumentException();
         } else {
