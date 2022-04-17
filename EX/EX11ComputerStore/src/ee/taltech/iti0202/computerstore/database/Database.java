@@ -16,8 +16,10 @@ public class Database {
     private final Map<Integer, Component> components = new HashMap<>();
     private static Database instance = null;
 
+    private Database() { };
+
     public static Database getInstance() {
-        if (instance.equals(null)) {
+        if (instance == null) {
             instance = new Database();
         }
         return instance;
