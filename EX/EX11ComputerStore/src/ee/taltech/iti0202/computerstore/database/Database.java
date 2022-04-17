@@ -73,7 +73,7 @@ public class Database {
         components.clear();
     }
 
-    public void saveToFile(String location) throws IOException {
+    public void saveToFile(String location) {
         Path path = Paths.get(location);
         Gson gson = new Gson();
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -83,7 +83,7 @@ public class Database {
         }
     }
 
-    public void loadFromFile(String location) throws IOException {
+    public void loadFromFile(String location) {
         Path path = Paths.get(location);
         Gson gson = new Gson();
         instance = new Database();
