@@ -57,10 +57,10 @@ public class Database {
             if (amount <= 0) {
                 throw new IllegalArgumentException();
             }
-            if (components.get(id).getAmount() < amount) {
+            else if (components.get(id).getAmount() < amount) {
                 throw new OutOfStockException();
             } else {
-                this.components.get(id).increaseAmount(amount);
+                this.components.get(id).decreaseAmount(amount);
             }
         } catch (NullPointerException e) {
             throw new ProductNotFoundException();
