@@ -6,7 +6,6 @@ import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 import com.google.gson.Gson;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,7 +39,7 @@ public class Database {
         }
     }
 
-    public void increaseComponentStock(int id, int amount) throws ProductNotFoundException, IllegalArgumentException {
+    public void increaseComponentStock(int id, int amount) throws ProductNotFoundException, IllegalArgumentException, NullPointerException {
         try {
             if (amount <= 0) {
                 throw new IllegalArgumentException();
@@ -51,7 +50,7 @@ public class Database {
         }
     }
 
-    public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException, IllegalArgumentException  {
+    public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException, IllegalArgumentException, NullPointerException  {
         try {
             if (amount <= 0) {
                 throw new IllegalArgumentException();
@@ -74,7 +73,7 @@ public class Database {
         components.clear();
     }
 
-    public void saveToFile(String location) throws IOException{
+    public void saveToFile(String location) throws IOException {
         Path path = Paths.get(location);
         Gson gson = new Gson();
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
