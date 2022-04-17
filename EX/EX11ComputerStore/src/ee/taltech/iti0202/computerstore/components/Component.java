@@ -57,6 +57,34 @@ public class Component {
         return amount;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setPerformancePoints(int performancePoints) {
+        this.performancePoints = performancePoints;
+    }
+
+    public void setPowerConsumption(int powerConsumption) {
+        this.powerConsumption = powerConsumption;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
