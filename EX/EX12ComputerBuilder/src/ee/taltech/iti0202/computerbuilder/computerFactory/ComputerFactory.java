@@ -214,7 +214,7 @@ public final class ComputerFactory {
 
     private PSU choosePSU(double budget, int power) {
         PSU psu = (PSU) this.database.getComponents().values().stream()
-                .filter(p -> p.getAmount() >=1 && p.getPrice() <= budget && p.getPowerConsumption() >= power)
+                .filter(p -> p.getAmount() >= 1 && p.getPrice() <= budget && p.getPowerConsumption() >= power)
                 .sorted(Comparator.comparing(Component::getPowerConsumption).reversed())
                 .toList().get(0);
         psu.decreaseAmount(1);

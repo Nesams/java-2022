@@ -57,7 +57,8 @@ public class ComputerStore {
         }
     }
 
-    public Computer purchaseComputer(Customer customer, UseCase useCase, Type type) throws NotEnoughMoneyException, ProductNotFoundException {
+    public Computer purchaseComputer(Customer customer, UseCase useCase, Type type)
+            throws NotEnoughMoneyException, ProductNotFoundException {
         try {
             Computer computer = computerFactory.assembleComputer(customer.getBalance().intValue(), useCase, type);
 

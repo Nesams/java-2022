@@ -5,7 +5,7 @@ import ee.taltech.iti0202.computerbuilder.components.Keyboard;
 import ee.taltech.iti0202.computerbuilder.components.Screen;
 import ee.taltech.iti0202.computerbuilder.components.Touchpad;
 
-public class Laptop extends Computer{
+public class Laptop extends Computer {
     private Battery battery;
     private Keyboard keyboard;
     private Touchpad touchpad;
@@ -20,21 +20,27 @@ public class Laptop extends Computer{
     }
 
     public Battery getBattery() {
+
         return battery;
     }
 
-    public Keyboard getKeyboard() { return keyboard;
+    public Keyboard getKeyboard() {
+
+        return keyboard;
     }
 
     public Touchpad getTouchpad() {
+
         return touchpad;
     }
 
     public Screen getScreen() {
+
         return screen;
     }
 
     public void setBattery(Battery battery) {
+
         this.battery = battery;
     }
 
