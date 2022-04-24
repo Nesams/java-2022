@@ -23,8 +23,7 @@ public class Laptop extends Computer{
         return battery;
     }
 
-    public Keyboard getKeyboard() {
-        return keyboard;
+    public Keyboard getKeyboard() { return keyboard;
     }
 
     public Touchpad getTouchpad() {
@@ -53,6 +52,7 @@ public class Laptop extends Computer{
 
     @Override
     public int getComputerValue() {
-        return super.getComputerValue() + battery.getPrice() + keyboard.getPrice() + touchpad.getPrice() + screen.getPrice();
+        return super.getComputerValue() + battery.getPrice() + keyboard.getPrice()
+                + touchpad.getPrice() + screen.getPrice();
     }
 }

@@ -1,7 +1,21 @@
 package ee.taltech.iti0202.computerbuilder.computerFactory;
 
-import ee.taltech.iti0202.computerbuilder.components.*;
-import ee.taltech.iti0202.computerbuilder.computer.*;
+import ee.taltech.iti0202.computerbuilder.components.Battery;
+import ee.taltech.iti0202.computerbuilder.components.CPU;
+import ee.taltech.iti0202.computerbuilder.components.Component;
+import ee.taltech.iti0202.computerbuilder.components.ComputerCase;
+import ee.taltech.iti0202.computerbuilder.components.GPU;
+import ee.taltech.iti0202.computerbuilder.components.Keyboard;
+import ee.taltech.iti0202.computerbuilder.components.MotherBoard;
+import ee.taltech.iti0202.computerbuilder.components.PSU;
+import ee.taltech.iti0202.computerbuilder.components.RAM;
+import ee.taltech.iti0202.computerbuilder.components.SSD;
+import ee.taltech.iti0202.computerbuilder.components.Screen;
+import ee.taltech.iti0202.computerbuilder.components.Touchpad;
+import ee.taltech.iti0202.computerbuilder.computer.Computer;
+import ee.taltech.iti0202.computerbuilder.computer.ComputerBuilder;
+import ee.taltech.iti0202.computerbuilder.computer.Type;
+import ee.taltech.iti0202.computerbuilder.computer.UseCase;
 import ee.taltech.iti0202.computerbuilder.database.Database;
 import ee.taltech.iti0202.computerbuilder.exceptions.NotEnoughMoneyException;
 import ee.taltech.iti0202.computerbuilder.exceptions.ProductNotFoundException;
@@ -9,7 +23,22 @@ import ee.taltech.iti0202.computerbuilder.store.ComputerStore;
 
 import java.util.Comparator;
 
-public class ComputerFactory {
+public final class ComputerFactory {
+    public static final double QUARTER = 0.15;
+    public static final double TENPERCENT = 0.1;
+    public static final double FIVEPERCENT = 0.05;
+    public static final double FIFTEENPERCENT = 0.15;
+    public static final double TWENTYFIFEPERCENT = 0.25;
+    public static final double TWENTYPERCENT = 0.2;
+    public static final int FOURHUNDRED = 400;
+    public static final int FIVEHUNDRED = 500;
+    public static final int HUNDRED = 100;
+    public static final int TWENTY = 20;
+    public static final int TEN = 10;
+    public static final int FORTY = 40;
+    public static final int TWOHUNDRED = 200;
+    public static final int THIRTY = 30;
+
     private static ComputerFactory instance = null;
     private final ComputerStore store;
     private final Database database;
@@ -26,7 +55,8 @@ public class ComputerFactory {
         return instance;
     }
 
-    public Computer assembleComputer(double budget, UseCase useCase, Type type) throws ProductNotFoundException, NotEnoughMoneyException {
+    public Computer assembleComputer(double budget, UseCase useCase, Type type)
+            throws ProductNotFoundException, NotEnoughMoneyException {
         try {
             if (type.equals(Type.PC) && useCase.equals(UseCase.GAMING)) {
                 return assembleGamingPC(budget);
@@ -45,52 +75,52 @@ public class ComputerFactory {
 
     private Computer assembleLaptop(double budget) {
         return new ComputerBuilder()
-                .withPSU(choosePSU(budget * 0.15, 400))
-                .withCPU(chooseCPU(budget * 0.1, 200))
-                .withGPU(chooseGPU(budget * 0.1, 100))
-                .withSSD(chooseSSD(budget * 0.1, 40))
-                .withCase(chooseCase(budget * 0.1))
-                .withRAM(chooseRAM(budget * 0.1, 40))
-                .withMotherBoard(chooseMotherBoard(budget * 0.1, 30))
-                .withKeyboard(chooseKeyboard(budget * 0.05, 20))
-                .withTouchpad(chooseTouchpad(budget * 0.05, 10))
-                .withBattery(chooseBattery(budget * 0.05, 500))
-                .withScreen(chooseScreen(budget * 0.05, 10))
+                .withPSU(choosePSU(budget * QUARTER, FOURHUNDRED))
+                .withCPU(chooseCPU(budget * TENPERCENT, TWOHUNDRED))
+                .withGPU(chooseGPU(budget * TENPERCENT, HUNDRED))
+                .withSSD(chooseSSD(budget * TENPERCENT, FORTY))
+                .withCase(chooseCase(budget * TENPERCENT))
+                .withRAM(chooseRAM(budget * TENPERCENT, FORTY))
+                .withMotherBoard(chooseMotherBoard(budget * TENPERCENT, THIRTY))
+                .withKeyboard(chooseKeyboard(budget * FIVEPERCENT, TWENTY))
+                .withTouchpad(chooseTouchpad(budget * FIVEPERCENT, TEN))
+                .withBattery(chooseBattery(budget * FIVEPERCENT, FIVEHUNDRED))
+                .withScreen(chooseScreen(budget * FIVEPERCENT, TEN))
                 .buildLaptop();
     }
 
     private Computer assembleWorkPC(double budget) {
         return new ComputerBuilder()
-                .withPSU(choosePSU(budget * 0.15, 400))
-                .withCPU(chooseCPU(budget * 0.25, 200))
-                .withGPU(chooseGPU(budget * 0.1, 100))
-                .withSSD(chooseSSD(budget * 0.1, 40))
-                .withCase(chooseCase(budget * 0.1))
-                .withRAM(chooseRAM(budget * 0.2, 40))
-                .withMotherBoard(chooseMotherBoard(budget * 0.1, 30))
+                .withPSU(choosePSU(budget * FIFTEENPERCENT, FOURHUNDRED))
+                .withCPU(chooseCPU(budget * TWENTYFIFEPERCENT, TWOHUNDRED))
+                .withGPU(chooseGPU(budget * TENPERCENT, HUNDRED))
+                .withSSD(chooseSSD(budget * TENPERCENT, FORTY))
+                .withCase(chooseCase(budget * TENPERCENT))
+                .withRAM(chooseRAM(budget * TWENTYPERCENT, FORTY))
+                .withMotherBoard(chooseMotherBoard(budget * TENPERCENT, THIRTY))
                 .buildPC();
 
     }
     private Computer assembleGamingPC(double budget) {
         return new ComputerBuilder()
-                .withPSU(choosePSU(budget * 0.15, 400))
-                .withCPU(chooseCPU(budget * 0.1, 200))
-                .withGPU(chooseGPU(budget * 0.25, 100))
-                .withSSD(chooseSSD(budget * 0.1, 40))
-                .withCase(chooseCase(budget * 0.1))
-                .withRAM(chooseRAM(budget * 0.2, 40))
-                .withMotherBoard(chooseMotherBoard(budget * 0.1, 30))
+                .withPSU(choosePSU(budget * FIFTEENPERCENT, FOURHUNDRED))
+                .withCPU(chooseCPU(budget * TENPERCENT, TWOHUNDRED))
+                .withGPU(chooseGPU(budget * TWENTYFIFEPERCENT, HUNDRED))
+                .withSSD(chooseSSD(budget * TENPERCENT, FORTY))
+                .withCase(chooseCase(budget * TENPERCENT))
+                .withRAM(chooseRAM(budget * TWENTYPERCENT, FORTY))
+                .withMotherBoard(chooseMotherBoard(budget * TENPERCENT, THIRTY))
                 .buildPC();
     }
     private Computer assembleRegularComputer(double budget) {
         return new ComputerBuilder()
-                .withPSU(choosePSU(budget * 0.15, 400))
-                .withCPU(chooseCPU(budget * 0.2, 200))
-                .withGPU(chooseGPU(budget * 0.15, 100))
-                .withSSD(chooseSSD(budget * 0.1, 40))
-                .withCase(chooseCase(budget * 0.1))
-                .withRAM(chooseRAM(budget * 0.2, 40))
-                .withMotherBoard(chooseMotherBoard(budget * 0.1, 30))
+                .withPSU(choosePSU(budget * FIFTEENPERCENT, FOURHUNDRED))
+                .withCPU(chooseCPU(budget * TWENTYPERCENT, TWOHUNDRED))
+                .withGPU(chooseGPU(budget * FIFTEENPERCENT, HUNDRED))
+                .withSSD(chooseSSD(budget * TENPERCENT, FORTY))
+                .withCase(chooseCase(budget * TENPERCENT))
+                .withRAM(chooseRAM(budget * TWENTYPERCENT, FORTY))
+                .withMotherBoard(chooseMotherBoard(budget * TENPERCENT, THIRTY))
                 .buildPC();
     }
 

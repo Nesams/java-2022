@@ -1,7 +1,5 @@
 package ee.taltech.iti0202.computerbuilder.components;
 
-import java.math.BigDecimal;
-
 public class Component {
     private static int idCount = -1;
     private int id;
@@ -19,7 +17,7 @@ public class Component {
 
     public Component(String name, Type type, int price, String manufacturer,
                      int performancePoints, int powerConsumption) {
-        this.id = idCount++ ;
+        this.id = idCount++;
         this.name = name;
         this.type = type;
         this.price = price;

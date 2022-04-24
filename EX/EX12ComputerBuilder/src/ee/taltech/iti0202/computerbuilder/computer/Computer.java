@@ -1,6 +1,13 @@
 package ee.taltech.iti0202.computerbuilder.computer;
 
-import ee.taltech.iti0202.computerbuilder.components.*;
+import ee.taltech.iti0202.computerbuilder.components.CPU;
+import ee.taltech.iti0202.computerbuilder.components.ComputerCase;
+import ee.taltech.iti0202.computerbuilder.components.GPU;
+import ee.taltech.iti0202.computerbuilder.components.HDD;
+import ee.taltech.iti0202.computerbuilder.components.MotherBoard;
+import ee.taltech.iti0202.computerbuilder.components.PSU;
+import ee.taltech.iti0202.computerbuilder.components.RAM;
+import ee.taltech.iti0202.computerbuilder.components.SSD;
 
 
 public class Computer {
@@ -8,13 +15,10 @@ public class Computer {
     private CPU cpu;
     private GPU gpu;
     private HDD hdd;
-    //private Keyboard keyboard;
     private MotherBoard motherBoard;
     private PSU psu;
     private RAM ram;
-    //private Screen screen;
     private SSD ssd;
-    //private Touchpad touchpad;
     private int id;
     private static int idCount = 0;
 
