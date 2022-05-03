@@ -28,13 +28,9 @@ public class Computer {
         this.cpu = null;
         this.gpu = null;
         this.hdd = null;
-        //this.keyboard = null;
         this.motherBoard = null;
-        //this.powerSupply = null;
         this.ram = null;
-        //this.screen = null;
         this.ssd = null;
-        //this.touchpad = null;
         idCount++;
     }
 
@@ -107,6 +103,15 @@ public class Computer {
     }
 
     public int getComputerValue() {
+        if (hdd == null) {
+            return computerCase.getPrice() + cpu.getPrice() + gpu.getPrice()
+                    + motherBoard.getPrice() + ram.getPrice() + ssd.getPrice();
+        }
+        if (ssd == null) {
+            return computerCase.getPrice() + cpu.getPrice() + gpu.getPrice()
+                    + hdd.getPrice() + motherBoard.getPrice() + ram.getPrice();
+
+        }
         return computerCase.getPrice() + cpu.getPrice() + gpu.getPrice()
                 + hdd.getPrice() + motherBoard.getPrice() + ram.getPrice() + ssd.getPrice();
     }

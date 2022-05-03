@@ -83,13 +83,6 @@ public class Component {
         this.powerConsumption = powerConsumption;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public void setId(int newId) {
-        this.id = newId;
-    }
     public void increaseAmount(int increaseAmount) {
         amount += increaseAmount;
     }

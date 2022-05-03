@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ComputerStore {
-    private final ComputerFactory computerFactory;
+    private ComputerFactory computerFactory;
     private String name;
     private BigDecimal balance;
     private BigDecimal profitMargin;
@@ -60,7 +60,7 @@ public class ComputerStore {
     public Computer purchaseComputer(Customer customer, UseCase useCase, Type type)
             throws NotEnoughMoneyException, ProductNotFoundException {
         try {
-            Computer computer = computerFactory.assembleComputer(customer.getBalance().intValue(), useCase, type);
+            Computer computer = computerFactory.assembleComputer(customer.getBalance().doubleValue(), useCase, type);
 
             customer.addComputer(computer);
 
@@ -118,6 +118,17 @@ public class ComputerStore {
                     * profitMargin.intValue() * componentsValues.get(i).getAmount();
         }
         return BigDecimal.valueOf(inventoryValue);
+    }
+
+    public Database getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(Database database) {
+        this.database = database;
+    }
+    public void setComputerFactory(ComputerFactory computerFactory) {
+        this.computerFactory = computerFactory;
     }
 
     public String getName() {
