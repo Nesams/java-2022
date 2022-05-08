@@ -33,41 +33,8 @@ public class Computer {
         this.ssd = null;
         idCount++;
     }
-
     public int getId() {
         return id;
-    }
-
-    public ComputerCase getComputerCase() {
-        return computerCase;
-    }
-
-    public CPU getCpu() {
-        return cpu;
-    }
-
-    public GPU getGpu() {
-        return gpu;
-    }
-
-    public HDD getHdd() {
-        return hdd;
-    }
-
-    public MotherBoard getMotherBoard() {
-        return motherBoard;
-    }
-
-    public PSU getPsu() {
-        return psu;
-    }
-
-    public RAM getRam() {
-        return ram;
-    }
-
-    public SSD getSsd() {
-        return ssd;
     }
 
     public void setComputerCase(ComputerCase computerCase) {

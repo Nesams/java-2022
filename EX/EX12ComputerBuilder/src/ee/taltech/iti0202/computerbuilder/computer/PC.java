@@ -27,46 +27,6 @@ public class PC extends Computer {
 }
 
     @Override
-    public HDD getHdd() {
-        return hdd;
-    }
-
-    @Override
-    public SSD getSsd() {
-        return ssd;
-    }
-
-    @Override
-    public ComputerCase getComputerCase() {
-        return computerCase;
-    }
-
-    @Override
-    public CPU getCpu() {
-        return cpu;
-    }
-
-    @Override
-    public GPU getGpu() {
-        return gpu;
-    }
-
-    @Override
-    public RAM getRam() {
-        return ram;
-    }
-
-    @Override
-    public MotherBoard getMotherBoard() {
-        return motherBoard;
-    }
-
-    @Override
-    public PSU getPsu() {
-        return psu;
-    }
-
-    @Override
     public int getId() {
         return super.getId();
     }

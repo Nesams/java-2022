@@ -1,20 +1,12 @@
 package ee.taltech.iti0202.computerbuilder.database;
 
-import com.google.gson.Gson;
-import ee.taltech.iti0202.computerbuilder.components.Battery;
+
 import ee.taltech.iti0202.computerbuilder.components.Component;
 import ee.taltech.iti0202.computerbuilder.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerbuilder.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerbuilder.exceptions.ProductNotFoundException;
-
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public final class Database {
@@ -23,8 +15,6 @@ public final class Database {
 
     public Database() {
     }
-
-    ;
 
     public static Database getInstance() {
         if (instance == null) {
@@ -41,26 +31,18 @@ public final class Database {
         }
     }
 
-//    public void deleteComponent(int id) throws ProductNotFoundException {
-//        if (!components.containsKey(id)) {
-//            throw new ProductNotFoundException();
-//        } else {
-//            components.remove(id);
-//        }
-//    }
-
-//    public void increaseComponentStock(int id, int amount) throws ProductNotFoundException,
-//            IllegalArgumentException, NullPointerException {
-//        try {
-//            if (amount <= 0) {
-//                throw new IllegalArgumentException();
-//            } else {
-//                this.components.get(id).increaseAmount(amount);
-//            }
-//        } catch (NullPointerException e) {
-//            throw new ProductNotFoundException();
-//        }
-//    }
+    public void increaseComponentStock(int id, int amount) throws ProductNotFoundException,
+            IllegalArgumentException, NullPointerException {
+        try {
+            if (amount <= 0) {
+                throw new IllegalArgumentException();
+            } else {
+                this.components.get(id).increaseAmount(amount);
+            }
+        } catch (NullPointerException e) {
+            throw new ProductNotFoundException();
+        }
+    }
 
     public void decreaseComponentStock(int id, int amount) throws OutOfStockException,
             ProductNotFoundException, IllegalArgumentException, NullPointerException {
@@ -142,32 +124,3 @@ public final class Database {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 }
-
-//    public void resetEntireDatabase() {
-//        components.clear();
-//    }
-
-//    public void saveToFile(String location) {
-//        Path path = Paths.get(location);
-//        Gson gson = new Gson();
-//        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-//            writer.write(gson.toJson(this, Database.class));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    public void loadFromFile(String location) {
-//        Path path = Paths.get(location);
-//        Gson gson = new Gson();
-//        instance = new Database();
-//        try (Scanner scanner = new Scanner(path)) {
-//            while (scanner.hasNext()) {
-//                String line = scanner.nextLine();
-//                instance = gson.fromJson(line, Database.class);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//}

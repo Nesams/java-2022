@@ -19,26 +19,6 @@ public class Laptop extends Computer {
         this.screen = null;
     }
 
-    public Battery getBattery() {
-
-        return battery;
-    }
-
-    public Keyboard getKeyboard() {
-
-        return keyboard;
-    }
-
-    public Touchpad getTouchpad() {
-
-        return touchpad;
-    }
-
-    public Screen getScreen() {
-
-        return screen;
-    }
-
     public void setBattery(Battery battery) {
 
         this.battery = battery;

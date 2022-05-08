@@ -18,10 +18,6 @@ public class Customer {
         this.balance = balance;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public BigDecimal getBalance() {
         return balance;
     }
@@ -37,10 +33,6 @@ public class Customer {
         if (!computers.contains(computer)) {
             this.computers.add(computer);
         }
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setBalance(BigDecimal balance) {

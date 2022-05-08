@@ -13,6 +13,7 @@ import ee.taltech.iti0202.computerbuilder.exceptions.ProductNotFoundException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -85,7 +86,7 @@ public class ComputerStore {
     public List<Component> getComponentsSortedByAmount() {
         return database.getComponents()
                 .values().stream()
-                .sorted(Comparator.comparing(Component::getAmount))
+                .sorted(Comparator.comparing(Component::getAmount).reversed())
                 .collect(Collectors.toList());
     }
 
@@ -99,7 +100,7 @@ public class ComputerStore {
     public List<Component> getComponentsSortedByPrice() {
         return database.getComponents()
                 .values().stream()
-                .sorted(Comparator.comparing(Component::getPrice))
+                .sorted(Comparator.comparing(Component::getPrice).reversed())
                 .collect(Collectors.toList());
     }
 
@@ -131,24 +132,8 @@ public class ComputerStore {
         this.computerFactory = computerFactory;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public BigDecimal getBalance() {
         return this.balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    public BigDecimal getProfitMargin() {
-        return this.profitMargin;
     }
 
     public void setProfitMargin(BigDecimal profitMargin) throws IllegalArgumentException {
