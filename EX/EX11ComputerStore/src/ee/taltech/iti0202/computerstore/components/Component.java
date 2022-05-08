@@ -10,7 +10,7 @@ public class Component {
     private String manufacturer;
     private int performancePoints;
     private int powerConsumption;
-    private int id;
+    private static int id;
 
     public enum Type {
         CPU, GPU, RAM, MOTHERBOARD, HDD, SSD, PSU, KEYBOARD, TOUCHPAD, SCREEN, BATTERY, FAN
@@ -30,6 +30,10 @@ public class Component {
 
     public int getId() {
         return id;
+    }
+
+    public static void setIdCount(int i) {
+        idCount = i;
     }
 
     public String getName() {

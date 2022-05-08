@@ -76,7 +76,7 @@ public final class Database {
     }
 
     public void resetEntireDatabase() {
-        Component.setId(-1);
+        Component.setIdCount(-1);
         components.clear();
     }
 
