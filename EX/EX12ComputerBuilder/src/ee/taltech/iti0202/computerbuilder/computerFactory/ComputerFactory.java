@@ -119,7 +119,7 @@ public final class ComputerFactory {
 
     private RAM chooseRAM(double budget, int power) {
         RAM ram = (RAM) this.database.getRAM().values().stream()
-                .filter(r -> r.getAmount() >= 1 && r.getPrice() <= (int)budget && r.getPowerConsumption() <= power)
+                .filter(r -> r.getAmount() >= 1 && r.getPrice() <= (int) budget && r.getPowerConsumption() <= power)
                 .sorted(Comparator.comparing(Component::getPerformancePoints).reversed()).toList().get(0);
         ram.decreaseAmount(1);
         return ram;
@@ -127,7 +127,7 @@ public final class ComputerFactory {
 
     private Screen chooseScreen(double budget, int power) {
         Screen screen = (Screen) this.database.getScreen().values().stream()
-                .filter(s -> s.getAmount() >= 1 && s.getPrice() <= (int)budget && s.getPowerConsumption() >= power)
+                .filter(s -> s.getAmount() >= 1 && s.getPrice() <= (int) budget && s.getPowerConsumption() >= power)
                 .sorted(Comparator.comparing(Component::getPowerConsumption))
                 .toList().get(0);
         screen.decreaseAmount(1);
@@ -136,7 +136,7 @@ public final class ComputerFactory {
 
     private MotherBoard chooseMotherBoard(double budget, int power) {
         MotherBoard motherBoard = (MotherBoard) this.database.getMotherBoards().values().stream()
-                .filter(m -> m.getAmount() >= 1 && m.getPrice() <= (int)budget && m.getPowerConsumption() <= power)
+                .filter(m -> m.getAmount() >= 1 && m.getPrice() <= (int) budget && m.getPowerConsumption() <= power)
                 .sorted(Comparator.comparing(Component::getPerformancePoints).reversed()).toList().get(0);
         motherBoard.decreaseAmount(1);
         return motherBoard;
@@ -144,7 +144,7 @@ public final class ComputerFactory {
 
     private Battery chooseBattery(double budget, int power) {
         Battery battery = (Battery) this.database.getBattery().values().stream()
-                .filter(b -> b.getAmount() >= 1 && b.getPrice() <= (int)budget && b.getPowerConsumption() >= power)
+                .filter(b -> b.getAmount() >= 1 && b.getPrice() <= (int) budget && b.getPowerConsumption() >= power)
                 .sorted(Comparator.comparing(Component::getPowerConsumption))
                 .toList().get(0);
         battery.decreaseAmount(1);
@@ -153,7 +153,7 @@ public final class ComputerFactory {
 
     private Touchpad chooseTouchpad(double budget, int power) {
         Touchpad touchpad = (Touchpad) this.database.getTouchpad().values().stream()
-                .filter(t -> t.getAmount() >= 1 && t.getPrice() <= (int)budget && t.getPowerConsumption() >= power)
+                .filter(t -> t.getAmount() >= 1 && t.getPrice() <= (int) budget && t.getPowerConsumption() >= power)
                 .sorted(Comparator.comparing(Component::getPowerConsumption))
                 .toList().get(0);
         touchpad.decreaseAmount(1);
@@ -162,7 +162,7 @@ public final class ComputerFactory {
 
     private Keyboard chooseKeyboard(double budget, int power) {
         Keyboard keyboard = (Keyboard) this.database.getKeyboards().values().stream()
-                .filter(k -> k.getAmount() >= 1 && k.getPrice() <= (int)budget && k.getPowerConsumption() <= power)
+                .filter(k -> k.getAmount() >= 1 && k.getPrice() <= (int) budget && k.getPowerConsumption() <= power)
                 .sorted(Comparator.comparing(Component::getPerformancePoints))
                 .toList().get(0);
         keyboard.decreaseAmount(1);
@@ -171,7 +171,7 @@ public final class ComputerFactory {
 
     private ComputerCase chooseCase(double budget) {
         ComputerCase computerCase = (ComputerCase) this.database.getComputerCases().values().stream()
-                .filter(c -> c.getAmount() >= 1 && c.getPrice() <= (int)budget)
+                .filter(c -> c.getAmount() >= 1 && c.getPrice() <= (int) budget)
                 .sorted(Comparator.comparing(Component::getPrice).reversed())
                 .toList().get(0);
         computerCase.decreaseAmount(1);
@@ -180,7 +180,7 @@ public final class ComputerFactory {
 
     private SSD chooseSSD(double budget, int power) {
         SSD ssd = (SSD) this.database.getSSD().values().stream()
-                .filter(s -> s.getAmount() >= 1 && s.getPrice() <= (int)budget && s.getPowerConsumption() <= power)
+                .filter(s -> s.getAmount() >= 1 && s.getPrice() <= (int) budget && s.getPowerConsumption() <= power)
                 .sorted(Comparator.comparing(Component::getPerformancePoints).reversed())
                 .toList().get(0);
         ssd.decreaseAmount(1);
@@ -189,7 +189,7 @@ public final class ComputerFactory {
 
     private GPU chooseGPU(double budget, int power) {
         GPU gpu = (GPU) this.database.getGPU().values().stream()
-                .filter(g -> g.getAmount() >= 1 && g.getPrice() <= (int)budget && g.getPowerConsumption() <= power)
+                .filter(g -> g.getAmount() >= 1 && g.getPrice() <= (int) budget && g.getPowerConsumption() <= power)
                 .sorted(Comparator.comparing(Component::getPerformancePoints).reversed())
                 .toList().get(0);
         gpu.decreaseAmount(1);
@@ -198,7 +198,7 @@ public final class ComputerFactory {
 
     private CPU chooseCPU(double budget, int power) {
         CPU cpu = (CPU) this.database.getCPU().values().stream()
-                .filter(c -> c.getAmount() >= 1 && c.getPrice() <= (int)budget && c.getPowerConsumption() <= power)
+                .filter(c -> c.getAmount() >= 1 && c.getPrice() <= (int) budget && c.getPowerConsumption() <= power)
                 .sorted(Comparator.comparing(Component::getPerformancePoints).reversed())
                 .toList().get(0);
         cpu.decreaseAmount(1);
@@ -207,7 +207,7 @@ public final class ComputerFactory {
 
     private PSU choosePSU(double budget, int power) {
         PSU psu = (PSU) this.database.getPSU().values().stream()
-                .filter(p -> p.getAmount() >= 1 && p.getPrice() <= (int)budget && p.getPowerConsumption() >= power)
+                .filter(p -> p.getAmount() >= 1 && p.getPrice() <= (int) budget && p.getPowerConsumption() >= power)
                 .sorted(Comparator.comparing(Component::getPowerConsumption).reversed())
                 .toList().get(0);
         psu.decreaseAmount(1);

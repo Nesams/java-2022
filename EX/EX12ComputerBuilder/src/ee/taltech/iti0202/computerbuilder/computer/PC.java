@@ -1,6 +1,13 @@
 package ee.taltech.iti0202.computerbuilder.computer;
 
-import ee.taltech.iti0202.computerbuilder.components.*;
+import ee.taltech.iti0202.computerbuilder.components.CPU;
+import ee.taltech.iti0202.computerbuilder.components.ComputerCase;
+import ee.taltech.iti0202.computerbuilder.components.GPU;
+import ee.taltech.iti0202.computerbuilder.components.HDD;
+import ee.taltech.iti0202.computerbuilder.components.MotherBoard;
+import ee.taltech.iti0202.computerbuilder.components.PSU;
+import ee.taltech.iti0202.computerbuilder.components.RAM;
+import ee.taltech.iti0202.computerbuilder.components.SSD;
 
 public class PC extends Computer {
 

@@ -37,7 +37,7 @@ public class ComputerStoreTests {
     final int thirty = 30;
     final int fivehundred = 500;
     final int twenty = 20;
-    final int forty= 40;
+    final int forty = 40;
     final int hundred = 100;
     final int twohundred = 200;
     final int threehundred = 300;
@@ -50,17 +50,20 @@ public class ComputerStoreTests {
     final int inventoryValue = 2720;
 
     Battery battery = new Battery("b1", Component.Type.BATTERY, fifty, "m1", thirty, fivehundred);
-    ComputerCase computerCase = new ComputerCase("case1", Component.Type.CASE, twenty, "m2", twenty, fivehundred);
+    ComputerCase computerCase = new ComputerCase("case1", Component.Type.CASE, twenty, "m2", twenty,
+            fivehundred);
     CPU cpu = new CPU("cpu1", Component.Type.CPU, hundred, "m3", fifty, hundred);
     GPU gpu = new GPU("gpu1", Component.Type.GPU, hundred, "m4", thirty, fifty);
     HDD hdd = new HDD("hdd1", Component.Type.HDD, hundredfifty, "m5", forty, threehundred);
     Keyboard keyboard = new Keyboard("keyboard", Component.Type.KEYBOARD, hundred, "m6", fifty, ten);
-    MotherBoard motherBoard = new MotherBoard("motherBoard", Component.Type.MOTHERBOARD, twohundred, "m7", seventy, thirty);
+    MotherBoard motherBoard = new MotherBoard("motherBoard", Component.Type.MOTHERBOARD, twohundred,
+            "m7", seventy, thirty);
     PSU psu = new PSU("psu", Component.Type.PSU, twohundredfifty, "m8", fifty, fivehundred);
     RAM ram = new RAM("ram", Component.Type.RAM, seventy, "m9", sixty, thirty);
     Screen screen = new Screen("screen", Component.Type.SCREEN, fifty, "m10", fifty, threehundred);
     SSD ssd = new SSD("ssd", Component.Type.SSD, hundred, "m11", forty, forty);
-    Touchpad touchpad = new Touchpad("touchpad", Component.Type.TOUCHPAD, seventy, "m12", fifty, threehundred);
+    Touchpad touchpad = new Touchpad("touchpad", Component.Type.TOUCHPAD, seventy, "m12", fifty,
+            threehundred);
 
     Database database1 = new Database();
 
@@ -79,7 +82,8 @@ public class ComputerStoreTests {
     @Test
     void testAssembleWorkPC() throws ProductAlreadyExistsException, NotEnoughMoneyException, ProductNotFoundException {
 
-        ComputerStore computerStore1 = new ComputerStore("store1", BigDecimal.valueOf(fivehundred), BigDecimal.valueOf(2));
+        ComputerStore computerStore1 = new ComputerStore("store1", BigDecimal.valueOf(fivehundred),
+                BigDecimal.valueOf(2));
 
         database1.saveComponent(battery);
         database1.saveComponent(computerCase);
@@ -116,7 +120,8 @@ public class ComputerStoreTests {
     void testAssembleWorkLaptop() throws ProductAlreadyExistsException,
             NotEnoughMoneyException, ProductNotFoundException {
 
-        ComputerStore computerStore2 = new ComputerStore("store2", BigDecimal.valueOf(fivehundred), BigDecimal.valueOf(2));
+        ComputerStore computerStore2 = new ComputerStore("store2", BigDecimal.valueOf(fivehundred),
+                BigDecimal.valueOf(2));
 
         database1.saveComponent(battery);
         database1.saveComponent(computerCase);
@@ -148,9 +153,11 @@ public class ComputerStoreTests {
     }
 
     @Test
-    void testAssembleGamingPC() throws ProductAlreadyExistsException, NotEnoughMoneyException, ProductNotFoundException {
+    void testAssembleGamingPC() throws ProductAlreadyExistsException, NotEnoughMoneyException,
+            ProductNotFoundException {
 
-        ComputerStore computerStore3 = new ComputerStore("store3", BigDecimal.valueOf(fivehundred), BigDecimal.valueOf(2));
+        ComputerStore computerStore3 = new ComputerStore("store3", BigDecimal.valueOf(fivehundred),
+                BigDecimal.valueOf(2));
 
         database1.saveComponent(battery);
         database1.saveComponent(computerCase);
@@ -181,9 +188,11 @@ public class ComputerStoreTests {
     }
 
     @Test
-    void testPurchaseComponent() throws ProductAlreadyExistsException, NotEnoughMoneyException, ProductNotFoundException, OutOfStockException {
+    void testPurchaseComponent() throws ProductAlreadyExistsException, NotEnoughMoneyException,
+            ProductNotFoundException, OutOfStockException {
 
-        ComputerStore computerStore4 = new ComputerStore("store4", BigDecimal.valueOf(fivehundred), BigDecimal.valueOf(2));
+        ComputerStore computerStore4 = new ComputerStore("store4", BigDecimal.valueOf(fivehundred),
+                BigDecimal.valueOf(2));
 
         database1.saveComponent(battery);
         database1.saveComponent(computerCase);
@@ -220,7 +229,8 @@ public class ComputerStoreTests {
     void testSortingStoresDatabase() throws ProductAlreadyExistsException, ProductNotFoundException {
         Database database2 = new Database();
 
-        ComputerStore computerStore3 = new ComputerStore("store3", BigDecimal.valueOf(fivehundred), BigDecimal.valueOf(2));
+        ComputerStore computerStore3 = new ComputerStore("store3", BigDecimal.valueOf(fivehundred),
+                BigDecimal.valueOf(2));
 
         database2.saveComponent(battery);
         database2.saveComponent(computerCase);
