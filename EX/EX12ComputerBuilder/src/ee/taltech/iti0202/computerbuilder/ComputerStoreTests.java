@@ -31,35 +31,55 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ComputerStoreTests {
-    Battery battery = new Battery("b1", Component.Type.BATTERY, 50, "m1", 30, 505);
-    ComputerCase computerCase = new ComputerCase("case1", Component.Type.CASE, 20, "m2", 20, 500);
-    CPU cpu = new CPU("cpu1", Component.Type.CPU, 100, "m3", 50, 100);
-    GPU gpu = new GPU("gpu1", Component.Type.GPU, 100, "m4", 30, 50);
-    HDD hdd = new HDD("hdd1", Component.Type.HDD, 150, "m5", 40, 300);
-    Keyboard keyboard = new Keyboard("keyboard", Component.Type.KEYBOARD, 100, "m6", 50, 10);
-    MotherBoard motherBoard = new MotherBoard("motherBoard", Component.Type.MOTHERBOARD, 200, "m7", 70, 30);
-    PSU psu = new PSU("psu", Component.Type.PSU, 250, "m8", 50, 500);
-    RAM ram = new RAM("ram", Component.Type.RAM, 70, "m9", 60, 30);
-    Screen screen = new Screen("screen", Component.Type.SCREEN, 50, "m10", 50, 300);
-    SSD ssd = new SSD("ssd", Component.Type.SSD, 100, "m11", 40, 40);
-    Touchpad touchpad = new Touchpad("touchpad", Component.Type.TOUCHPAD, 70, "m12", 50, 300);
+    public final int TEN = 10;
+    public final int TWELVE = 12;
+    public final int FIFTY = 50;
+    public final int THIRTY = 30;
+    public final int FIVEHUNDRED = 500;
+    public final int TWENTY = 20;
+    public final int FORTY = 40;
+    public final int HUNDRED = 100;
+    public final int TWOHUNDRED = 200;
+    public final int THREEHUNDRED = 300;
+    public final int HUNDREDFIFTY = 150;
+    public final int SEVENTY = 70;
+    public final int SIXTY = 60;
+    public final int TWOHUNDREDFIFTY = 250;
+    public final int THREETHOUSAND = 3000;
+    public final int FOURTHOUSAND = 4000;
+    public final int INVENTORYVALUE = 2720;
+
+    Battery battery = new Battery("b1", Component.Type.BATTERY, FIFTY, "m1", THIRTY, FIVEHUNDRED);
+    ComputerCase computerCase = new ComputerCase("case1", Component.Type.CASE, TWENTY, "m2", TWENTY, FIVEHUNDRED);
+    CPU cpu = new CPU("cpu1", Component.Type.CPU, HUNDRED, "m3", FIFTY, HUNDRED);
+    GPU gpu = new GPU("gpu1", Component.Type.GPU, HUNDRED, "m4", THIRTY, FIFTY);
+    HDD hdd = new HDD("hdd1", Component.Type.HDD, HUNDREDFIFTY, "m5", FORTY, THREEHUNDRED);
+    Keyboard keyboard = new Keyboard("keyboard", Component.Type.KEYBOARD, HUNDRED, "m6", FIFTY, TEN);
+    MotherBoard motherBoard = new MotherBoard("motherBoard", Component.Type.MOTHERBOARD, TWOHUNDRED, "m7", SEVENTY, THIRTY);
+    PSU psu = new PSU("psu", Component.Type.PSU, TWOHUNDREDFIFTY, "m8", FIFTY, FIVEHUNDRED);
+    RAM ram = new RAM("ram", Component.Type.RAM, SEVENTY, "m9", SIXTY, THIRTY);
+    Screen screen = new Screen("screen", Component.Type.SCREEN, FIFTY, "m10", FIFTY, THREEHUNDRED);
+    SSD ssd = new SSD("ssd", Component.Type.SSD, HUNDRED, "m11", FORTY, FORTY);
+    Touchpad touchpad = new Touchpad("touchpad", Component.Type.TOUCHPAD, SEVENTY, "m12", FIFTY, THREEHUNDRED);
+
+    Database database1 = new Database();
 
     @Test
     void testComponentConstructor() {
         Assertions.assertEquals(battery.getId(), 0);
+        Assertions.assertEquals(computerCase.getId(), 1);
         Assertions.assertEquals(computerCase.getName(), "case1");
         Assertions.assertEquals(cpu.getType(), Component.Type.CPU);
-        Assertions.assertEquals(gpu.getPrice(), 100);
+        Assertions.assertEquals(gpu.getPrice(), HUNDRED);
         Assertions.assertEquals(hdd.getManufacturer(), "m5");
-        Assertions.assertEquals(keyboard.getPerformancePoints(), 50);
-        Assertions.assertEquals(motherBoard.getPowerConsumption(), 30);
+        Assertions.assertEquals(keyboard.getPerformancePoints(), FIFTY);
+        Assertions.assertEquals(motherBoard.getPowerConsumption(), THIRTY);
 
     }
     @Test
     void testAssembleWorkPC() throws ProductAlreadyExistsException, NotEnoughMoneyException, ProductNotFoundException {
-        Database database1 = new Database();
 
-        ComputerStore computerStore1 = new ComputerStore("store1", BigDecimal.valueOf(500), BigDecimal.valueOf(2));
+        ComputerStore computerStore1 = new ComputerStore("store1", BigDecimal.valueOf(FIVEHUNDRED), BigDecimal.valueOf(2));
 
         database1.saveComponent(battery);
         database1.saveComponent(computerCase);
@@ -76,13 +96,13 @@ public class ComputerStoreTests {
 
         computerStore1.setDatabase(database1);
 
-        Assertions.assertEquals(computerStore1.getBalance(), BigDecimal.valueOf(500));
+        Assertions.assertEquals(computerStore1.getBalance(), BigDecimal.valueOf(FIVEHUNDRED));
 
         ComputerFactory computerFactory = new ComputerFactory(computerStore1);
 
         computerStore1.setComputerFactory(computerFactory);
 
-        Customer customer1 = new Customer("Kati", BigDecimal.valueOf(3000));
+        Customer customer1 = new Customer("Kati", BigDecimal.valueOf(THREETHOUSAND));
 
         Computer pc1 = computerStore1.purchaseComputer(customer1, UseCase.WORKSTATION, Type.PC);
 
@@ -95,9 +115,8 @@ public class ComputerStoreTests {
     @Test
     void testAssembleWorkLaptop() throws ProductAlreadyExistsException,
             NotEnoughMoneyException, ProductNotFoundException {
-        Database database1 = new Database();
 
-        ComputerStore computerStore2 = new ComputerStore("store2", BigDecimal.valueOf(500), BigDecimal.valueOf(2));
+        ComputerStore computerStore2 = new ComputerStore("store2", BigDecimal.valueOf(FIVEHUNDRED), BigDecimal.valueOf(2));
 
         database1.saveComponent(battery);
         database1.saveComponent(computerCase);
@@ -118,7 +137,7 @@ public class ComputerStoreTests {
 
         computerStore2.setComputerFactory(computerFactory);
 
-        Customer customer2 = new Customer("Mari", BigDecimal.valueOf(20000));
+        Customer customer2 = new Customer("Mari", BigDecimal.valueOf(THREETHOUSAND));
 
         Computer laptop1 = computerStore2.purchaseComputer(customer2, UseCase.WORKSTATION, Type.LAPTOP);
 
@@ -126,16 +145,12 @@ public class ComputerStoreTests {
 
 
         Assertions.assertEquals(customer2.getComputers(), laptops);
-
-
-
     }
 
     @Test
     void testAssembleGamingPC() throws ProductAlreadyExistsException, NotEnoughMoneyException, ProductNotFoundException {
-        Database database1 = new Database();
 
-        ComputerStore computerStore3 = new ComputerStore("store3", BigDecimal.valueOf(500), BigDecimal.valueOf(2));
+        ComputerStore computerStore3 = new ComputerStore("store3", BigDecimal.valueOf(FIVEHUNDRED), BigDecimal.valueOf(2));
 
         database1.saveComponent(battery);
         database1.saveComponent(computerCase);
@@ -156,7 +171,7 @@ public class ComputerStoreTests {
 
         computerStore3.setComputerFactory(computerFactory);
 
-        Customer customer3 = new Customer("Mati", BigDecimal.valueOf(40000));
+        Customer customer3 = new Customer("Mati", BigDecimal.valueOf(FOURTHOUSAND));
 
         Computer gamingComputer = computerStore3.purchaseComputer(customer3, UseCase.GAMING, Type.PC);
 
@@ -167,9 +182,8 @@ public class ComputerStoreTests {
 
     @Test
     void testPurchaseComponent() throws ProductAlreadyExistsException, NotEnoughMoneyException, ProductNotFoundException, OutOfStockException {
-        Database database1 = new Database();
 
-        ComputerStore computerStore4 = new ComputerStore("store4", BigDecimal.valueOf(500), BigDecimal.valueOf(2));
+        ComputerStore computerStore4 = new ComputerStore("store4", BigDecimal.valueOf(FIVEHUNDRED), BigDecimal.valueOf(2));
 
         database1.saveComponent(battery);
         database1.saveComponent(computerCase);
@@ -186,13 +200,13 @@ public class ComputerStoreTests {
 
         computerStore4.setDatabase(database1);
 
-        Assertions.assertEquals(computerStore4.getBalance(), BigDecimal.valueOf(500));
+        Assertions.assertEquals(computerStore4.getBalance(), BigDecimal.valueOf(FIVEHUNDRED));
 
         ComputerFactory computerFactory = new ComputerFactory(computerStore4);
 
         computerStore4.setComputerFactory(computerFactory);
 
-        Customer customer4 = new Customer("Kati", BigDecimal.valueOf(3000));
+        Customer customer4 = new Customer("Kati", BigDecimal.valueOf(THREETHOUSAND));
 
         Component component1 = computerStore4.purchaseComponent(battery.getId(), customer4);
 
@@ -206,7 +220,7 @@ public class ComputerStoreTests {
     void testSortingStoresDatabase() throws ProductAlreadyExistsException, ProductNotFoundException {
         Database database2 = new Database();
 
-        ComputerStore computerStore3 = new ComputerStore("store3", BigDecimal.valueOf(500), BigDecimal.valueOf(2));
+        ComputerStore computerStore3 = new ComputerStore("store3", BigDecimal.valueOf(FIVEHUNDRED), BigDecimal.valueOf(2));
 
         database2.saveComponent(battery);
         database2.saveComponent(computerCase);
@@ -225,7 +239,7 @@ public class ComputerStoreTests {
 
         computerStore3.setDatabase(database2);
 
-        Assertions.assertEquals(computerStore3.getAvailableComponents().size(), 12);
+        Assertions.assertEquals(computerStore3.getAvailableComponents().size(), TWELVE);
 
         Assertions.assertEquals(computerStore3.getComponentsSortedByAmount().get(0), battery);
 
@@ -235,7 +249,7 @@ public class ComputerStoreTests {
 
         Assertions.assertEquals(computerStore3.filterByType(Component.Type.BATTERY).size(), 1);
 
-        Assertions.assertEquals(computerStore3.getInventoryValue().intValue(), 2720);
+        Assertions.assertEquals(computerStore3.getInventoryValue().intValue(), INVENTORYVALUE);
     }
 
 }
