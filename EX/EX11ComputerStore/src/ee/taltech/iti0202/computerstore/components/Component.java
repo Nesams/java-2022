@@ -18,7 +18,7 @@ public class Component {
 
     public Component(String name, Type type, BigDecimal price, String manufacturer,
                      int performancePoints, int powerConsumption) {
-        this.id = idCount ++;
+        this.id = idCount++;
         this.name = name;
         this.type = type;
         this.price = price;
