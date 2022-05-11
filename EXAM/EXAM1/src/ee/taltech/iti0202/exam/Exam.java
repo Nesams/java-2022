@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.exam;
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +58,13 @@ public class Exam {
      * @return decoded message
      */
     public static String decodeMessage(String message) {
-        return "";
+        String alpha = "abcdefghijklmnopqrstuvwxyz";
+        String final_string = "";
+        for(int i = 0; i < message.length(); i++) {
+            if(message.charAt(i)) {
+
+            }
+        }
     }
     public static void main(String[] args) {
         ArrayList numbers = new ArrayList(Arrays.asList(2, 2, 2, 1, 3, 2, 1, 2));
