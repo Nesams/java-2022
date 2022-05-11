@@ -34,6 +34,8 @@ public class Order {
     }
 
     public void addProducts(Product product) {
-        products.add(product);
+        if (!cancelled) {
+            products.add(product);
+        }
     }
 }
