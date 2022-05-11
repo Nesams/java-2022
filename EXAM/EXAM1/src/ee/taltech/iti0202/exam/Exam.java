@@ -66,10 +66,10 @@ public class Exam {
             }
         }
     }
-    public static void main(String[] args) {
-        ArrayList numbers = new ArrayList(Arrays.asList(2, 2, 2, 1, 3, 2, 1, 2));
-        System.out.println(countSingleTwos(numbers));
-    }
+//    public static void main(String[] args) {
+//        ArrayList numbers = new ArrayList(Arrays.asList(2, 2, 2, 1, 3, 2, 1, 2));
+//        System.out.println(countSingleTwos(numbers));
+//    }
 
 
 }
