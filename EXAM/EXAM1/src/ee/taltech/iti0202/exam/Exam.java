@@ -19,8 +19,14 @@ public class Exam {
         int twos = 0;
         for (int i = 0; i < numbers.size(); i++) {
             if (i == 0) {
-                if (numbers.get(i) != numbers.get(i + 1) && numbers.get(i) == 2) {
-                    twos++;
+                if (numbers.size() != 1) {
+                    if (numbers.get(i) != numbers.get(i + 1) && numbers.get(i) == 2) {
+                        twos++;
+                    }
+                } else {
+                    if (numbers.get(i) == 2) {
+                        twos++;
+                    }
                 }
             } else {
                 if (i != numbers.size() - 1) {
