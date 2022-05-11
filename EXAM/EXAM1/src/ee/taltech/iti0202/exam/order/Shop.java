@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Shop {
-    private static ArrayList<Product> products;
+    private static ArrayList<Product> products = new ArrayList<>();
     private static int idCounter = 1;
     private static HashMap<Integer, Order> orders = new HashMap<>();
     private static HashMap<Order, Integer> orderss = new HashMap<>();
