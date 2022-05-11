@@ -12,6 +12,7 @@ public class Shop {
     private static HashMap<Integer, Order> orders = new HashMap<>();
     private static HashMap<Order, Integer> orderss = new HashMap<>();
     private  static HashMap<String, ArrayList<Product>> productMap = new HashMap<>();
+    private static ArrayList<Product> usedProducts = new ArrayList<>();
     public Shop() {
         
     }
@@ -44,6 +45,9 @@ public class Shop {
         if (orderss.containsValue(orderNumber)) {
             if (productMap.containsKey(itemName)) {
                 orders.get(orderNumber).addProducts(getCheapestProduct(itemName));
+                usedProducts.add(getCheapestProduct(itemName));
+                products.remove(getCheapestProduct(itemName));
+                productMap.get(getCheapestProduct(itemName).getName()).remove(getCheapestProduct(itemName))
                 return true;
             }
         }
@@ -80,11 +84,17 @@ public class Shop {
             return false;
         } else {
             orders.get(orderNumber).cancelled();
+            for (Product product : orders.get(orderNumber).getProducts()) {
+                usedProducts.remove(product);
+                products.add(product);
+                productMap.get(product.getName()).add(product);
+
+            }
             return true;
         }
     }
 
     public List<Product> getAvailableProducts() {
-        return null;
+        return products;
     }
 }
