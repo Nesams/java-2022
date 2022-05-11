@@ -51,10 +51,9 @@ public class Shop {
     }
 
     public Product getCheapestProduct(String itemName) {
-        Product product = productMap.get(itemName).stream()
+        return productMap.get(itemName).stream()
                 .sorted(Comparator.comparing(Product::getPrice))
                 .collect(Collectors.toList()).get(0);
-        return product;
     }
 
     public int getOrderSum(int orderNumber) {
