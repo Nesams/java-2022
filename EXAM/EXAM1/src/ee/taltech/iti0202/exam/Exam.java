@@ -65,17 +65,13 @@ public class Exam {
 //     */
 //    public static String decodeMessage(String message) {
 //        String alpha = "abcdefghijklmnopqrstuvwxyz";
-//        String final_string = "";
-//        for(int i = 0; i < message.length(); i++) {
-//            if(message.charAt(i)) {
-//
-//            }
-//        }
+//        ArrayList<String> alphab = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"));
+//        message.re
 //    }
-//    public static void main(String[] args) {
-//        ArrayList numbers = new ArrayList(Arrays.asList(2, 2, 2, 1, 3, 2, 1, 2));
-//        System.out.println(countSingleTwos(numbers));
-//    }
+////    public static void main(String[] args) {
+////        ArrayList numbers = new ArrayList(Arrays.asList(2, 2, 2, 1, 3, 2, 1, 2));
+////        System.out.println(countSingleTwos(numbers));
+////    }
 
 
 }

@@ -57,11 +57,31 @@ public class Shop {
     }
 
     public int getOrderSum(int orderNumber) {
+        if (orders.containsKey(orderNumber)) {
+            int orderSum = 0;
+            ArrayList<Product> orderItems = orders.get(orderNumber).getProducts();
+            if (orderItems.size() == 0) {
+                return 0;
+            } else {
+                for (Product product : orderItems) {
+                    orderSum += product.getPrice();
+                }
+                return orderSum;
+            }
+        }
         return -1;
     }
 
     public boolean cancelOrder(int orderNumber) {
-        return false;
+        if (!orders.containsKey(orderNumber)) {
+            return false;
+        }
+        else if (orders.get(orderNumber).getCancelled()) {
+            return false;
+        } else {
+            orders.get(orderNumber).cancelled();
+            return true;
+        }
     }
 
     public List<Product> getAvailableProducts() {
