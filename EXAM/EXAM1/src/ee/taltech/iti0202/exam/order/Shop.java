@@ -47,7 +47,7 @@ public class Shop {
                 orders.get(orderNumber).addProducts(getCheapestProduct(itemName));
                 usedProducts.add(getCheapestProduct(itemName));
                 products.remove(getCheapestProduct(itemName));
-                productMap.get(getCheapestProduct(itemName).getName()).remove(getCheapestProduct(itemName))
+                productMap.get(getCheapestProduct(itemName).getName()).remove(getCheapestProduct(itemName));
                 return true;
             }
         }
