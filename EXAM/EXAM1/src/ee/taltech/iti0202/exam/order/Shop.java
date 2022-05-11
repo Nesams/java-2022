@@ -44,20 +44,26 @@ public class Shop {
     public boolean addProductToOrder(int orderNumber, String itemName) {
         if (orderss.containsValue(orderNumber)) {
             if (productMap.containsKey(itemName)) {
-                orders.get(orderNumber).addProducts(getCheapestProduct(itemName));
-                usedProducts.add(getCheapestProduct(itemName));
-                products.remove(getCheapestProduct(itemName));
-                productMap.get(getCheapestProduct(itemName).getName()).remove(getCheapestProduct(itemName));
-                return true;
+                if (getCheapestProduct(itemName) != null) {
+                    orders.get(orderNumber).addProducts(getCheapestProduct(itemName));
+                    usedProducts.add(getCheapestProduct(itemName));
+                    products.remove(getCheapestProduct(itemName));
+                    productMap.get(getCheapestProduct(itemName).getName()).remove(getCheapestProduct(itemName));
+                    return true;
+                }
+                return false;
             }
         }
         return false;
     }
 
     public Product getCheapestProduct(String itemName) {
-        return productMap.get(itemName).stream()
-                .sorted(Comparator.comparing(Product::getPrice))
-                .collect(Collectors.toList()).get(0);
+        if (productMap.get(itemName).size() != 0) {
+            return productMap.get(itemName).stream()
+                    .sorted(Comparator.comparing(Product::getPrice))
+                    .collect(Collectors.toList()).get(0);
+        }
+        return null;
     }
 
     public int getOrderSum(int orderNumber) {
@@ -97,4 +103,41 @@ public class Shop {
     public List<Product> getAvailableProducts() {
         return products;
     }
+//    public static void main(String[] args) {
+//
+//        Shop topShop = new Shop();
+//        Product p1 = new Product("TV", 100);
+//        Product p2 = new Product("Radio", 60);
+//        Product p3 = new Product("TV", 90);
+//        topShop.addProduct(p1);
+//        topShop.addProduct(p2);
+//        topShop.addProduct(p3);
+//        int orderNumber1 = topShop.createNewOrder();
+//        System.out.println(orderNumber1); // 1
+//        System.out.println(topShop.addProductToOrder(orderNumber1, "Radio")); // true
+//        System.out.println(topShop.addProductToOrder(orderNumber1, "Cheese")); // false
+//        System.out.println(topShop.addProductToOrder(orderNumber1, "Radio")); // false
+//
+//        Product p4 = new Product("TV", 100);
+//        System.out.println(topShop.addProduct(p3)); // false - same product instance not allowed
+//        System.out.println(topShop.addProduct(p4)); // true - another product with same values is allowed
+//
+//        int orderNumber2 = topShop.createNewOrder();
+//        System.out.println(orderNumber2);
+//        System.out.println(topShop.addProductToOrder(orderNumber2, "TV")); // true
+//        System.out.println(topShop.getOrderSum(orderNumber2)); // 90
+//        System.out.println(topShop.addProductToOrder(orderNumber2, "TV")); // true
+//        System.out.println(topShop.getOrderSum(orderNumber2)); // 190
+//        System.out.println(topShop.addProductToOrder(orderNumber2, "TV")); // true
+//        System.out.println(topShop.getOrderSum(orderNumber2)); // 290
+//        System.out.println(topShop.addProductToOrder(orderNumber2, "TV")); // false
+//        System.out.println(topShop.getOrderSum(orderNumber2)); // 290
+//
+//// cancel order
+//        topShop.cancelOrder(orderNumber1); // free all the products from order 1
+//        int orderNumber3 = topShop.createNewOrder();
+//        System.out.println(orderNumber3); // 3
+//        System.out.println(topShop.addProductToOrder(orderNumber3, "Radio")); // true
+//        System.out.println(topShop.getOrderSum(orderNumber3)); // 60
+//    }
 }
