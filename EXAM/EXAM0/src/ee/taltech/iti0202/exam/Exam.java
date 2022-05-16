@@ -24,7 +24,7 @@ public class Exam {
                 finalList.add(i);
                 lastNum = i;
             } else {
-                if (nums.indexOf(i) == 0) {
+                if (nums.indexOf(i) == 0 || lastNum == 0) {
                     finalList.add(i);
                 } else {
                     finalList.add(lastNum);
@@ -71,7 +71,7 @@ public class Exam {
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer> nums = new ArrayList<>(Arrays.asList(10, 1, 20, 2));
+        ArrayList<Integer> nums = new ArrayList<>(Arrays.asList(1, 0, 9, 20));
         System.out.println(tenRun(nums));
         System.out.println(mixedPairs("bBaacA"));
     }
