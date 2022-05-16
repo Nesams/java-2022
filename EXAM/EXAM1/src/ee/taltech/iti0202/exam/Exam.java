@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.exam;
-
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Exam {
 
@@ -20,7 +17,7 @@ public class Exam {
         for (int i = 0; i < numbers.size(); i++) {
             if (i == 0) {
                 if (numbers.size() != 1) {
-                    if (numbers.get(i) != numbers.get(i + 1) && numbers.get(i) == 2) {
+                    if (!Objects.equals(numbers.get(i), numbers.get(i + 1)) && numbers.get(i) == 2) {
                         twos++;
                     }
                 } else {
@@ -41,37 +38,62 @@ public class Exam {
             }
         }
         return twos;
-
     }
 
-//    /**
-//     * Write a method that takes a string and decodes it.
-//     * The string may contain some numbers.
-//     * All numbers need to be replaced with a corresponding letter from the alphabet.
-//     * Each number n references to n-th character of the lowercase alphabet (abcdefghijklmnopqrstuvwxyz).
-//     * If n is out of bounds, then it should start from "a" again. (0, 26 and 52 correspond to "a")
-//     *
-//     * Examples:
-//     * decodeMessage("0") => "a"
-//     * decodeMessage("0b2d4f6") => "abcdefg"
-//     * decodeMessage("h8") => "hi"
-//     * decodeMessage("11o11") => "lol"
-//     * decodeMessage("h8 th4r30 p17ogramme43") => "hi there programmer"
-//     * decodeMessage(":14 19h8s 8s 84e45t34n58 54oo37e523423") => ":o this is getting cooler"
-//     * decodeMessage("This one doesn't need to be changed!") => "This one doesn't need to be changed!"
-//     *
-//     * @param message the message that needs to be decoded
-//     * @return decoded message
-//     */
-//    public static String decodeMessage(String message) {
-//        String alpha = "abcdefghijklmnopqrstuvwxyz";
-//        ArrayList<String> alphab = new ArrayList<>(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"));
-//        message.re
-//    }
-////    public static void main(String[] args) {
-////        ArrayList numbers = new ArrayList(Arrays.asList(2, 2, 2, 1, 3, 2, 1, 2));
-////        System.out.println(countSingleTwos(numbers));
-////    }
+    /**
+     * Write a method that takes a string and decodes it.
+     * The string may contain some numbers. 
+     * All numbers need to be replaced with a corresponding letter from the alphabet.
+     * Each number n references to n-th character of the lowercase alphabet (abcdefghijklmnopqrstuvwxyz).
+     * If n is out of bounds, then it should start from "a" again. (0, 26 and 52 correspond to "a")
+     *
+     * Examples:
+     * decodeMessage("0") => "a"
+     * decodeMessage("0b2d4f6") => "abcdefg"
+     * decodeMessage("h8") => "hi"
+     * decodeMessage("11o11") => "lol"
+     * decodeMessage("h8 th4r30 p17ogramme43") => "hi there programmer"
+     * decodeMessage(":14 19h8s 8s 84e45t34n58 54oo37e523423") => ":o this is getting cooler"
+     * decodeMessage("This one doesn't need to be changed!") => "This one doesn't need to be changed!"
+     *
+     * @param message the message that needs to be decoded
+     * @return decoded message
+     */
+    public static String decodeMessage(String message) {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder number = new StringBuilder();
+        StringBuilder finalString = new StringBuilder();
+        Character lastChar = null;
+        for (int i = 0; i < message.length(); i++) {
+            Character charr = message.charAt(i);
+            if (Character.isDigit(charr)) {
+                if (i != message.length() - 1) {
+                    lastChar = charr;
+                    number.append(charr);
+                } else {
+                    number.append(charr);
+                    int alphaNr = Integer.parseInt(number.toString()) % 26;
+                    Character numberChar = alphabet.charAt(alphaNr);
+                    finalString.append(numberChar);
+                }
+            } else {
+                if (lastChar == null) {
+                    finalString.append(charr);
+                } else {
+                    int alphaNr = Integer.parseInt(number.toString()) % 26;
+                    Character numberChar = alphabet.charAt(alphaNr);
+                    finalString.append(numberChar);
+                    number = new StringBuilder();
+                    lastChar = null;
+                    finalString.append(charr);
+                }
+            }
+        }
+        return finalString.toString();
+    }
 
-
+    public static void main(String[] args) {
+        System.out.println(decodeMessage("h8 th4r30 p17ogramme43"));
+        System.out.println(decodeMessage(":14 19h8s 8s 84e45t34n58 54oo37e523423"));
+    }
 }
