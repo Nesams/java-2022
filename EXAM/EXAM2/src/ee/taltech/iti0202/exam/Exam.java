@@ -1,7 +1,5 @@
 package ee.taltech.iti0202.exam;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 public class Exam {
@@ -21,14 +19,16 @@ public class Exam {
      * @return "ordered" list
      */
     public static List<Integer> zeroFront(List<Integer> numbers) {
+        ArrayList<Integer> numberss = new ArrayList<>();
         ArrayList<Integer> finalList = new ArrayList<>();
         for (int number : numbers) {
             if (number == 0) {
                 finalList.add(number);
-                numbers.remove(number);
+            } else {
+                numberss.add(number);
             }
         }
-        finalList.addAll(numbers);
+        finalList.addAll(numberss);
         return finalList;
     }
 
@@ -47,6 +47,15 @@ public class Exam {
      * @return a list that is sorted by to number popularity
      */
     public static List<Integer> frequencyBasedSort(String input) {
+        HashMap<Integer, Integer> sequenceMap = new HashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            Integer integer = Integer.valueOf(String.valueOf(input.charAt(i)));
+            if (!sequenceMap.containsValue(integer)) {
+                sequenceMap.put(integer, 1);
+            } else {
+                sequenceMap.replace(integer, sequenceMap.get(integer) + 1);
+            }
+        }
         return null;
     }
 
