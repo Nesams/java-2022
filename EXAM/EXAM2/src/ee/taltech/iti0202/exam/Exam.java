@@ -1,7 +1,9 @@
 package ee.taltech.iti0202.exam;
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.stream.Collector;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -50,7 +52,8 @@ public class Exam {
      * @return a list that is sorted by to number popularity
      */
     public static List<Integer> frequencyBasedSort(String input) {
-        Map<String, Long> numberCount = Arrays.stream(input.split(",")).collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+        Map<String, Long> numberCount = Arrays.stream(input.split(","))
+                .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
         numberCount.values().stream().sorted(Comparator.comparing(s -> s));
         return null;
     }
