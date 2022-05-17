@@ -6,7 +6,7 @@ public class Car {
 
     public Car(String licencePlate) {
         this.licencePlate = licencePlate;
-        this.fixed = true;
+        this.fixed = false;
         this.timesFixed = 0;
     }
 
