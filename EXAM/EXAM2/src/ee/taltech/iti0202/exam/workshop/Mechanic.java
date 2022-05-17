@@ -46,5 +46,4 @@ public class Mechanic {
     public String getName() {
         return this.name;
     }
-
 }

@@ -1,7 +1,9 @@
 package ee.taltech.iti0202.exam.workshop;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Workshop {
@@ -44,7 +46,8 @@ public class Workshop {
 
     public Optional<Car> getCarWithTheMostFixedTimes() {
         if (!database.isEmpty()) {
-            return Optional.ofNullable(database.stream().sorted(Comparator.comparing(Car::getTimesFixed).reversed()).collect(Collectors.toList()).get(0));
+            return Optional.ofNullable(database.stream()
+                    .sorted(Comparator.comparing(Car::getTimesFixed).reversed()).collect(Collectors.toList()).get(0));
         }
         return Optional.empty();
     }

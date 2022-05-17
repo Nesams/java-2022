@@ -1,5 +1,8 @@
 package ee.taltech.iti0202.exam;
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 public class Exam {
@@ -47,15 +50,8 @@ public class Exam {
      * @return a list that is sorted by to number popularity
      */
     public static List<Integer> frequencyBasedSort(String input) {
-        HashMap<Integer, Integer> sequenceMap = new HashMap<>();
-        for (int i = 0; i < input.length(); i++) {
-            Integer integer = Integer.valueOf(String.valueOf(input.charAt(i)));
-            if (!sequenceMap.containsValue(integer)) {
-                sequenceMap.put(integer, 1);
-            } else {
-                sequenceMap.replace(integer, sequenceMap.get(integer) + 1);
-            }
-        }
+        Map<String, Long> numberCount = Arrays.stream(input.split(",")).collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+        numberCount.values().stream().sorted(Comparator.comparing(s -> s));
         return null;
     }
 
