@@ -20,4 +20,9 @@ public class Club {
         return clients;
     }
 
+    public void addClient(Client client) {
+        if (!clients.contains(client)) {
+            clients.add(client);
+        }
+    }
 }

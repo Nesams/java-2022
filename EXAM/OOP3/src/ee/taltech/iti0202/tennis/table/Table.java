@@ -1,27 +1,33 @@
 package ee.taltech.iti0202.tennis.table;
 
 import ee.taltech.iti0202.tennis.booking.Booking;
+import ee.taltech.iti0202.tennis.building.Building;
 import ee.taltech.iti0202.tennis.exceptions.FalseMeasurementsException;
-import ee.taltech.iti0202.tennis.timeConverting.TimeConverting;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class Table {
     private final int length;
     private final int width;
     private final int netHeight;
     private final ArrayList<Booking> bookings;
+    private final Building building;
 
-    public Table(int length, int width, int netHeight) throws FalseMeasurementsException {
+    public Table(int length, int width, int netHeight, Building building) throws FalseMeasurementsException {
         if (length > 0 || width > 0) {
             this.length = length;
             this.width = width;
             this.netHeight = netHeight;
             this.bookings = new ArrayList<>();
+            this.building = building;
         } else {
             throw new FalseMeasurementsException("False measurements");
         }
+    }
+
+    public Building getBuilding() {
+        return building;
     }
 
     public ArrayList<Booking> getBookings() {
@@ -32,14 +38,17 @@ public class Table {
         bookings.add(booking);
     }
 
-    public boolean isBooked(String start, String end) {
-        TimeConverting timeConverter = new TimeConverting();
-        List<Integer> timePeriod = timeConverter.getTimePeriod(start, end);
-        for (Booking booking:bookings) {
-            int bookingStart = timeConverter.convertTimeStringToList(booking.getStartingTime()).get(0);
-            int bookingEnd = timeConverter.convertTimeStringToList(booking.getEndingTime()).get(0);
-            if ((timePeriod.contains(bookingStart) && !timePeriod.contains(bookingEnd))
-                    || (!timePeriod.contains(bookingStart) && timePeriod.contains(bookingEnd)) ) {
+    public boolean isBooked(Date start, Date end) {
+        for (Booking booking: bookings) {
+            //booked the whole time
+            if (booking.getStartingTime().before(start) && booking.getEndingTime().after(end)) {
+                return true;
+            }
+            //booking at the end
+            if (booking.getStartingTime().after(start) && booking.getEndingTime().before(end)) {
+                return true;
+            }
+            if (booking.getStartingTime().equals(start) || booking.getEndingTime().equals(end)) {
                 return true;
             }
         }
