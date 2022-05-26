@@ -150,7 +150,8 @@ public class ClientsRankingTests {
 
         testClientMati.registerToTraining(recentTraining3);
 
-        //Taavi and MAti have the same amount trainings and bookings, trainings, visited buildings, but time spent on trainings and bookings is different
+        //Taavi and MAti have the same amount trainings and bookings,
+        //trainings, visited buildings, but time spent on trainings and bookings is different
         Assertions.assertEquals(testClub.sortClientsBasedOnLastNDaysData(5),
                 List.of(testClientMati, clientTaavi, testClientKati, clientMihkel));
 
