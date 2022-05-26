@@ -17,7 +17,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class TennisExample {
-    public static void main(String[] args) throws FalseAgeException, FalseMeasurementsException, ParseException, TableAlreadyBookedException, TrainingIsFull {
+    public static void main(String[] args)
+            throws FalseAgeException, FalseMeasurementsException,
+            ParseException, TableAlreadyBookedException, TrainingIsFull {
         Club club = new Club();
         Building building1 = new Building(club);
         Building building2 = new Building(club);

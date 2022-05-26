@@ -10,7 +10,11 @@ import ee.taltech.iti0202.tennis.training.Training;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 public class Client extends Person {
 
@@ -74,7 +78,8 @@ public class Client extends Person {
      * @return Optiona.of(Booking)
      * @throws ParseException
      */
-    public Optional<Booking> bookATable(String start, String end, Table table) throws ParseException, TableAlreadyBookedException {
+    public Optional<Booking> bookATable(String start, String end, Table table)
+            throws ParseException, TableAlreadyBookedException {
         List<Table> tables = List.of(table);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         if (!table.isBooked(sdf.parse(start), sdf.parse(end))) {

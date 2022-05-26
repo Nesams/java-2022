@@ -63,7 +63,8 @@ public class Trainer extends Person {
      * @return
      * @throws ParseException
      */
-    public Optional<Booking> addBookingToTraining(Training training, List<Table> tables) throws ParseException, TableAlreadyBookedException {
+    public Optional<Booking> addBookingToTraining(Training training, List<Table> tables)
+            throws ParseException, TableAlreadyBookedException {
         List<Table> correctTables = tables.stream()
                 .filter(table -> training.getBuilding().getTables().contains(table))
                 .filter(table -> !table.isBooked(training.getStartDate(), training.getEndDate())).toList();

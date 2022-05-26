@@ -45,10 +45,14 @@ public class MinimumRequirementsTests {
 
     Trainer trainerJoss = new Trainer("Joss", "Palk", 40, "Joss@gmail.com");
 
-    Training training1 = trainerJoss.createATraining("2022/07/28 10:00", "2022/07/28 12:00", 1, building3).get();
-    Training training2 = trainerJoss.createATraining("2022/05/28 10:00", "2022/05/28 12:00", 2, building3).get();
-    Training training3 = trainerJoss.createATraining("2021/12/11 11:00", "2021/12/11 13:00", 4, building3).get();
-    Training training4 = trainerJoss.createATraining("2021/12/11 15:00", "2021/12/11 18:00", 4, building4).get();
+    Training training1 = trainerJoss
+            .createATraining("2022/07/28 10:00", "2022/07/28 12:00", 1, building3).get();
+    Training training2 = trainerJoss
+            .createATraining("2022/05/28 10:00", "2022/05/28 12:00", 2, building3).get();
+    Training training3 = trainerJoss
+            .createATraining("2021/12/11 11:00", "2021/12/11 13:00", 4, building3).get();
+    Training training4 = trainerJoss
+            .createATraining("2021/12/11 15:00", "2021/12/11 18:00", 4, building4).get();
 
     Client clientToomas = new Client("Toomas", "Suvi", 40, "toomas@gmail.com");
     Client clientTriinu = new Client("Triinu", "Talv", 21, "Triinu11@gmail.com");
@@ -97,8 +101,10 @@ public class MinimumRequirementsTests {
         Assertions.assertEquals(trainerOtt.getAge(), 50);
         Assertions.assertEquals(trainerJaanika.getType(), Optional.of(Person.Type.TRAINER));
 
-        Training training1 = trainerOtt.createATraining("2022/05/27 11:11", "2022/05/27 12:12", 5, building1).get();
-        Boolean falseBoolean = trainerOtt.canCreateTraining(sdf.parse("2022/05/27 11:11"), sdf.parse("2022/05/27 12:12"));
+        Training training1 = trainerOtt
+                .createATraining("2022/05/27 11:11", "2022/05/27 12:12", 5, building1).get();
+        Boolean falseBoolean = trainerOtt
+                .canCreateTraining(sdf.parse("2022/05/27 11:11"), sdf.parse("2022/05/27 12:12"));
 
         Assertions.assertEquals(falseBoolean, false);
         Assertions.assertEquals(trainerOtt.getTrainings(), List.of(training1));
@@ -112,7 +118,8 @@ public class MinimumRequirementsTests {
 
     @Test
     void testTrainerAddsTableBookingsToTraining() throws ParseException, TableAlreadyBookedException {
-        Training training2 = trainerJaanika.createATraining("2022/05/28 11:11", "2022/05/28 12:12", 5, building2).get();
+        Training training2 = trainerJaanika
+                .createATraining("2022/05/28 11:11", "2022/05/28 12:12", 5, building2).get();
 
         List<Table> rightTables = List.of(table4, table5);
         List<Table> wrongTablesForTraining = List.of(table1, table2);
@@ -137,7 +144,8 @@ public class MinimumRequirementsTests {
     }
 
     @Test
-    void testAddingClientsAndBookingTablesAndTrainings() throws TrainingIsFull, TableAlreadyBookedException, ParseException {
+    void testAddingClientsAndBookingTablesAndTrainings()
+            throws TrainingIsFull, TableAlreadyBookedException, ParseException {
         Assertions.assertEquals(clientToomas.getSurname(), "Suvi");
 
         clientToomas.registerToTraining(training1);
@@ -155,15 +163,18 @@ public class MinimumRequirementsTests {
         }
 
         //Client can book two tables to the same time
-        Booking triinusBooking = clientTriinu.bookATable("2022/05/29 11:30", "2022/05/29 12:30", table1).get();
-        Booking triinusSecondBooking = clientTriinu.bookATable("2022/05/29 11:30", "2022/05/29 12:30", table2).get();
+        Booking triinusBooking = clientTriinu
+                .bookATable("2022/05/29 11:30", "2022/05/29 12:30", table1).get();
+        Booking triinusSecondBooking = clientTriinu
+                .bookATable("2022/05/29 11:30", "2022/05/29 12:30", table2).get();
 
         Assertions.assertEquals(clientToomas.getAllTrainings(), List.of(training1));
         Assertions.assertEquals(clientTriinu.getAllBookings(), List.of(triinusBooking, triinusSecondBooking));
     }
 
     @Test
-    void testAskingClientsTrainingsAndBookingsLists() throws FalseAgeException, TableAlreadyBookedException, ParseException, TrainingIsFull {
+    void testAskingClientsTrainingsAndBookingsLists()
+            throws FalseAgeException, TableAlreadyBookedException, ParseException, TrainingIsFull {
         Client clientJuku = new Client("Juku", "Janes", 15, "Juku@gmail.com");
 
         Booking jukusB1 = clientJuku.bookATable("2021/02/15 11:00","2021/02/15 12:00", table1).get();
