@@ -4,6 +4,7 @@ import ee.taltech.iti0202.tennis.building.Building;
 import ee.taltech.iti0202.tennis.person.Client;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -51,11 +52,11 @@ public class Club {
      * @return
      */
     public List<Client> sortClientsByActivityLevel() {
-        clients.sort(Comparator.comparing(Client::getTrainingsAndBookingsSum)
-                .thenComparingInt(Client::getTheNumberOfPreviousTrainings)
-                .thenComparingInt(Client::getTheNumberOfVisitedBuildings)
-                .thenComparingLong(Client::getTimeSpentOnTrainingsAndBookings)
-                .thenComparingLong(Client::getTimeSpentOnTrainings)
+        clients.sort(Comparator.comparing(Client::getTrainingsAndBookingsSum, Comparator.reverseOrder())
+                .thenComparing(Client::getTheNumberOfPreviousTrainings, Comparator.reverseOrder())
+                .thenComparing(Client::getTheNumberOfVisitedBuildings, Comparator.reverseOrder())
+                .thenComparing(Client::getTimeSpentOnTrainingsAndBookings, Comparator.reverseOrder())
+                .thenComparing(Client::getTimeSpentOnTrainings, Comparator.reverseOrder())
                 .thenComparing(Client::getSurname));
         return clients;
     }

@@ -16,6 +16,7 @@ public class Building {
     public Building(Club club) {
         this.tables = new ArrayList<>();
         this.club = club;
+        club.addBuilding(this);
     }
 
     public void addTable(Table table) {

@@ -63,9 +63,6 @@ public class MinimumRequirementsTests {
 
     @Test
     void testCreatingAClubAndAddingBuildings() {
-        club.addBuilding(building1);
-        club.addBuilding(building2);
-
         List<Building> buildings = List.of(building1, building2);
 
         Assertions.assertEquals(club.getBuildings().size(), 2);
