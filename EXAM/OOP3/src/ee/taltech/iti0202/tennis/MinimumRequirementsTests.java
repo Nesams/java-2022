@@ -6,7 +6,7 @@ import ee.taltech.iti0202.tennis.club.Club;
 import ee.taltech.iti0202.tennis.exceptions.FalseAgeException;
 import ee.taltech.iti0202.tennis.exceptions.FalseMeasurementsException;
 import ee.taltech.iti0202.tennis.exceptions.TableAlreadyBookedException;
-import ee.taltech.iti0202.tennis.exceptions.TrainingIsFull;
+import ee.taltech.iti0202.tennis.exceptions.TrainingIsFullException;
 import ee.taltech.iti0202.tennis.person.Client;
 import ee.taltech.iti0202.tennis.person.Person;
 import ee.taltech.iti0202.tennis.person.Trainer;
@@ -141,7 +141,7 @@ public class MinimumRequirementsTests {
 
     @Test
     void testAddingClientsAndBookingTablesAndTrainings()
-            throws TrainingIsFull, TableAlreadyBookedException, ParseException {
+            throws TrainingIsFullException, TableAlreadyBookedException, ParseException {
         Assertions.assertEquals(clientToomas.getSurname(), "Suvi");
 
         clientToomas.registerToTraining(training1);
@@ -154,7 +154,7 @@ public class MinimumRequirementsTests {
 
         try {
             clientTriinu.registerToTraining(training1);
-        } catch (TrainingIsFull e) {
+        } catch (TrainingIsFullException e) {
             Assertions.assertEquals(e.getReason(), "The training is full");
         }
 
@@ -170,7 +170,7 @@ public class MinimumRequirementsTests {
 
     @Test
     void testAskingClientsTrainingsAndBookingsLists()
-            throws FalseAgeException, TableAlreadyBookedException, ParseException, TrainingIsFull {
+            throws FalseAgeException, TableAlreadyBookedException, ParseException, TrainingIsFullException {
         Client clientJuku = new Client("Juku", "Janes", 15, "Juku@gmail.com");
 
         Booking jukusB1 = clientJuku.bookATable("2021/02/15 11:00", "2021/02/15 12:00", table1);
@@ -191,7 +191,7 @@ public class MinimumRequirementsTests {
     }
 
     @Test
-    void testAskingTrainingParticipantsAndClubsClients() throws TrainingIsFull {
+    void testAskingTrainingParticipantsAndClubsClients() throws TrainingIsFullException {
         clientTriinu.registerToTraining(training4);
         clientToomas.registerToTraining(training4);
 

@@ -4,7 +4,7 @@ import ee.taltech.iti0202.tennis.booking.Booking;
 import ee.taltech.iti0202.tennis.building.Building;
 import ee.taltech.iti0202.tennis.exceptions.FalseAgeException;
 import ee.taltech.iti0202.tennis.exceptions.TableAlreadyBookedException;
-import ee.taltech.iti0202.tennis.exceptions.TrainingIsFull;
+import ee.taltech.iti0202.tennis.exceptions.TrainingIsFullException;
 import ee.taltech.iti0202.tennis.table.Table;
 import ee.taltech.iti0202.tennis.training.Training;
 
@@ -65,7 +65,7 @@ public class Client extends Person {
      * @param training
      * @return
      */
-    public boolean registerToTraining(Training training) throws TrainingIsFull {
+    public boolean registerToTraining(Training training) throws TrainingIsFullException {
         if (training.getMaxParticipants() > 0) {
             training.addParticipant(this);
             addTraining(training);
@@ -73,7 +73,7 @@ public class Client extends Person {
             training.getBuilding().getClub().addClient(this);
             return true;
         } else {
-            throw new TrainingIsFull("The training is full");
+            throw new TrainingIsFullException("The training is full");
         }
     }
 

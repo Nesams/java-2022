@@ -6,7 +6,7 @@ import ee.taltech.iti0202.tennis.club.Club;
 import ee.taltech.iti0202.tennis.exceptions.FalseAgeException;
 import ee.taltech.iti0202.tennis.exceptions.FalseMeasurementsException;
 import ee.taltech.iti0202.tennis.exceptions.TableAlreadyBookedException;
-import ee.taltech.iti0202.tennis.exceptions.TrainingIsFull;
+import ee.taltech.iti0202.tennis.exceptions.TrainingIsFullException;
 import ee.taltech.iti0202.tennis.person.Client;
 import ee.taltech.iti0202.tennis.person.Trainer;
 import ee.taltech.iti0202.tennis.table.Table;
@@ -18,7 +18,7 @@ import java.util.List;
 public class TennisExample {
     public static void main(String[] args)
             throws FalseAgeException, FalseMeasurementsException,
-            ParseException, TableAlreadyBookedException, TrainingIsFull {
+            ParseException, TableAlreadyBookedException, TrainingIsFullException {
         Club club = new Club();
         Building building1 = new Building(club);
         Building building2 = new Building(club);
@@ -38,13 +38,15 @@ public class TennisExample {
 
         Client clientMati = new Client("Mati", "Tamm", 15, "Mati@gmail.com");
         Client clientKati = new Client("Kati", "Okas", 30, "kati.kati@gmail.com");
+        Client clientTom = new Client("Tom", "Jogi", 15, "tom@gmail.com");
+
         try {
             Client client = new Client("Robot", "Robert", -2, "haha@gmail.com");
         } catch (FalseAgeException f) {
             System.out.println(f.getReason()); //"False age parameter"
         }
 
-        Training training1 = trainerOtt.createATraining("2022/05/27 11:11", "2022/05/27 12:12", 5, building1).get();
+        Training training1 = trainerOtt.createATraining("2022/05/27 11:11", "2022/05/27 12:12", 2, building1).get();
         Training training2 = trainerJaanika.createATraining("2022/05/27 11:11", "2022/05/27 12:12", 7, building1).get();
 
         List<Table> tables = List.of(table1, table2, table3);
@@ -63,6 +65,11 @@ public class TennisExample {
 
         clientKati.registerToTraining(training1);
         clientMati.registerToTraining(training1);
+        try {
+            clientTom.registerToTraining(training1);
+        } catch (TrainingIsFullException e) {
+            System.out.println(e.getReason()); //"The training is full"
+        }
 
         System.out.println(club.getBuildings()); // [building1, building2]
         System.out.println(building1.getClub()); //[club]

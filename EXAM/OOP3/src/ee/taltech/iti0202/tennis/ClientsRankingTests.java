@@ -5,7 +5,7 @@ import ee.taltech.iti0202.tennis.club.Club;
 import ee.taltech.iti0202.tennis.exceptions.FalseAgeException;
 import ee.taltech.iti0202.tennis.exceptions.FalseMeasurementsException;
 import ee.taltech.iti0202.tennis.exceptions.TableAlreadyBookedException;
-import ee.taltech.iti0202.tennis.exceptions.TrainingIsFull;
+import ee.taltech.iti0202.tennis.exceptions.TrainingIsFullException;
 import ee.taltech.iti0202.tennis.person.Client;
 import ee.taltech.iti0202.tennis.person.Trainer;
 import ee.taltech.iti0202.tennis.table.Table;
@@ -20,7 +20,7 @@ public class ClientsRankingTests {
 
     @Test
     void testRankingClubsClientsEasy()
-            throws TrainingIsFull, TableAlreadyBookedException, ParseException,
+            throws TrainingIsFullException, TableAlreadyBookedException, ParseException,
             FalseAgeException, FalseMeasurementsException {
         Club testClub = new Club();
 
