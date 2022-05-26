@@ -177,10 +177,10 @@ public class MinimumRequirementsTests {
             throws FalseAgeException, TableAlreadyBookedException, ParseException, TrainingIsFull {
         Client clientJuku = new Client("Juku", "Janes", 15, "Juku@gmail.com");
 
-        Booking jukusB1 = clientJuku.bookATable("2021/02/15 11:00","2021/02/15 12:00", table1).get();
-        Booking jukusB2 =clientJuku.bookATable("2021/02/15 11:00","2021/02/15 12:00", table2).get();
-        Booking jukusB3 = clientJuku.bookATable("2023/02/15 11:00","2023/02/15 12:00", table2).get();
-        Booking jukusB4 = clientJuku.bookATable("2023/02/15 11:00","2023/02/15 12:00", table4).get();
+        Booking jukusB1 = clientJuku.bookATable("2021/02/15 11:00", "2021/02/15 12:00", table1).get();
+        Booking jukusB2 = clientJuku.bookATable("2021/02/15 11:00", "2021/02/15 12:00", table2).get();
+        Booking jukusB3 = clientJuku.bookATable("2023/02/15 11:00", "2023/02/15 12:00", table2).get();
+        Booking jukusB4 = clientJuku.bookATable("2023/02/15 11:00", "2023/02/15 12:00", table4).get();
 
         clientJuku.registerToTraining(training2);
         clientJuku.registerToTraining(training3);
