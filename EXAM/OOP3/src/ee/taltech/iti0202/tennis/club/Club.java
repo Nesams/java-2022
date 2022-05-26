@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Club {
 
@@ -52,13 +53,13 @@ public class Club {
      * @return
      */
     public List<Client> sortClientsByActivityLevel() {
-        clients.sort(Comparator.comparing(Client::getTrainingsAndBookingsSum, Comparator.reverseOrder())
-                .thenComparing(Client::getTheNumberOfPreviousTrainings, Comparator.reverseOrder())
-                .thenComparing(Client::getTheNumberOfVisitedBuildings, Comparator.reverseOrder())
-                .thenComparing(Client::getTimeSpentOnTrainingsAndBookings, Comparator.reverseOrder())
-                .thenComparing(Client::getTimeSpentOnTrainings, Comparator.reverseOrder())
-                .thenComparing(Client::getSurname));
-        return clients;
+        Comparator<Client> comparator = Comparator.comparing(Client::getTrainingsAndBookingsSum)
+                .thenComparing(Client::getTheNumberOfPreviousTrainings)
+                .thenComparing(Client::getTheNumberOfVisitedBuildings)
+                .thenComparing(Client::getTimeSpentOnTrainingsAndBookings)
+                .thenComparing(Client::getTimeSpentOnTrainings).reversed()
+                .thenComparing(Client::getSurname);
+        return clients.stream().sorted(comparator).collect(Collectors.toList());
     }
     /**
      * Returns a sorted list of clients, based on last n days data
@@ -71,12 +72,12 @@ public class Club {
      * @return
      */
     public List<Client> sortClientsBasedOnLastNDaysData(int n) {
-        clients.sort(Comparator.comparing((Client c) -> c.getTheNumberOfNDaysTrainingsAndBookings(n))
+        Comparator<Client> comparator = Comparator.comparing((Client c) -> c.getTheNumberOfNDaysTrainingsAndBookings(n))
                 .thenComparingInt((Client c) -> c.getTheNumberOfLastNDaysOfTrainings(n))
                 .thenComparingInt((Client c) -> c.getTheLastNDaysNumberOfVisitedBuildings(n))
                 .thenComparingLong((Client c) -> c.getLastNDaysTimeSpentOnTrainingsAndBookings(n))
-                .thenComparingLong((Client c) -> c.getLastNDaysTimeSpentOnTrainings(n))
-                .thenComparing(Client::getSurname));
-        return clients;
+                .thenComparingLong((Client c) -> c.getLastNDaysTimeSpentOnTrainings(n)).reversed()
+                .thenComparing(Client::getSurname);
+        return clients.stream().sorted(comparator).collect(Collectors.toList());
     }
 }

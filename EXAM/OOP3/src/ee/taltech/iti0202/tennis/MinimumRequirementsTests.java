@@ -67,7 +67,6 @@ public class MinimumRequirementsTests {
 
         Assertions.assertEquals(club.getBuildings().size(), 2);
         Assertions.assertEquals(club.getBuildings(), buildings);
-        Assertions.assertEquals(club.getClients().size(), 0);
     }
 
     @Test
@@ -161,9 +160,9 @@ public class MinimumRequirementsTests {
 
         //Client can book two tables to the same time
         Booking triinusBooking = clientTriinu
-                .bookATable("2022/05/29 11:30", "2022/05/29 12:30", table1).get();
+                .bookATable("2022/05/29 11:30", "2022/05/29 12:30", table1);
         Booking triinusSecondBooking = clientTriinu
-                .bookATable("2022/05/29 11:30", "2022/05/29 12:30", table2).get();
+                .bookATable("2022/05/29 11:30", "2022/05/29 12:30", table2);
 
         Assertions.assertEquals(clientToomas.getAllTrainings(), List.of(training1));
         Assertions.assertEquals(clientTriinu.getAllBookings(), List.of(triinusBooking, triinusSecondBooking));
@@ -174,10 +173,10 @@ public class MinimumRequirementsTests {
             throws FalseAgeException, TableAlreadyBookedException, ParseException, TrainingIsFull {
         Client clientJuku = new Client("Juku", "Janes", 15, "Juku@gmail.com");
 
-        Booking jukusB1 = clientJuku.bookATable("2021/02/15 11:00", "2021/02/15 12:00", table1).get();
-        Booking jukusB2 = clientJuku.bookATable("2021/02/15 11:00", "2021/02/15 12:00", table2).get();
-        Booking jukusB3 = clientJuku.bookATable("2023/02/15 11:00", "2023/02/15 12:00", table2).get();
-        Booking jukusB4 = clientJuku.bookATable("2023/02/15 11:00", "2023/02/15 12:00", table4).get();
+        Booking jukusB1 = clientJuku.bookATable("2021/02/15 11:00", "2021/02/15 12:00", table1);
+        Booking jukusB2 = clientJuku.bookATable("2021/02/15 11:00", "2021/02/15 12:00", table2);
+        Booking jukusB3 = clientJuku.bookATable("2023/02/15 11:00", "2023/02/15 12:00", table2);
+        Booking jukusB4 = clientJuku.bookATable("2023/02/15 11:00", "2023/02/15 12:00", table4);
 
         clientJuku.registerToTraining(training2);
         clientJuku.registerToTraining(training3);

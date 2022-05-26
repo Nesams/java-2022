@@ -14,7 +14,6 @@ import ee.taltech.iti0202.tennis.training.Training;
 
 import java.text.ParseException;
 import java.util.List;
-import java.util.Optional;
 
 public class TennisExample {
     public static void main(String[] args)
@@ -60,7 +59,7 @@ public class TennisExample {
             System.out.println(e.getReason()); //"All the tables are booked."
         }
 
-        Optional<Booking> booking1 = clientMati.bookATable("2022/05/25 11:11", "2022/05/25 12:12", table1);
+        Booking booking1 = clientMati.bookATable("2022/05/25 11:11", "2022/05/25 12:12", table1);
 
         clientKati.registerToTraining(training1);
         clientMati.registerToTraining(training1);

@@ -74,6 +74,7 @@ public class Training {
     public void addParticipant(Client client) {
         if (!participants.contains(client)) {
             participants.add(client);
+            decreaseMaxParticipants();
         }
     }
 

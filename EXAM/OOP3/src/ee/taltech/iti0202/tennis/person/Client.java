@@ -14,12 +14,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public class Client extends Person {
 
-    private static List<Training> trainings;
-    private static List<Booking> bookings;
+    private List<Training> trainings;
+    private List<Booking> bookings;
     private final List<Building> buildings;
     private final SimpleDateFormat formatter;
 
@@ -38,6 +37,19 @@ public class Client extends Person {
         bookings = new ArrayList<>();
         this.buildings = new ArrayList<>();
         this.formatter = new SimpleDateFormat("yyy/MM/dd HH:mm");
+    }
+
+    public List<Training> getTrainings() {
+        return trainings;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+    public void addBooking(Booking booking) {
+        if (!bookings.contains(booking)) {
+            bookings.add(booking);
+        }
     }
     public void addTraining(Training training) {
         if (!trainings.contains(training)) {
@@ -78,16 +90,17 @@ public class Client extends Person {
      * @return Optiona.of(Booking)
      * @throws ParseException
      */
-    public Optional<Booking> bookATable(String start, String end, Table table)
+    public Booking bookATable(String start, String end, Table table)
             throws ParseException, TableAlreadyBookedException {
         List<Table> tables = List.of(table);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         if (!table.isBooked(sdf.parse(start), sdf.parse(end))) {
             Booking booking = new Booking(start, end, tables);
-            bookings.add(booking);
+            addBooking(booking);
             table.addBooking(booking);
             addBuilding(table.getBuilding());
-            return Optional.of(booking);
+            table.getBuilding().getClub().addClient(this);
+            return booking;
         } else {
             throw new TableAlreadyBookedException("Table is already booked");
         }
@@ -179,12 +192,12 @@ public class Client extends Person {
      * @param n
      * @return
      */
-    public static List<Training> getLastNDaysTrainings(int n) {
+    public List<Training> getLastNDaysTrainings(int n) {
         Date now = new Date();
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -n);
         Date nDate = cal.getTime();
-        return trainings.stream().filter(training -> training.getStartDate().after(nDate))
+        return getTrainings().stream().filter(training -> training.getStartDate().after(nDate))
                 .filter(training -> training.getEndDate().before(now)).toList();
     }
 
@@ -193,7 +206,7 @@ public class Client extends Person {
      * @param n
      * @return
      */
-    public static List<Booking> getLastNDaysBooking(int n) {
+    public List<Booking> getLastNDaysBooking(int n) {
         Date now = new Date();
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -n);
