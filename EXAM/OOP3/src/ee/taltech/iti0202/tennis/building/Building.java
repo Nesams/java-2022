@@ -14,6 +14,10 @@ public class Building {
         this.club = club;
     }
 
+    public void addTable(Table table) {
+        tables.add(table);
+    }
+
     public Club getClub() {
         return club;
     }

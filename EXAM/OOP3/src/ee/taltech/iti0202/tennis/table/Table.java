@@ -21,6 +21,7 @@ public class Table {
             this.netHeight = netHeight;
             this.bookings = new ArrayList<>();
             this.building = building;
+            building.addTable(this);
         } else {
             throw new FalseMeasurementsException("False measurements");
         }

@@ -21,8 +21,9 @@ public class Person {
             this.age = age;
             this.email = email;
             this.type = Optional.empty();
+        } else {
+            throw new FalseAgeException("False age parameter");
         }
-        throw new FalseAgeException("False age parameter");
     }
 
     public String getFirstname() {

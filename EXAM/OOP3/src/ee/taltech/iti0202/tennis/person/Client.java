@@ -45,13 +45,13 @@ public class Client extends Person {
         return super.getSurname();
     }
 
-    public boolean bookATable(String start, String end, Table table) throws ParseException {
+    public Booking bookATable(String start, String end, Table table) throws ParseException {
         List<Table> tables = List.of(table);
         Booking booking = new Booking(start, end, tables);
         bookings.add(booking);
         table.addBooking(booking);
         addBuilding(table.getBuilding());
-        return true;
+        return booking;
     }
 
     public void addBuilding(Building building) {

@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public class Trainer extends Person{
+public class Trainer extends Person {
     private final ArrayList<Training> trainings;
 
     public Trainer(String firstname, String surname, int age, String email) throws FalseAgeException {
@@ -23,7 +23,7 @@ public class Trainer extends Person{
     }
 
     public Optional<Training> createATraining(String start, String end, int maxParticipants, Building building) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH/mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         if (canCreateTraining(sdf.parse(start), sdf.parse(end))) {
             Training newTraining = new Training(start, end, maxParticipants, building);
             trainings.add(newTraining);

@@ -6,7 +6,6 @@ import ee.taltech.iti0202.tennis.person.Trainer;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 public class Club {
@@ -21,6 +20,15 @@ public class Club {
     }
     public ArrayList<Client> getClients() {
         return clients;
+    }
+
+    public ArrayList<Building> getBuildings() {
+        return buildings;
+    }
+    public void addBuilding(Building building) {
+        if (!buildings.contains(building)) {
+            buildings.add(building);
+        }
     }
 
     public void addClient(Client client) {
