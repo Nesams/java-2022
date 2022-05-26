@@ -19,7 +19,9 @@ import java.util.List;
 public class ClientsRankingTests {
 
     @Test
-    void testRankingClubsClientsEasy() throws TrainingIsFull, TableAlreadyBookedException, ParseException, FalseAgeException, FalseMeasurementsException {
+    void testRankingClubsClientsEasy()
+            throws TrainingIsFull, TableAlreadyBookedException, ParseException,
+            FalseAgeException, FalseMeasurementsException {
         Club testClub = new Club();
 
         Building testBuilding1 = new Building(testClub);
@@ -34,8 +36,10 @@ public class ClientsRankingTests {
         Table testTable3 = new Table(9, 10, 4, testBuilding2);
         Table testTable4 = new Table(9, 10, 4, testBuilding2);
 
-        Trainer testTrainerOtt = new Trainer("Ott", "Kiivikas", 50, "ott.kiivikas@gmail.com");
-        Trainer testTrainerJaanika = new Trainer("Jaanika", "Paju", 35, "jaanika@gmail.com");
+        Trainer testTrainerOtt =
+                new Trainer("Ott", "Kiivikas", 50, "ott.kiivikas@gmail.com");
+        Trainer testTrainerJaanika =
+                new Trainer("Jaanika", "Paju", 35, "jaanika@gmail.com");
 
         Client testClientMati = new Client("Mati", "Tamm", 15, "Mati@gmail.com");
         Client testClientKati = new Client("Kati", "Okas", 30, "kati.kati@gmail.com");
@@ -44,13 +48,19 @@ public class ClientsRankingTests {
         Client clientKelli = new Client("Kelli", "Suva", 35, "Kelli@gmail.com");
         Client clientTaavi = new Client("Taavi", "Tare", 49, "taavi@hotmail.com");
 
-        Training testTraining1 = testTrainerOtt.createATraining("2022/04/20 11:11", "2022/04/20 12:12", 5, testBuilding1).get();
-        Training testTraining2 = testTrainerJaanika.createATraining("2022/04/20 11:11", "2022/04/20 12:12", 7, testBuilding1).get();
-        Training testTraining3 = testTrainerJaanika.createATraining("2021/11/11 12:12", "2021/11/11 14:12", 8, testBuilding2).get();
+        Training testTraining1 = testTrainerOtt
+                .createATraining("2022/04/20 11:11", "2022/04/20 12:12", 5, testBuilding1).get();
+        Training testTraining2 = testTrainerJaanika
+                .createATraining("2022/04/20 11:11", "2022/04/20 12:12", 7, testBuilding1).get();
+        Training testTraining3 = testTrainerJaanika
+                .createATraining("2021/11/11 12:12", "2021/11/11 14:12", 8, testBuilding2).get();
 
-        Training recentTraining1 = testTrainerOtt.createATraining("2022/05/24 11:00", "2022/05/24 13:00", 5, testBuilding1).get();
-        Training recentTraining2 = testTrainerJaanika.createATraining("2022/05/23 11:00", "2022/05/23 13:00", 6, testBuilding2).get();
-        Training recentTraining3 = testTrainerOtt.createATraining("2022/05/25 11:00", "2022/05/25 13:00", 4, testBuilding1).get();
+        Training recentTraining1 = testTrainerOtt
+                .createATraining("2022/05/24 11:00", "2022/05/24 13:00", 5, testBuilding1).get();
+        Training recentTraining2 = testTrainerJaanika
+                .createATraining("2022/05/23 11:00", "2022/05/23 13:00", 6, testBuilding2).get();
+        Training recentTraining3 = testTrainerOtt
+                .createATraining("2022/05/25 11:00", "2022/05/25 13:00", 4, testBuilding1).get();
 
         List<Table> tables = List.of(testTable1, testTable2, testTable3);
 
@@ -83,24 +93,28 @@ public class ClientsRankingTests {
         clientMihkel.bookATable("2022/02/02 12:12", "2022/02/02 12:30", testTable2);
 
         //easy different trainings + bookings
-        Assertions.assertEquals(testClub.sortClientsByActivityLevel(), List.of(clientMihkel, testClientMati, clientTaavi, testClientKati));
+        Assertions.assertEquals(testClub.sortClientsByActivityLevel(),
+                List.of(clientMihkel, testClientMati, clientTaavi, testClientKati));
 
 
         testClientMati.bookATable("2022/04/20 20:11", "2022/04/20 21:12", testTable5);
 
         //Trainings + Bookings same, trainings different
-        Assertions.assertEquals(testClub.sortClientsByActivityLevel(), List.of(clientMihkel, testClientMati, clientTaavi, testClientKati));
+        Assertions.assertEquals(testClub.sortClientsByActivityLevel(),
+                List.of(clientMihkel, testClientMati, clientTaavi, testClientKati));
 
         testClientMati.registerToTraining(testTraining3);
 
         //Trainings + bookings same, trainings same, visited buildings different
-        Assertions.assertEquals(testClub.sortClientsByActivityLevel(), List.of(testClientMati, clientMihkel, clientTaavi, testClientKati));
+        Assertions.assertEquals(testClub.sortClientsByActivityLevel(),
+                List.of(testClientMati, clientMihkel, clientTaavi, testClientKati));
 
         clientMihkel.bookATable("2022/01/25 11:11", "2022/01/25 12:12", testTable5);
         testClientMati.bookATable("2021/03/20 11:11", "2021/03/20 12:12", testTable1);
 
         //Trainings + bookings same, trainings same, visited buildings same, time spent on trainings and bookings same
-        Assertions.assertEquals(testClub.sortClientsByActivityLevel(), List.of(testClientMati, clientMihkel, clientTaavi, testClientKati));
+        Assertions.assertEquals(testClub.sortClientsByActivityLevel(),
+                List.of(testClientMati, clientMihkel, clientTaavi, testClientKati));
 
         //Testing sorting club clients based on n days data
 
@@ -124,18 +138,21 @@ public class ClientsRankingTests {
         clientTaavi.bookATable("2022/05/22 18:11", "2022/05/22 19:12", testTable1);
 
         //Mati has the most recent trainings + bookings
-        Assertions.assertEquals(testClub.sortClientsBasedOnLastNDaysData(5), List.of(testClientMati, clientTaavi, testClientKati, clientMihkel));
+        Assertions.assertEquals(testClub.sortClientsBasedOnLastNDaysData(5),
+                List.of(testClientMati, clientTaavi, testClientKati, clientMihkel));
 
         clientTaavi.registerToTraining(recentTraining2);
         clientTaavi.bookATable("2022/05/25 10:11", "2022/05/25 10:30", testTable3);
 
         //Taavi and Mati have the same amount bookings + trainings, but Taavi has more trainings
-        Assertions.assertEquals(testClub.sortClientsBasedOnLastNDaysData(5), List.of(clientTaavi, testClientMati, testClientKati, clientMihkel));
+        Assertions.assertEquals(testClub.sortClientsBasedOnLastNDaysData(5),
+                List.of(clientTaavi, testClientMati, testClientKati, clientMihkel));
 
         testClientMati.registerToTraining(recentTraining3);
 
         //Taavi and MAti have the same amount trainings and bookings, trainings, visited buildings, but time spent on trainings and bookings is different
-        Assertions.assertEquals(testClub.sortClientsBasedOnLastNDaysData(5), List.of(testClientMati, clientTaavi, testClientKati, clientMihkel));
+        Assertions.assertEquals(testClub.sortClientsBasedOnLastNDaysData(5),
+                List.of(testClientMati, clientTaavi, testClientKati, clientMihkel));
 
     }
 }

@@ -41,7 +41,7 @@ public class TennisExample {
         try {
             Client client = new Client("Robot", "Robert", -2, "haha@gmail.com");
         } catch (FalseAgeException f) {
-            System.out.println(f.getReason()); //False age parameter
+            System.out.println(f.getReason()); //"False age parameter"
         }
 
         Training training1 = trainerOtt.createATraining("2022/05/27 11:11", "2022/05/27 12:12", 5, building1).get();
@@ -56,7 +56,7 @@ public class TennisExample {
             trainerJaanika.addBookingToTraining(training2, jaanikaTables);
 
         } catch (TableAlreadyBookedException e) {
-            System.out.println(e.getReason()); //"All the tables are booked."
+            System.out.println(e.getReason()); //"These tables are not available or at the wrong building"
         }
 
         Booking booking1 = clientMati.bookATable("2022/05/25 11:11", "2022/05/25 12:12", table1);
@@ -77,8 +77,5 @@ public class TennisExample {
         System.out.println(training1.getParticipants()); //[kati, mati]
 
         System.out.println(clientKati.getType());
-
-
-
     }
 }

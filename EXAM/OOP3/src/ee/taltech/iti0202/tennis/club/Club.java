@@ -4,7 +4,6 @@ import ee.taltech.iti0202.tennis.building.Building;
 import ee.taltech.iti0202.tennis.person.Client;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
