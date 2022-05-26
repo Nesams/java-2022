@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.tennis.exceptions;
 
-public class TrainerAlreadyHasTrainingException extends Exception{
+public class TrainerAlreadyHasTrainingException extends Exception {
     private final String exceptionMessage;
 
     public TrainerAlreadyHasTrainingException(String exceptionMessage) {

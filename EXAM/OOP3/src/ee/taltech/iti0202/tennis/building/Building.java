@@ -9,6 +9,10 @@ public class Building {
     private final ArrayList<Table> tables;
     private final Club club;
 
+    /**
+     * Constructor for building class.
+     * @param club
+     */
     public Building(Club club) {
         this.tables = new ArrayList<>();
         this.club = club;

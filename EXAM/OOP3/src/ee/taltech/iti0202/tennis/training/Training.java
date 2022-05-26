@@ -13,18 +13,26 @@ public class Training {
     private final String start;
     private final String end;
     private final ArrayList<Client> participants;
-    private final Date startdate;
-    private final Date enddate;
+    private final Date startDate;
+    private final Date endDate;
     private int maxParticipants;
     private final Building building;
     private final ArrayList<Booking> bookings;
 
+    /**
+     * Constructor for Training class.
+     * @param start
+     * @param end
+     * @param maxParticipants
+     * @param building
+     * @throws ParseException
+     */
     public Training(String start, String end, int maxParticipants, Building building) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         this.start = start;
-        this.startdate = sdf.parse(start);
+        this.startDate = sdf.parse(start);
         this.end = end;
-        this.enddate = sdf.parse(end);
+        this.endDate = sdf.parse(end);
         this.maxParticipants = maxParticipants;
         this.building = building;
         this.bookings = new ArrayList<>();
@@ -35,16 +43,16 @@ public class Training {
         return start;
     }
 
-    public Date getStartdate() {
-        return startdate;
+    public Date getStartDate() {
+        return startDate;
     }
 
     public String getEnd() {
         return end;
     }
 
-    public Date getEnddate() {
-        return enddate;
+    public Date getEndDate() {
+        return endDate;
     }
 
     public int getMaxParticipants() {
@@ -62,6 +70,7 @@ public class Training {
     public ArrayList<Client> getParticipants() {
         return participants;
     }
+
     public void addParticipant(Client client) {
         if (!participants.contains(client)) {
             participants.add(client);
@@ -71,6 +80,7 @@ public class Training {
     public ArrayList<Booking> getBookings() {
         return bookings;
     }
+
     public void addBooking(Booking booking) {
         this.bookings.add(booking);
     }

@@ -5,15 +5,19 @@ import ee.taltech.iti0202.tennis.building.Building;
 import ee.taltech.iti0202.tennis.club.Club;
 import ee.taltech.iti0202.tennis.exceptions.FalseAgeException;
 import ee.taltech.iti0202.tennis.exceptions.FalseMeasurementsException;
+import ee.taltech.iti0202.tennis.exceptions.TableAlreadyBookedException;
+import ee.taltech.iti0202.tennis.exceptions.TrainingIsFull;
 import ee.taltech.iti0202.tennis.person.Client;
 import ee.taltech.iti0202.tennis.person.Trainer;
 import ee.taltech.iti0202.tennis.table.Table;
 import ee.taltech.iti0202.tennis.training.Training;
 
 import java.text.ParseException;
+import java.util.List;
+import java.util.Optional;
 
 public class TennisExample {
-    public static void main(String[] args) throws FalseAgeException, FalseMeasurementsException, ParseException {
+    public static void main(String[] args) throws FalseAgeException, FalseMeasurementsException, ParseException, TableAlreadyBookedException, TrainingIsFull {
         Club club = new Club();
         Building building1 = new Building(club);
         Building building2 = new Building(club);
@@ -29,6 +33,8 @@ public class TennisExample {
         Table table4 = new Table(10, 10, 4, building2);
 
         Trainer trainerOtt = new Trainer("Ott", "Kiivikas", 50, "ott.kiivikas@gmail.com");
+        Trainer trainerJaanika = new Trainer("Jaanika", "Paju", 35, "jaanika@gmail.com");
+
         Client clientMati = new Client("Mati", "Tamm", 15, "Mati@gmail.com");
         Client clientKati = new Client("Kati", "Okas", 30, "kati.kati@gmail.com");
         try {
@@ -38,8 +44,21 @@ public class TennisExample {
         }
 
         Training training1 = trainerOtt.createATraining("2022/05/27 11:11", "2022/05/27 12:12", 5, building1).get();
+        Training training2 = trainerJaanika.createATraining("2022/05/27 11:11", "2022/05/27 12:12", 7, building1).get();
 
-        Booking booking1 = clientMati.bookATable("2022/05/25 11:11", "2022/05/25 12:12", table1);
+        List<Table> tables = List.of(table1, table2, table3);
+        List<Table> jaanikaTables = List.of(table1, table3);
+
+        trainerOtt.addBookingToTraining(training1, tables);
+
+        try {
+            trainerJaanika.addBookingToTraining(training2, jaanikaTables);
+
+        } catch (TableAlreadyBookedException e) {
+            System.out.println(e.getReason()); //"All the tables are booked."
+        }
+
+        Optional<Booking> booking1 = clientMati.bookATable("2022/05/25 11:11", "2022/05/25 12:12", table1);
 
         clientKati.registerToTraining(training1);
         clientMati.registerToTraining(training1);
@@ -49,12 +68,14 @@ public class TennisExample {
         System.out.println(building1.getTables()); //[table1, table2]
         System.out.println(building2.getTables()); //[table3, table4]
 
-        System.out.println(training1.getEnddate()); //[Fri May 27 12:12:00 EEST 2022]
+        System.out.println(training1.getEndDate()); //[Fri May 27 12:12:00 EEST 2022]
 
         System.out.println(clientMati.getAllBookings()); //[booking1]
         System.out.println(clientMati.getTimeSpentOnBookings()); //[many milliseconds]
 
         System.out.println(training1.getParticipants()); //[kati, mati]
+
+        System.out.println(clientKati.getType());
 
 
 

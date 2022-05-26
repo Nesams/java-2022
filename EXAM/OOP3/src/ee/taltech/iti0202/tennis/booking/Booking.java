@@ -12,6 +12,13 @@ public class Booking {
     private final Date endingTime;
     private final List<Table> tables;
 
+    /**
+     * Constructor for Booking class.
+     * @param start
+     * @param end
+     * @param tables
+     * @throws ParseException
+     */
     public Booking(String start, String end, List<Table> tables) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyy/MM/dd HH:mm");
         this.startingTime = sdf.parse(start);

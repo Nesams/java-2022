@@ -1,9 +1,9 @@
 package ee.taltech.iti0202.tennis.exceptions;
 
-public class FalseAgeException extends Exception {
+public class TrainingIsFull extends Exception{
     private final String exceptionMessage;
 
-    public FalseAgeException(String exceptionMessage) {
+    public TrainingIsFull(String exceptionMessage) {
         super(exceptionMessage);
         this.exceptionMessage = exceptionMessage;
     }

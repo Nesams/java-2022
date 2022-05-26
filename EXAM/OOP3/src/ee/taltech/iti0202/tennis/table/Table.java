@@ -14,8 +14,16 @@ public class Table {
     private final ArrayList<Booking> bookings;
     private final Building building;
 
+    /**
+     * Constructor for Table class.
+     * @param length has to be positive number
+     * @param width has to nbe positive number
+     * @param netHeight has to be positive number.
+     * @param building
+     * @throws FalseMeasurementsException
+     */
     public Table(int length, int width, int netHeight, Building building) throws FalseMeasurementsException {
-        if (length > 0 || width > 0) {
+        if (length > 0 && width > 0 && netHeight > 0) {
             this.length = length;
             this.width = width;
             this.netHeight = netHeight;
@@ -39,6 +47,12 @@ public class Table {
         bookings.add(booking);
     }
 
+    /**
+     * Check if table is booked or not.
+     * @param start
+     * @param end
+     * @return
+     */
     public boolean isBooked(Date start, Date end) {
         for (Booking booking: bookings) {
             //booked the whole time
